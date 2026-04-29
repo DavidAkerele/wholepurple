@@ -19,7 +19,7 @@ export function SalesChart({ data, title }: { data: any[], title: string }) {
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#F3F4F6" />
             <Tooltip 
               contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)' }}
-              formatter={(value: number) => [`₦${value.toLocaleString()}`, 'Sales']}
+              formatter={(value: any) => [`₦${Number(value || 0).toLocaleString()}`, 'Sales']}
             />
             <Area type="monotone" dataKey="sales" stroke="var(--primary-purple)" strokeWidth={3} fillOpacity={1} fill="url(#colorSales)" />
           </AreaChart>
