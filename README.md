@@ -1,37 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌿 Whole Purple
 
-## Getting Started
+### **Ethically Sourced, Always.**
 
-First, run the development server:
+![Whole Purple Social Preview](public/images/social-preview.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📖 Overview
+**Whole Purple** is a premium, full-stack e-commerce ecosystem dedicated to delivering the purity of nature to your doorstep. Specializing in ethically sourced fresh produce, premium marinated proteins, and organic pantry essentials, the platform combines a high-fidelity retail experience with a powerful administrative backbone designed for modern logistics.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✨ Key Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 🛒 Premium Retail Experience
+- **Elegant Storefront**: A fluid, responsive shopping experience with cinematic product visualization.
+- **Dynamic Cart & Checkout**: Real-time basket management with secure, integrated payment flows.
+- **Role-Based Access**: Specialized portals for Clients, Shop Managers, and Executive Administrators.
 
-## Learn More
+### 📊 Executive Dashboards
+- **Operations Hub**: A high-fidelity dashboard for Shop Managers with live inventory health, fulfillment velocity charts, and operational efficiency metrics.
+- **Strategic Oversight**: Admin-level analytics tracking revenue trajectories, customer base growth, and cross-platform performance.
+- **Mobile-First Analytics**: Every chart and stat is mathematically optimized for a seamless experience across all devices.
 
-To learn more about Next.js, take a look at the following resources:
+### 📄 Professional Documentation
+- **Secure Invoice Engine**: A standalone, formal document generation system that produces print-ready, high-fidelity receipts.
+- **Internal Operations Panel**: Real-time order status management with dynamic, color-coded tracking (Pending, Paid, Shipped, Delivered).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠 Tech Stack
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router, Server Components)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) with custom cubic-bezier animations.
+- **Database**: [Prisma](https://www.prisma.io/) with SQLite/PostgreSQL support.
+- **Auth**: [Next-Auth](https://next-auth.js.org/) for robust RBAC (Role-Based Access Control).
+- **Icons**: [Lucide React](https://lucide.dev/) for consistent, minimalist iconography.
+- **Charts**: [Recharts](https://recharts.org/) for responsive, data-driven visualizations.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🚀 Getting Started
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# wholepurple
+### Prerequisites
+- Node.js 20+
+- npm / yarn / pnpm
+
+### Installation
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/DavidAkerele/wholepurple.git
+   cd wholepurple
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Database Setup**
+   ```bash
+   npx prisma generate
+   npx prisma db push
+   ```
+
+4. **Run Development Server**
+   ```bash
+   npm run dev
+   ```
+   The application will be available at `http://localhost:3000`.
+
+---
+
+## 📦 Deployment
+The project is optimized for deployment on **Vercel** or any Node.js environment. Ensure all environment variables (`DATABASE_URL`, `NEXTAUTH_SECRET`) are correctly configured in your production settings.
+
+---
+
+## 💜 Brand Vision
+Whole Purple isn't just about food; it's about a sustainable, transparent supply chain that honors both the producer and the consumer. Every line of code in this platform is written to ensure that the beauty of nature is matched by the efficiency of our technology.
+
+---
+© 2026 Whole Purple Ltd. All Rights Reserved.
