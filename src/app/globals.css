@@ -1,26 +1,90 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-primary-purple: #633991;
+  --color-accent-green: #89C836;
+  --color-accent-red: #D32F2F;
+  --color-section-bg: #F5F1ED;
+  --font-sans: "Quicksand", "Inter", sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root {
+  --primary-purple: #633991;
+  --accent-green: #89C836;
+  --accent-red: #D32F2F;
+  --section-bg: #F5F1ED;
+  --background: #FAF7F2;
+  --foreground: #333333;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #1a1a1a;
+    --foreground: #f0f0f0;
   }
 }
 
 body {
-  background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  font-family: var(--font-sans);
+}
+
+/* Base custom utility classes */
+.btn-primary {
+  @apply bg-[var(--primary-purple)] text-white font-bold py-3 px-6 rounded-full hover:opacity-90 transition-all active:scale-95;
+}
+
+.btn-secondary {
+  @apply bg-[var(--accent-green)] text-white font-bold py-3 px-6 rounded-full hover:opacity-90 transition-all active:scale-95;
+}
+
+.btn-outline {
+  @apply border-2 border-[var(--primary-purple)] text-[var(--primary-purple)] font-bold py-3 px-6 rounded-full hover:bg-[var(--primary-purple)] hover:text-white transition-all active:scale-95;
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #E5E7EB;
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #D1D5DB;
+}
+
+/* Print Styles */
+@media print {
+  aside, header, .fixed, button, .no-print {
+    display: none !important;
+  }
+  
+  .flex-1 {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  main {
+    overflow: visible !important;
+    padding: 0 !important;
+  }
+
+  .bg-[#FAFAFA], .bg-white {
+    background-color: white !important;
+  }
+
+  .shadow-xl, .shadow-2xl {
+    box-shadow: none !important;
+    border: 1px solid #eee !important;
+  }
+
+  .rounded-\[40px\] {
+    border-radius: 0 !important;
+  }
 }
