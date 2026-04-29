@@ -216,7 +216,12 @@ export default function CheckoutPage() {
                  {items.map(item => (
                    <div key={item.id} className="flex gap-4 items-center">
                      <div className="relative w-16 h-16 bg-[#FDFCFB] rounded-2xl border border-gray-50 shrink-0 overflow-hidden">
-                        <Image src={item.image.startsWith('http') ? item.image : `/images/scraped/${item.image}`} alt={item.name} fill className="object-contain p-2" />
+                        <Image 
+                          src={item.image ? (item.image.startsWith('http') ? item.image : `/images/scraped/${item.image}`) : '/images/scraped/woocommerce-placeholder.webp'} 
+                          alt={item.name} 
+                          fill 
+                          className="object-contain p-2" 
+                        />
                         <div className="absolute top-0 right-0 bg-[var(--primary-purple)] text-white text-[9px] font-black w-5 h-5 flex items-center justify-center rounded-bl-xl">
                            {item.quantity}
                         </div>

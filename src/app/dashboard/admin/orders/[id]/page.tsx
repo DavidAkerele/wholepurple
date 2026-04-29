@@ -71,7 +71,7 @@ export default async function OrderDetailsPage({ params }: { params: Promise<{ i
                            {item.product.image ? (
                              <Image src={item.product.image.startsWith('http') ? item.product.image : `/images/scraped/${item.product.image}`} alt={item.product.name} fill className="object-contain p-2" />
                            ) : (
-                             <Package className="w-8 h-8 text-gray-300 m-auto absolute inset-0" />
+                             <Image src="/images/scraped/woocommerce-placeholder.webp" alt={item.product.name} fill className="object-contain p-2 opacity-20" />
                            )}
                         </div>
                         <div className="flex-1 min-w-0">

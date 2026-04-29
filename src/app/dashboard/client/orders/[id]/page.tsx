@@ -59,8 +59,10 @@ export default async function ClientOrderDetailsPage({ params }: { params: Promi
                  {order.items.map((item) => (
                    <div key={item.id} className="flex items-center gap-6 pb-6 border-b border-gray-50 last:border-0 last:pb-0">
                       <div className="relative w-20 h-20 bg-gray-50 rounded-2xl overflow-hidden shrink-0">
-                         {item.product.image && (
+                         {item.product.image ? (
                            <Image src={item.product.image.startsWith('http') ? item.product.image : `/images/scraped/${item.product.image}`} alt={item.product.name} fill className="object-contain p-2" />
+                         ) : (
+                           <Image src="/images/scraped/woocommerce-placeholder.webp" alt={item.product.name} fill className="object-contain p-2 opacity-20" />
                          )}
                       </div>
                       <div className="flex-1 min-w-0">

@@ -3,7 +3,7 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
-import { ChevronLeft, Package, User, MapPin, Phone, Clock, CreditCard, ShoppingBag, CheckCircle2, ShieldCheck } from "lucide-react";
+import { ChevronLeft, Package, User, MapPin, Phone, Clock, CreditCard, ShoppingBag, FileText, ShieldCheck } from "lucide-react";
 import Image from "next/image";
 import OrderActions from "@/components/OrderActions";
 import InvoiceTemplate from "@/components/InvoiceTemplate";
@@ -71,7 +71,7 @@ export default async function OrderDetailsPage({ params }: { params: Promise<{ i
                            {item.product.image ? (
                              <Image src={item.product.image.startsWith('http') ? item.product.image : `/images/scraped/${item.product.image}`} alt={item.product.name} fill className="object-contain p-2" />
                            ) : (
-                             <Package className="w-8 h-8 text-gray-300 m-auto absolute inset-0" />
+                             <Image src="/images/scraped/woocommerce-placeholder.webp" alt={item.product.name} fill className="object-contain p-2 opacity-20" />
                            )}
                         </div>
                         <div className="flex-1 min-w-0">
@@ -154,15 +154,21 @@ export default async function OrderDetailsPage({ params }: { params: Promise<{ i
 
              {/* Actions Card */}
              <div className="bg-[#1A0B2E] rounded-[40px] p-8 text-white shadow-2xl shadow-purple-900/20 relative overflow-hidden group">
-                {/* Abstract Background Element */}
                 <div className="absolute -top-20 -right-20 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl group-hover:scale-110 transition-transform duration-700"></div>
                 
                 <h3 className="relative z-10 text-lg font-black uppercase tracking-tighter mb-8 flex items-center gap-3">
                    <ShieldCheck className="w-5 h-5 text-purple-400" /> Internal Operations
                 </h3>
                 
-                <div className="relative z-10">
+                <div className="relative z-10 flex flex-col gap-4">
                    <OrderActions orderId={order.id} currentStatus={order.status} />
+                   <Link 
+                      href={`/dashboard/invoice/${order.id}`} 
+                      target="_blank"
+                      className="w-full py-4 rounded-2xl border border-white/10 text-white/70 text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-white/5 transition-all"
+                    >
+                       <FileText className="w-4 h-4" /> View Official Invoice
+                    </Link>
                 </div>
                 
                 <p className="relative z-10 text-[9px] font-bold text-white/30 uppercase tracking-[0.2em] mt-8 text-center border-t border-white/5 pt-6">
