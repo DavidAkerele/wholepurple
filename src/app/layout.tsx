@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Quicksand } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Providers from "@/components/Providers";
 
-const quicksand = Quicksand({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-quicksand",
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -82,7 +82,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${quicksand.variable} antialiased min-h-screen flex flex-col font-sans`}>
+      <body className={`${inter.variable} antialiased min-h-screen flex flex-col font-sans`}>
         <Providers>
           <AnnouncementBar />
           <Navbar />

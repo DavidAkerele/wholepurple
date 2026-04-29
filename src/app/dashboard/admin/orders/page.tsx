@@ -23,13 +23,13 @@ export default async function AdminOrdersPage() {
     <div className="flex flex-col gap-8">
       <div>
         <h1 className="text-3xl font-bold text-gray-900 mb-2">All Orders</h1>
-        <p className="text-gray-500">View all transactions across the platform.</p>
+        <p className="text-gray-800">View all transactions across the platform.</p>
       </div>
 
       <div className="bg-white rounded-3xl border border-gray-100 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
-            <thead className="bg-gray-50 text-gray-500 uppercase font-bold text-xs">
+            <thead className="bg-gray-50 text-gray-900 text-gray-800 uppercase font-bold text-xs">
               <tr>
                 <th className="px-6 py-4">Order ID</th>
                 <th className="px-6 py-4">Customer</th>
@@ -40,8 +40,8 @@ export default async function AdminOrdersPage() {
             </thead>
             <tbody className="divide-y divide-gray-100">
               {orders.map(order => (
-                <tr key={order.id} className="hover:bg-gray-50/50 transition-colors group">
-                  <td className="px-6 py-4 font-mono text-xs text-gray-500">
+                <tr key={order.id} className="hover:bg-gray-50 text-gray-900/50 transition-colors group">
+                  <td className="px-6 py-4 font-mono text-xs text-gray-800">
                     <Link href={`/dashboard/admin/orders/${order.id}`} className="hover:text-[var(--primary-purple)] hover:underline">
                       {order.id.slice(-8).toUpperCase()}
                     </Link>
@@ -55,7 +55,7 @@ export default async function AdminOrdersPage() {
                   <td className="px-6 py-4">
                     <StatusBadge status={order.status} />
                   </td>
-                  <td className="px-6 py-4 text-gray-500">
+                  <td className="px-6 py-4 text-gray-800">
                     {new Date(order.createdAt).toLocaleDateString()}
                   </td>
                   <td className="px-6 py-4 text-right">
@@ -67,7 +67,7 @@ export default async function AdminOrdersPage() {
               ))}
               {orders.length === 0 && (
                 <tr>
-                  <td colSpan={6} className="px-6 py-12 text-center text-gray-500">No orders found.</td>
+                  <td colSpan={6} className="px-6 py-12 text-center text-gray-800">No orders found.</td>
                 </tr>
               )}
             </tbody>

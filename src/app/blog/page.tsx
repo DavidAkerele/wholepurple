@@ -43,7 +43,7 @@ export default async function BlogPage({
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
             {blogs.map((blog, i) => (
               <div key={blog.id} className="flex flex-col border border-gray-100 rounded-3xl overflow-hidden bg-white transition-all duration-300 hover:-translate-y-2">
-                <div className="aspect-video relative bg-[#F5F1ED] flex items-center justify-center text-gray-400">
+                <div className="aspect-video relative bg-[#F5F1ED] flex items-center justify-center text-gray-600">
                   {blog.image ? (
                     <Image src={blog.image} alt={blog.title} fill className="object-cover" />
                   ) : (
@@ -55,7 +55,7 @@ export default async function BlogPage({
                   <h2 className="text-xl font-bold mb-3 line-clamp-2">{blog.title}</h2>
                   <p className="text-gray-600 mb-6 flex-1 line-clamp-3">{blog.excerpt}</p>
                   <div className="flex items-center justify-between mt-auto">
-                    <span className="text-xs text-gray-500 font-medium">By {blog.author.name || 'Editor'}</span>
+                    <span className="text-xs text-gray-800 font-medium">By {blog.author.name || 'Editor'}</span>
                     <Link href={`/blog/${blog.slug}`} className="text-[var(--primary-purple)] font-bold flex items-center gap-1 text-sm hover:underline">
                       Read more <ArrowRight className="w-4 h-4" />
                     </Link>
@@ -66,7 +66,7 @@ export default async function BlogPage({
           </div>
 
           {blogs.length === 0 ? (
-            <div className="py-20 text-center text-gray-400">
+            <div className="py-20 text-center text-gray-600">
               <p className="text-xl font-medium">No articles published yet. Check back soon!</p>
             </div>
           ) : (

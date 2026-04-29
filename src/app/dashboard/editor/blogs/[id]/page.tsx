@@ -26,7 +26,7 @@ export default async function EditBlogPage({ params }: { params: { id: string } 
     <div className="py-10">
       <div className="mb-12">
         <h1 className="text-4xl font-black text-gray-900 mb-2">Edit Story</h1>
-        <p className="text-gray-500 font-medium">Refining your voice for the community.</p>
+        <p className="text-gray-800 font-medium">Refining your voice for the community.</p>
       </div>
       <BlogForm initialData={blog} />
     </div>

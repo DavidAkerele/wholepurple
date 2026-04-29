@@ -34,7 +34,7 @@ export default async function WishlistPage() {
           </Link>
           <div>
             <h1 className="text-3xl font-black text-gray-900 uppercase tracking-tighter">My Wishlist</h1>
-            <p className="text-gray-500 font-medium text-sm">Save your favorite harvests for later.</p>
+            <p className="text-gray-800 font-medium text-sm">Save your favorite harvests for later.</p>
           </div>
         </div>
         <div className="bg-white px-6 py-3 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-3">
@@ -49,7 +49,7 @@ export default async function WishlistPage() {
             <Heart className="w-8 md:w-10 h-8 md:h-10 text-red-300" />
           </div>
           <h2 className="text-xl md:text-2xl font-black text-gray-900 uppercase tracking-tighter mb-4">Your wishlist is empty</h2>
-          <p className="text-gray-500 font-medium max-w-sm mb-10 leading-relaxed text-sm">
+          <p className="text-gray-800 font-medium max-w-sm mb-10 leading-relaxed text-sm">
             Found something you love? Heart it to save it here for easy access later.
           </p>
           <Link href="/shop" className="btn-primary px-12">Explore Harvests</Link>
@@ -59,9 +59,9 @@ export default async function WishlistPage() {
           {wishlistItems.map((item) => (
             <div key={item.id} className="bg-white rounded-[30px] md:rounded-[40px] overflow-hidden border border-gray-100 shadow-xl shadow-purple-900/5 group hover:shadow-2xl transition-all duration-500">
               {/* Product Image */}
-              <div className="relative aspect-square overflow-hidden bg-gray-50">
+              <div className="relative aspect-square overflow-hidden bg-gray-50 text-gray-900">
                 <Image 
-                  src={`/images/scraped/${item.product.image || 'placeholder.png'}`}
+                  src={item.product.image?.startsWith('http') ? item.product.image : `/images/scraped/${item.product.image || 'placeholder.png'}`}
                   alt={item.product.name}
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
@@ -91,7 +91,7 @@ export default async function WishlistPage() {
                    <button className="flex-1 flex items-center justify-center gap-2 bg-gray-900 text-white py-3 md:py-4 rounded-xl md:rounded-2xl text-[8px] md:text-[10px] font-black uppercase tracking-widest hover:bg-[var(--primary-purple)] transition-all">
                       <ShoppingCart className="w-4 h-4" /> Add to Basket
                    </button>
-                   <Link href={`/shop/${item.product.slug}`} className="w-12 h-12 md:w-14 md:h-14 bg-gray-50 rounded-xl md:rounded-2xl flex items-center justify-center text-gray-400 hover:text-gray-900 transition-all border border-transparent hover:border-gray-200 shrink-0">
+                   <Link href={`/shop/${item.product.slug}`} className="w-12 h-12 md:w-14 md:h-14 bg-gray-50 text-gray-900 rounded-xl md:rounded-2xl flex items-center justify-center text-gray-600 hover:text-gray-900 transition-all border border-transparent hover:border-gray-200 shrink-0">
                       <ArrowRight className="w-5 h-5" />
                    </Link>
                 </div>

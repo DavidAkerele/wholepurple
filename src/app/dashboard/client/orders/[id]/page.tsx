@@ -40,7 +40,7 @@ export default async function ClientOrderDetailsPage({ params }: { params: Promi
           </Link>
           <div>
             <h1 className="text-3xl font-black text-gray-900 uppercase tracking-tighter">Order Details</h1>
-            <p className="text-gray-500 font-medium text-sm flex items-center gap-2">
+            <p className="text-gray-800 font-medium text-sm flex items-center gap-2">
                #{order.id.slice(-8).toUpperCase()} • {new Date(order.createdAt).toLocaleDateString()}
             </p>
           </div>
@@ -58,7 +58,7 @@ export default async function ClientOrderDetailsPage({ params }: { params: Promi
               <div className="flex flex-col gap-6">
                  {order.items.map((item) => (
                    <div key={item.id} className="flex items-center gap-6 pb-6 border-b border-gray-50 last:border-0 last:pb-0">
-                      <div className="relative w-20 h-20 bg-gray-50 rounded-2xl overflow-hidden shrink-0">
+                      <div className="relative w-20 h-20 bg-gray-50 text-gray-900 rounded-2xl overflow-hidden shrink-0">
                          {item.product.image ? (
                            <Image src={item.product.image.startsWith('http') ? item.product.image : `/images/scraped/${item.product.image}`} alt={item.product.name} fill className="object-contain p-2" />
                          ) : (
@@ -67,7 +67,7 @@ export default async function ClientOrderDetailsPage({ params }: { params: Promi
                       </div>
                       <div className="flex-1 min-w-0">
                          <h4 className="text-lg font-black text-gray-900 uppercase tracking-tight truncate">{item.product.name}</h4>
-                         <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mt-1">{item.quantity} x ₦{item.price.toLocaleString()}</p>
+                         <p className="text-xs font-bold text-gray-600 uppercase tracking-widest mt-1">{item.quantity} x ₦{item.price.toLocaleString()}</p>
                       </div>
                       <div className="text-right">
                          <p className="text-xl font-black text-gray-900">₦{(item.price * item.quantity).toLocaleString()}</p>
@@ -89,16 +89,16 @@ export default async function ClientOrderDetailsPage({ params }: { params: Promi
            {/* Logistics Info */}
            <div className="bg-white rounded-[40px] border border-gray-100 shadow-xl shadow-purple-900/5 p-8 flex flex-col gap-6">
               <div className="flex gap-4">
-                 <MapPin className="w-5 h-5 text-gray-300 shrink-0" />
+                 <MapPin className="w-5 h-5 text-gray-500 shrink-0" />
                  <div>
-                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 text-left">Delivery Address</p>
+                    <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-1 text-left">Delivery Address</p>
                     <p className="text-sm font-medium text-gray-700 text-left">{order.address}</p>
                  </div>
               </div>
               <div className="flex gap-4">
-                 <Phone className="w-5 h-5 text-gray-300 shrink-0" />
+                 <Phone className="w-5 h-5 text-gray-500 shrink-0" />
                  <div>
-                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 text-left">Contact Number</p>
+                    <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-1 text-left">Contact Number</p>
                     <p className="text-sm font-medium text-gray-700 text-left">{order.phone}</p>
                  </div>
               </div>

@@ -86,13 +86,13 @@ export default function CreateOrderForm({ products }: { products: any[] }) {
       <div className="xl:col-span-2 flex flex-col gap-6">
         <div className="bg-white p-6 rounded-[32px] border border-gray-100 flex flex-col gap-6">
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-600" />
             <input 
               type="text"
               placeholder="Search products by name or category..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 rounded-2xl border border-gray-100 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all"
+              className="w-full pl-12 pr-4 py-4 rounded-2xl border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all"
             />
           </div>
 
@@ -103,9 +103,9 @@ export default function CreateOrderForm({ products }: { products: any[] }) {
                 onClick={() => addToCart(product)}
                 className="p-4 rounded-[24px] border border-gray-100 hover:border-[var(--primary-purple)] hover:shadow-lg hover:shadow-purple-50 transition-all text-left flex flex-col gap-3 group"
               >
-                <div className="relative aspect-square bg-gray-50 rounded-xl overflow-hidden flex items-center justify-center p-4">
+                <div className="relative aspect-square bg-gray-50 text-gray-900 rounded-xl overflow-hidden flex items-center justify-center p-4">
                   <Image 
-                    src={`/images/scraped/${product.image || 'woocommerce-placeholder.webp'}`}
+                    src={product.image?.startsWith('http') ? product.image : `/images/scraped/${product.image || 'woocommerce-placeholder.webp'}`}
                     alt={product.name}
                     fill
                     className="object-contain p-2 group-hover:scale-110 transition-transform duration-300"
@@ -132,45 +132,45 @@ export default function CreateOrderForm({ products }: { products: any[] }) {
             </h3>
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-gray-400 uppercase tracking-widest px-1">Full Name</label>
+                <label className="text-xs font-bold text-gray-600 uppercase tracking-widest px-1">Full Name</label>
                 <input 
                   type="text"
                   required
                   placeholder="John Doe"
                   value={customer.name}
                   onChange={(e) => setCustomer({ ...customer, name: e.target.value })}
-                  className="p-3.5 rounded-xl border border-gray-100 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all text-sm"
+                  className="p-3.5 rounded-xl border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all text-sm"
                 />
               </div>
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-gray-400 uppercase tracking-widest px-1">Email Address</label>
+                <label className="text-xs font-bold text-gray-600 uppercase tracking-widest px-1">Email Address</label>
                 <input 
                   type="email"
                   required
                   placeholder="john@example.com"
                   value={customer.email}
                   onChange={(e) => setCustomer({ ...customer, email: e.target.value })}
-                  className="p-3.5 rounded-xl border border-gray-100 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all text-sm"
+                  className="p-3.5 rounded-xl border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all text-sm"
                 />
               </div>
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-gray-400 uppercase tracking-widest px-1">Phone Number</label>
+                <label className="text-xs font-bold text-gray-600 uppercase tracking-widest px-1">Phone Number</label>
                 <input 
                   type="tel"
                   placeholder="+234..."
                   value={customer.phone}
                   onChange={(e) => setCustomer({ ...customer, phone: e.target.value })}
-                  className="p-3.5 rounded-xl border border-gray-100 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all text-sm"
+                  className="p-3.5 rounded-xl border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all text-sm"
                 />
               </div>
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-gray-400 uppercase tracking-widest px-1">Delivery Address</label>
+                <label className="text-xs font-bold text-gray-600 uppercase tracking-widest px-1">Delivery Address</label>
                 <textarea 
                   placeholder="Street address, city, state..."
                   rows={2}
                   value={customer.address}
                   onChange={(e) => setCustomer({ ...customer, address: e.target.value })}
-                  className="p-3.5 rounded-xl border border-gray-100 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all text-sm resize-none"
+                  className="p-3.5 rounded-xl border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all text-sm resize-none"
                 />
               </div>
             </div>
@@ -183,10 +183,10 @@ export default function CreateOrderForm({ products }: { products: any[] }) {
             </h3>
             <div className="flex flex-col gap-4 max-h-[300px] overflow-y-auto mb-6 pr-2 custom-scrollbar">
               {cart.map(item => (
-                <div key={item.product.id} className="flex items-center gap-3 p-3 rounded-2xl border border-gray-50 bg-gray-50/50">
+                <div key={item.product.id} className="flex items-center gap-3 p-3 rounded-2xl border border-gray-50 bg-gray-50 text-gray-900/50">
                   <div className="w-12 h-12 relative bg-white rounded-lg overflow-hidden shrink-0 border border-gray-100 flex items-center justify-center p-1">
                     <Image 
-                      src={`/images/scraped/${item.product.image || 'woocommerce-placeholder.webp'}`}
+                      src={item.product.image?.startsWith('http') ? item.product.image : `/images/scraped/${item.product.image || 'woocommerce-placeholder.webp'}`}
                       alt={item.product.name}
                       fill
                       className="object-contain"
@@ -197,25 +197,25 @@ export default function CreateOrderForm({ products }: { products: any[] }) {
                     <p className="text-xs font-bold text-[var(--primary-purple)]">₦{item.product.price.toLocaleString()}</p>
                   </div>
                   <div className="flex items-center gap-2 bg-white rounded-lg border border-gray-100 px-1 py-1">
-                    <button type="button" onClick={() => updateQuantity(item.product.id, -1)} className="p-1 hover:bg-gray-50 rounded-md transition-colors"><Minus className="w-3 h-3 text-gray-400" /></button>
+                    <button type="button" onClick={() => updateQuantity(item.product.id, -1)} className="p-1 hover:bg-gray-50 text-gray-900 rounded-md transition-colors"><Minus className="w-3 h-3 text-gray-600" /></button>
                     <span className="text-xs font-black min-w-[20px] text-center">{item.quantity}</span>
-                    <button type="button" onClick={() => updateQuantity(item.product.id, 1)} className="p-1 hover:bg-gray-50 rounded-md transition-colors"><Plus className="w-3 h-3 text-gray-400" /></button>
+                    <button type="button" onClick={() => updateQuantity(item.product.id, 1)} className="p-1 hover:bg-gray-50 text-gray-900 rounded-md transition-colors"><Plus className="w-3 h-3 text-gray-600" /></button>
                   </div>
-                  <button type="button" onClick={() => removeFromCart(item.product.id)} className="p-2 text-gray-300 hover:text-red-500 transition-colors"><Trash2 className="w-4 h-4" /></button>
+                  <button type="button" onClick={() => removeFromCart(item.product.id)} className="p-2 text-gray-500 hover:text-red-500 transition-colors"><Trash2 className="w-4 h-4" /></button>
                 </div>
               ))}
               {cart.length === 0 && (
-                <p className="text-center py-8 text-gray-400 text-sm font-medium italic">Your cart is empty.</p>
+                <p className="text-center py-8 text-gray-600 text-sm font-medium italic">Your cart is empty.</p>
               )}
             </div>
 
             <div className="pt-6 border-t border-gray-100 flex flex-col gap-3">
               <div className="flex items-center justify-between">
-                <span className="text-gray-500 font-medium">Subtotal</span>
+                <span className="text-gray-800 font-medium">Subtotal</span>
                 <span className="font-bold text-gray-900">₦{total.toLocaleString()}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-gray-500 font-medium">Processing Fee</span>
+                <span className="text-gray-800 font-medium">Processing Fee</span>
                 <span className="font-bold text-green-600">FREE</span>
               </div>
               <div className="flex items-center justify-between pt-3 mt-3 border-t border-dashed border-gray-200">

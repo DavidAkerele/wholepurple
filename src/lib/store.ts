@@ -83,3 +83,14 @@ export const useWishlistStore = create<WishlistStore>()(
     }
   )
 );
+interface UIStore {
+  isSidebarCollapsed: boolean;
+  setSidebarCollapsed: (collapsed: boolean) => void;
+  toggleSidebar: () => void;
+}
+
+export const useUIStore = create<UIStore>((set) => ({
+  isSidebarCollapsed: true, // Collapsed by default
+  setSidebarCollapsed: (collapsed) => set({ isSidebarCollapsed: collapsed }),
+  toggleSidebar: () => set((state) => ({ isSidebarCollapsed: !state.isSidebarCollapsed })),
+}));

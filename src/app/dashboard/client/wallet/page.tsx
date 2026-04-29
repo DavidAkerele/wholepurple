@@ -21,7 +21,7 @@ export default async function WalletPage() {
           </Link>
           <div>
             <h1 className="text-3xl font-black text-gray-900 uppercase tracking-tighter">My Wallet</h1>
-            <p className="text-gray-500 font-medium text-sm">Manage your funds and seamless payments.</p>
+            <p className="text-gray-800 font-medium text-sm">Manage your funds and seamless payments.</p>
           </div>
         </div>
       </div>
@@ -68,7 +68,7 @@ export default async function WalletPage() {
               </div>
               <div>
                  <h4 className="font-black text-xs md:text-sm text-gray-900 uppercase tracking-tight mb-1">One-Click Checkout</h4>
-                 <p className="text-[10px] md:text-xs text-gray-400 font-medium leading-relaxed">Skip forms. Pay instantly with your balance.</p>
+                 <p className="text-[10px] md:text-xs text-gray-600 font-medium leading-relaxed">Skip forms. Pay instantly with your balance.</p>
               </div>
            </div>
 
@@ -78,12 +78,12 @@ export default async function WalletPage() {
               </div>
               <div>
                  <h4 className="font-black text-xs md:text-sm text-gray-900 uppercase tracking-tight mb-1">Instant Refunds</h4>
-                 <p className="text-[10px] md:text-xs text-gray-400 font-medium leading-relaxed">Cancellations are credited immediately.</p>
+                 <p className="text-[10px] md:text-xs text-gray-600 font-medium leading-relaxed">Cancellations are credited immediately.</p>
               </div>
            </div>
 
-           <div className="mt-auto p-4 md:p-6 bg-gray-50 rounded-2xl md:rounded-3xl border border-gray-100">
-              <p className="text-[8px] md:text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Secure Payments</p>
+           <div className="mt-auto p-4 md:p-6 bg-gray-50 text-gray-900 rounded-2xl md:rounded-3xl border border-gray-100">
+              <p className="text-[8px] md:text-[10px] font-black uppercase tracking-widest text-gray-600 mb-2">Secure Payments</p>
               <p className="text-[10px] md:text-xs font-bold text-gray-900">Protected by industry-leading encryption.</p>
            </div>
         </div>
@@ -93,16 +93,16 @@ export default async function WalletPage() {
       <div className="bg-white p-10 rounded-[50px] border border-gray-100 shadow-2xl shadow-purple-900/5">
         <div className="flex items-center justify-between mb-10">
           <h2 className="text-2xl font-black text-gray-900 uppercase tracking-tighter">Transaction History</h2>
-          <div className="p-2 bg-gray-50 rounded-xl">
-             <History className="w-5 h-5 text-gray-400" />
+          <div className="p-2 bg-gray-50 text-gray-900 rounded-xl">
+             <History className="w-5 h-5 text-gray-600" />
           </div>
         </div>
         
         <div className="flex flex-col items-center justify-center py-20 text-center">
-           <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-6">
+           <div className="w-20 h-20 bg-gray-50 text-gray-900 rounded-full flex items-center justify-center mb-6">
               <History className="w-8 h-8 text-gray-200" />
            </div>
-           <p className="text-gray-400 font-medium text-sm">No transactions found in your history.</p>
+           <p className="text-gray-600 font-medium text-sm">No transactions found in your history.</p>
         </div>
       </div>
     </div>

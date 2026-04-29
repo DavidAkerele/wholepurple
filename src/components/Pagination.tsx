@@ -29,7 +29,7 @@ export default function Pagination({ totalPages, currentPage, baseUrl }: Paginat
         href={createPageUrl(Math.max(1, currentPage - 1))}
         className={`w-10 h-10 rounded-full flex items-center justify-center border transition-all ${
           currentPage === 1 
-          ? 'border-gray-100 text-gray-300 cursor-not-allowed' 
+          ? 'border-gray-100 text-gray-500 cursor-not-allowed' 
           : 'border-gray-200 text-gray-600 hover:border-[var(--primary-purple)] hover:text-[var(--primary-purple)]'
         }`}
         aria-disabled={currentPage === 1}
@@ -55,7 +55,7 @@ export default function Pagination({ totalPages, currentPage, baseUrl }: Paginat
         href={createPageUrl(Math.min(totalPages, currentPage + 1))}
         className={`w-10 h-10 rounded-full flex items-center justify-center border transition-all ${
           currentPage === totalPages 
-          ? 'border-gray-100 text-gray-300 cursor-not-allowed' 
+          ? 'border-gray-100 text-gray-500 cursor-not-allowed' 
           : 'border-gray-200 text-gray-600 hover:border-[var(--primary-purple)] hover:text-[var(--primary-purple)]'
         }`}
         aria-disabled={currentPage === totalPages}

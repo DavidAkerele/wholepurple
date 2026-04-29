@@ -54,7 +54,7 @@ export default function FaqsPage() {
                 {openIndex === index ? (
                   <ChevronUp className="w-5 h-5 text-[var(--primary-purple)] shrink-0" />
                 ) : (
-                  <ChevronDown className="w-5 h-5 text-gray-400 shrink-0" />
+                  <ChevronDown className="w-5 h-5 text-gray-600 shrink-0" />
                 )}
               </button>
               

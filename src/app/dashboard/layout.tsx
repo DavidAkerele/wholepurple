@@ -24,7 +24,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
       <div className="flex-1 flex flex-col h-screen overflow-hidden">
         <DashboardHeader session={session} />
         <main className="flex-1 overflow-y-auto">
-          <div className="p-8 md:p-12 max-w-7xl mx-auto">
+          <div className="p-6 md:p-10 xl:p-12 max-w-[1600px] mx-auto w-full">
             {children}
           </div>
         </main>

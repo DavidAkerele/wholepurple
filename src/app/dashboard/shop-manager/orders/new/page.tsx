@@ -20,7 +20,7 @@ export default async function NewOrderPage() {
     <div className="flex flex-col gap-10">
       <div>
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Create New Order</h1>
-        <p className="text-gray-500 font-medium">Manually process an order for a customer.</p>
+        <p className="text-gray-800 font-medium">Manually process an order for a customer.</p>
       </div>
 
       <CreateOrderForm products={products} />

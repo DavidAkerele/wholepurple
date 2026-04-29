@@ -11,7 +11,7 @@ export default function AddToCartButton({ product }: { product: any }) {
       name: product.name,
       price: product.price,
       quantity: 1,
-      image: `/images/scraped/${product.image || 'woocommerce-placeholder.webp'}`
+      image: product.image?.startsWith('http') ? product.image : `/images/scraped/${product.image || 'woocommerce-placeholder.webp'}`
     });
     // Visual feedback could be added here (e.g. a toast notification)
   };

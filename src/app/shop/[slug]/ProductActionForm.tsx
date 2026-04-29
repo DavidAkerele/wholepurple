@@ -35,17 +35,17 @@ export default function ProductActionForm({ product }: { product: Product }) {
     <div className="flex flex-col gap-6">
       <div className="flex items-center gap-4">
         <span className="font-bold text-gray-700">Quantity</span>
-        <div className="flex items-center bg-gray-50 border border-gray-200 rounded-full p-1">
+        <div className="flex items-center bg-gray-50 text-gray-900 border border-gray-200 rounded-full p-1">
           <button 
             onClick={handleDecrease}
-            className="w-10 h-10 rounded-full flex items-center justify-center text-gray-500 hover:bg-white hover:text-[var(--primary-purple)] transition-all"
+            className="w-10 h-10 rounded-full flex items-center justify-center text-gray-800 hover:bg-white hover:text-[var(--primary-purple)] transition-all"
           >
             <Minus className="w-4 h-4" />
           </button>
           <span className="w-10 text-center font-bold text-gray-900">{quantity}</span>
           <button 
             onClick={handleIncrease}
-            className="w-10 h-10 rounded-full flex items-center justify-center text-gray-500 hover:bg-white hover:text-[var(--primary-purple)] transition-all"
+            className="w-10 h-10 rounded-full flex items-center justify-center text-gray-800 hover:bg-white hover:text-[var(--primary-purple)] transition-all"
           >
             <Plus className="w-4 h-4" />
           </button>

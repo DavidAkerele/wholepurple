@@ -22,7 +22,7 @@ export default async function AdminSettingsPage() {
     <div className="flex flex-col gap-10">
       <div>
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Global Settings</h1>
-        <p className="text-gray-500 font-medium">Configure platform-wide parameters and branding.</p>
+        <p className="text-gray-800 font-medium">Configure platform-wide parameters and branding.</p>
       </div>
 
       <SettingsForm initialSettings={settings} />

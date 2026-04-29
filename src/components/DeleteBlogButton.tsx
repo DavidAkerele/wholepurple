@@ -25,7 +25,7 @@ export default function DeleteBlogButton({ id }: { id: string }) {
     <button 
       onClick={handleDelete}
       disabled={loading}
-      className="p-2 hover:bg-red-50 hover:text-red-600 rounded-xl text-gray-400 transition-all disabled:opacity-50"
+      className="p-2 hover:bg-red-50 hover:text-red-600 rounded-xl text-gray-600 transition-all disabled:opacity-50"
     >
       <Trash2 className="w-4 h-4" />
     </button>

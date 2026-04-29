@@ -67,7 +67,7 @@ export default async function ShopPage({
                       className={`group flex items-center justify-between p-4 rounded-2xl transition-all ${
                         !categoryFilter 
                         ? 'bg-white shadow-xl shadow-purple-900/5 text-[var(--primary-purple)] border border-gray-50' 
-                        : 'text-gray-500 hover:text-gray-900 hover:bg-white/50'
+                        : 'text-gray-800 hover:text-gray-900 hover:bg-white/50'
                       }`}
                     >
                       <span className="text-sm font-black uppercase tracking-tight">All Products</span>
@@ -81,7 +81,7 @@ export default async function ShopPage({
                         className={`group flex items-center justify-between p-4 rounded-2xl transition-all ${
                           categoryFilter === cat.slug 
                           ? 'bg-white shadow-xl shadow-purple-900/5 text-[var(--primary-purple)] border border-gray-50' 
-                          : 'text-gray-500 hover:text-gray-900 hover:bg-white/50'
+                          : 'text-gray-800 hover:text-gray-900 hover:bg-white/50'
                         }`}
                       >
                         <span className="text-sm font-black uppercase tracking-tight">{cat.name}</span>
@@ -141,7 +141,7 @@ export default async function ShopPage({
                         <h2 className="text-4xl font-black text-gray-900 uppercase tracking-tighter mb-6 leading-none">
                           {builder.title}
                         </h2>
-                        <p className="text-gray-500 font-medium leading-relaxed max-w-xs mb-10">
+                        <p className="text-gray-800 font-medium leading-relaxed max-w-xs mb-10">
                           {builder.description}
                         </p>
                         <div className="flex items-center gap-3 bg-gray-900 text-white px-8 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest group-hover:bg-[var(--primary-purple)] transition-all">
@@ -165,14 +165,14 @@ export default async function ShopPage({
                       <span className="text-xs font-black uppercase tracking-widest">Grid View</span>
                     </div>
                     <div className="w-px h-4 bg-gray-100"></div>
-                    <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">
+                    <span className="text-[10px] font-black text-gray-600 uppercase tracking-widest">
                       Showing {products.length} of {totalProducts} Products
                     </span>
                   </div>
                   
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Sort By:</span>
-                    <select className="bg-gray-50 border-none rounded-xl px-4 py-2 text-xs font-bold text-gray-900 focus:ring-2 focus:ring-[var(--primary-purple)]/20 outline-none cursor-pointer">
+                    <span className="text-[10px] font-black text-gray-600 uppercase tracking-widest">Sort By:</span>
+                    <select className="bg-gray-50 text-gray-900 border-none rounded-xl px-4 py-2 text-xs font-bold text-gray-900 focus:ring-2 focus:ring-[var(--primary-purple)]/20 outline-none cursor-pointer">
                       <option>Newest Harvest</option>
                       <option>Price: Low to High</option>
                       <option>Price: High to Low</option>
@@ -182,11 +182,11 @@ export default async function ShopPage({
 
                 {products.length === 0 ? (
                   <div className="bg-white rounded-[50px] p-20 text-center border border-gray-100 shadow-sm">
-                    <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-8 text-gray-300">
+                    <div className="w-20 h-20 bg-gray-50 text-gray-900 rounded-full flex items-center justify-center mx-auto mb-8 text-gray-500">
                       <Filter className="w-10 h-10" />
                     </div>
                     <h3 className="text-3xl font-black text-gray-900 uppercase tracking-tighter mb-4">Empty Harvest</h3>
-                    <p className="text-gray-500 font-medium mb-10 max-w-sm mx-auto">We couldn't find any products in this collection. Check back later or try another aisle.</p>
+                    <p className="text-gray-800 font-medium mb-10 max-w-sm mx-auto">We couldn't find any products in this collection. Check back later or try another aisle.</p>
                     <Link href="/shop" className="inline-flex items-center gap-2 bg-[var(--primary-purple)] text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:shadow-2xl transition-all">
                       Explore All Products <ChevronRight className="w-4 h-4" />
                     </Link>

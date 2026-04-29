@@ -3,6 +3,8 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import CustomerBulkUpload from "@/components/CustomerBulkUpload";
+import UserManagementTable from "@/components/UserManagementTable";
+import { Users, ShieldCheck, UserPlus, Info } from "lucide-react";
 
 export default async function AdminUsersPage() {
   const session = await getServerSession(authOptions);
@@ -16,55 +18,76 @@ export default async function AdminUsersPage() {
   });
 
   return (
-    <div className="flex flex-col gap-10">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+    <div className="flex flex-col gap-8 md:gap-12 pb-20">
+      {/* Header Section */}
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Users & Roles</h1>
-          <p className="text-gray-500 font-medium">Manage and import registered accounts.</p>
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-10 h-10 bg-purple-100 rounded-2xl flex items-center justify-center text-[var(--primary-purple)]">
+              <ShieldCheck className="w-6 h-6" />
+            </div>
+            <span className="text-[10px] font-black text-[var(--primary-purple)] uppercase tracking-[0.3em]">Identity & Access</span>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight">Users & Roles</h1>
+          <p className="text-gray-800 font-medium text-lg mt-2">Manage permissions, oversee registrations, and audit platform access.</p>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-4">
+          <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
+             <div className="w-10 h-10 bg-green-50 rounded-xl flex items-center justify-center text-green-600">
+                <Users className="w-5 h-5" />
+             </div>
+             <div>
+                <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Active Accounts</p>
+                <p className="text-xl font-black text-gray-900">{users.length}</p>
+             </div>
+          </div>
         </div>
       </div>
 
-      <div className="max-w-2xl">
-        <CustomerBulkUpload />
-      </div>
-
-      <div className="bg-white rounded-3xl border border-gray-100 overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm">
-            <thead className="bg-gray-50 text-gray-500 uppercase font-bold text-xs">
-              <tr>
-                <th className="px-6 py-4">Name</th>
-                <th className="px-6 py-4">Email</th>
-                <th className="px-6 py-4">Role</th>
-                <th className="px-6 py-4">Joined</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100">
-              {users.map(user => (
-                <tr key={user.id} className="hover:bg-gray-50/50 transition-colors">
-                  <td className="px-6 py-4 font-medium text-gray-900">{user.name || 'N/A'}</td>
-                  <td className="px-6 py-4 text-gray-500">{user.email}</td>
-                  <td className="px-6 py-4">
-                    <span className={`px-3 py-1 rounded-full text-xs font-bold ${
-                      user.role === 'ADMIN' ? 'bg-red-50 text-red-600' :
-                      user.role === 'SHOP_MANAGER' ? 'bg-purple-50 text-purple-600' :
-                      'bg-green-50 text-green-600'
-                    }`}>
-                      {user.role}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-gray-500">
-                    {new Date(user.createdAt).toLocaleDateString()}
-                  </td>
-                </tr>
-              ))}
-              {users.length === 0 && (
-                <tr>
-                  <td colSpan={4} className="px-6 py-12 text-center text-gray-500">No users found.</td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+      {/* Action Area: Bulk Upload & Information */}
+      <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
+        <div className="xl:col-span-3">
+           <UserManagementTable users={users} />
+        </div>
+        
+        <div className="flex flex-col gap-8">
+          <CustomerBulkUpload />
+          
+          {/* Quick Info Card */}
+          <div className="bg-purple-900 p-8 rounded-[40px] text-white shadow-2xl relative overflow-hidden group">
+            <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-700"></div>
+            
+            <div className="relative z-10">
+              <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center mb-6">
+                <Info className="w-6 h-6 text-purple-200" />
+              </div>
+              <h3 className="text-xl font-black mb-4 tracking-tight">Role Definitions</h3>
+              <div className="space-y-6">
+                <div className="flex gap-4">
+                  <div className="w-1 h-10 bg-red-500 rounded-full mt-1"></div>
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-widest text-red-400 mb-1">Admin</p>
+                    <p className="text-xs text-purple-100/70 leading-relaxed">Full system access, including financial settings and user deletions.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="w-1 h-10 bg-purple-500 rounded-full mt-1"></div>
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-widest text-purple-400 mb-1">Shop Manager</p>
+                    <p className="text-xs text-purple-100/70 leading-relaxed">Inventory control, order fulfillment, and operational management.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="w-1 h-10 bg-green-500 rounded-full mt-1"></div>
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-widest text-green-400 mb-1">Client</p>
+                    <p className="text-xs text-purple-100/70 leading-relaxed">Standard customer account with access to orders and wallet.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

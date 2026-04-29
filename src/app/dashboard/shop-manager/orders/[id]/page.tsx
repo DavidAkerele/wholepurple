@@ -46,7 +46,7 @@ export default async function OrderDetailsPage({ params }: { params: Promise<{ i
             </Link>
             <div>
               <h1 className="text-3xl font-black text-gray-900 uppercase tracking-tighter">Order Details</h1>
-              <p className="text-gray-500 font-medium text-sm flex items-center gap-2">
+              <p className="text-gray-800 font-medium text-sm flex items-center gap-2">
                  ID: <span className="font-mono text-xs">{order.id}</span>
               </p>
             </div>
@@ -67,7 +67,7 @@ export default async function OrderDetailsPage({ params }: { params: Promise<{ i
                 <div className="flex flex-col gap-6">
                    {order.items.map((item) => (
                      <div key={item.id} className="flex items-center gap-6 pb-6 border-b border-gray-50 last:border-0 last:pb-0">
-                        <div className="relative w-20 h-20 bg-gray-50 rounded-2xl border border-gray-100 overflow-hidden shrink-0">
+                        <div className="relative w-20 h-20 bg-gray-50 text-gray-900 rounded-2xl border border-gray-100 overflow-hidden shrink-0">
                            {item.product.image ? (
                              <Image src={item.product.image.startsWith('http') ? item.product.image : `/images/scraped/${item.product.image}`} alt={item.product.name} fill className="object-contain p-2" />
                            ) : (
@@ -76,7 +76,7 @@ export default async function OrderDetailsPage({ params }: { params: Promise<{ i
                         </div>
                         <div className="flex-1 min-w-0">
                            <h4 className="text-lg font-black text-gray-900 uppercase tracking-tight truncate">{item.product.name}</h4>
-                           <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mt-1">
+                           <p className="text-xs font-bold text-gray-600 uppercase tracking-widest mt-1">
                               {item.quantity} x ₦{item.price.toLocaleString()}
                            </p>
                         </div>
@@ -88,11 +88,11 @@ export default async function OrderDetailsPage({ params }: { params: Promise<{ i
                 </div>
                 
                 <div className="mt-10 pt-8 border-t border-gray-100 flex flex-col gap-3 text-right">
-                   <div className="flex justify-end gap-12 text-gray-400 font-bold uppercase text-[10px] tracking-widest">
+                   <div className="flex justify-end gap-12 text-gray-600 font-bold uppercase text-[10px] tracking-widest">
                       <span>Subtotal</span>
                       <span className="text-gray-900">₦{order.total.toLocaleString()}</span>
                    </div>
-                   <div className="flex justify-end gap-12 text-gray-400 font-bold uppercase text-[10px] tracking-widest">
+                   <div className="flex justify-end gap-12 text-gray-600 font-bold uppercase text-[10px] tracking-widest">
                       <span>Delivery</span>
                       <span className="text-gray-900">Included</span>
                    </div>
@@ -117,35 +117,35 @@ export default async function OrderDetailsPage({ params }: { params: Promise<{ i
                    </div>
                    <div className="overflow-hidden">
                       <p className="font-black text-gray-900 uppercase tracking-tight truncate">{order.user.name || "Guest"}</p>
-                      <p className="text-xs font-medium text-gray-400 truncate">{order.user.email}</p>
+                      <p className="text-xs font-medium text-gray-600 truncate">{order.user.email}</p>
                    </div>
                 </div>
                 <div className="flex flex-col gap-6">
                    <div className="flex gap-4">
-                      <MapPin className="w-5 h-5 text-gray-300 shrink-0" />
+                      <MapPin className="w-5 h-5 text-gray-500 shrink-0" />
                       <div>
-                         <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Delivery Address</p>
+                         <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-1">Delivery Address</p>
                          <p className="text-sm font-medium text-gray-700 leading-relaxed">{order.address || "No address provided"}</p>
                       </div>
                    </div>
                    <div className="flex gap-4">
-                      <Phone className="w-5 h-5 text-gray-300 shrink-0" />
+                      <Phone className="w-5 h-5 text-gray-500 shrink-0" />
                       <div>
-                         <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Phone Number</p>
+                         <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-1">Phone Number</p>
                          <p className="text-sm font-medium text-gray-700">{order.phone || "No phone provided"}</p>
                       </div>
                    </div>
                    <div className="flex gap-4">
-                      <Clock className="w-5 h-5 text-gray-300 shrink-0" />
+                      <Clock className="w-5 h-5 text-gray-500 shrink-0" />
                       <div>
-                         <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Placed At</p>
+                         <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-1">Placed At</p>
                          <p className="text-sm font-medium text-gray-700">{new Date(order.createdAt).toLocaleString()}</p>
                       </div>
                    </div>
                    <div className="flex gap-4">
-                      <CreditCard className="w-5 h-5 text-gray-300 shrink-0" />
+                      <CreditCard className="w-5 h-5 text-gray-500 shrink-0" />
                       <div>
-                         <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Payment Method</p>
+                         <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-1">Payment Method</p>
                          <p className="text-sm font-medium text-gray-700">Online Payment (Paystack)</p>
                       </div>
                    </div>

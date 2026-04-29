@@ -35,15 +35,15 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
         <div className="container mx-auto px-4 md:px-8">
           
           {/* Breadcrumbs */}
-          <nav className="flex items-center gap-2 text-sm text-gray-500 font-medium mb-8">
+          <nav className="flex items-center gap-2 text-sm text-gray-800 font-medium mb-8">
             <Link href="/" className="hover:text-[var(--primary-purple)] transition-colors">Home</Link>
-            <ChevronRight className="w-4 h-4 text-gray-300" />
+            <ChevronRight className="w-4 h-4 text-gray-500" />
             <Link href="/shop" className="hover:text-[var(--primary-purple)] transition-colors">Shop</Link>
-            <ChevronRight className="w-4 h-4 text-gray-300" />
+            <ChevronRight className="w-4 h-4 text-gray-500" />
             <Link href={`/shop?category=${product.category.slug}`} className="hover:text-[var(--primary-purple)] transition-colors capitalize">
               {product.category.name}
             </Link>
-            <ChevronRight className="w-4 h-4 text-gray-300" />
+            <ChevronRight className="w-4 h-4 text-gray-500" />
             <span className="text-gray-900">{product.name}</span>
           </nav>
 
@@ -51,10 +51,10 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 mb-24">
             
             {/* Image Gallery Side */}
-            <div className="relative aspect-square md:aspect-[4/3] lg:aspect-square bg-gray-50 rounded-[40px] flex items-center justify-center p-12 border border-gray-100 overflow-hidden group">
+            <div className="relative aspect-square md:aspect-[4/3] lg:aspect-square bg-gray-50 text-gray-900 rounded-[40px] flex items-center justify-center p-12 border border-gray-100 overflow-hidden group">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <Image 
-                src={`/images/scraped/${product.image || 'woocommerce-placeholder.webp'}`} 
+                src={product.image?.startsWith('http') ? product.image : `/images/scraped/${product.image || 'woocommerce-placeholder.webp'}`} 
                 alt={product.name}
                 fill
                 className="object-contain p-12 hover:scale-105 transition-transform duration-700 ease-out"
@@ -63,7 +63,7 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
               {/* Note: In a Server Component we can't easily hook up useWishlistStore. 
                   But since it's just a top-right icon, we can either extract it or leave it static for the hero image.
                   Let's just leave it as a decorative element for now, the real interaction happens in the Shop Grid. */}
-              <div className="absolute top-6 right-6 w-12 h-12 bg-white rounded-full flex items-center justify-center text-gray-400 hover:text-[var(--accent-red)] transition-colors z-10 cursor-pointer shadow-sm">
+              <div className="absolute top-6 right-6 w-12 h-12 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-[var(--accent-red)] transition-colors z-10 cursor-pointer shadow-sm">
                 <Heart className="w-6 h-6" />
               </div>
             </div>
@@ -120,7 +120,7 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
               <div className="flex items-end justify-between mb-8">
                 <div>
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">You might also like</h2>
-                  <p className="text-gray-500">Other fresh items in the {product.category.name} category.</p>
+                  <p className="text-gray-800">Other fresh items in the {product.category.name} category.</p>
                 </div>
                 <Link href={`/shop?category=${product.category.slug}`} className="hidden md:flex text-[var(--primary-purple)] font-bold items-center gap-1 hover:underline">
                   View all <ChevronRight className="w-4 h-4" />
@@ -130,9 +130,9 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                 {relatedProducts.map(relProduct => (
                   <Link key={relProduct.id} href={`/shop/${relProduct.slug}`} className="group bg-white rounded-3xl border border-gray-100 overflow-hidden transition-all duration-300 flex flex-col">
-                    <div className="relative aspect-square bg-gray-50 p-6 flex items-center justify-center">
+                    <div className="relative aspect-square bg-gray-50 text-gray-900 p-6 flex items-center justify-center">
                       <Image 
-                        src={`/images/scraped/${relProduct.image || 'woocommerce-placeholder.webp'}`} 
+                        src={relProduct.image?.startsWith('http') ? relProduct.image : `/images/scraped/${relProduct.image || 'woocommerce-placeholder.webp'}`} 
                         alt={relProduct.name} 
                         fill 
                         className="object-contain p-6 group-hover:scale-110 transition-transform duration-500" 

@@ -14,7 +14,7 @@ export default function PageHeader({
   bgImage = "/images/scraped/ella-olsson-I-uYa5P-EgM-unsplash.jpg" 
 }: PageHeaderProps) {
   return (
-    <section className="relative pt-36 pb-24 overflow-hidden bg-[#FAF7F2]">
+    <section className="relative pt-20 md:pt-32 pb-24 overflow-hidden bg-[#FAF7F2]">
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className="max-w-3xl">
           <span className="text-[var(--primary-purple)] font-black text-[10px] uppercase tracking-[0.3em] mb-6 block">
@@ -23,7 +23,7 @@ export default function PageHeader({
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-gray-900 tracking-tighter uppercase leading-[0.85] mb-10">
             {title}
           </h1>
-          <p className="text-xl text-gray-500 font-medium leading-relaxed max-w-xl">
+          <p className="text-xl text-gray-800 font-medium leading-relaxed max-w-xl">
             {subtitle}
           </p>
         </div>

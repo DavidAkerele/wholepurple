@@ -43,7 +43,7 @@ export default async function ClientDashboard() {
           <h1 className="text-3xl md:text-5xl font-black text-gray-900 uppercase tracking-tighter mb-4 leading-none">
             Welcome back, <br /> <span className="text-[var(--primary-purple)]">{session.user.name}</span>
           </h1>
-          <p className="text-sm md:text-lg text-gray-500 font-medium max-w-md leading-relaxed">
+          <p className="text-sm md:text-lg text-gray-800 font-medium max-w-md leading-relaxed">
             Manage your harvests, track your loyalty rewards, and explore your personal Whole Purple experience.
           </p>
         </div>
@@ -76,9 +76,9 @@ export default async function ClientDashboard() {
              <div className="w-12 h-12 bg-green-50 rounded-2xl flex items-center justify-center mb-6">
                 <Wallet className="w-6 h-6 text-[var(--accent-green)]" />
              </div>
-             <h3 className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">My Wallet</h3>
+             <h3 className="text-[10px] font-black uppercase tracking-widest text-gray-600 mb-2">My Wallet</h3>
              <div className="text-4xl font-black text-gray-900 mb-2">₦0.00</div>
-             <p className="text-xs font-medium text-gray-400 mb-6">Use your wallet for faster, one-click checkouts.</p>
+             <p className="text-xs font-medium text-gray-600 mb-6">Use your wallet for faster, one-click checkouts.</p>
              <Link href="/dashboard/client/wallet" className="inline-flex items-center gap-2 bg-gray-900 text-white px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all">
                 Top Up <ArrowUpRight className="w-3 h-3" />
              </Link>
@@ -113,9 +113,9 @@ export default async function ClientDashboard() {
         </div>
         
         {orders.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-12 text-gray-500 text-center">
-            <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-6">
-              <ShoppingBag className="w-8 h-8 text-gray-300" />
+          <div className="flex flex-col items-center justify-center py-12 text-gray-800 text-center">
+            <div className="w-16 h-16 bg-gray-50 text-gray-900 rounded-full flex items-center justify-center mb-6">
+              <ShoppingBag className="w-8 h-8 text-gray-500" />
             </div>
             <p className="font-medium text-sm mb-6">No harvests found yet.</p>
             <Link href="/shop" className="btn-primary">Browse the Shop</Link>
@@ -123,14 +123,14 @@ export default async function ClientDashboard() {
         ) : (
           <div className="flex flex-col gap-4">
              {orders.map((order) => (
-                <div key={order.id} className="flex flex-col sm:flex-row sm:items-center justify-between p-6 bg-gray-50/50 rounded-3xl border border-gray-100 hover:border-[var(--primary-purple)] transition-all group gap-6">
+                <div key={order.id} className="flex flex-col sm:flex-row sm:items-center justify-between p-6 bg-gray-50 text-gray-900/50 rounded-3xl border border-gray-100 hover:border-[var(--primary-purple)] transition-all group gap-6">
                    <div className="flex items-center gap-6">
                       <div className="w-12 h-12 md:w-14 md:h-14 bg-white rounded-2xl flex items-center justify-center text-[var(--primary-purple)] font-black shadow-sm group-hover:scale-110 transition-transform">
                          #
                       </div>
                       <div>
                          <h4 className="font-black text-gray-900 uppercase tracking-tight">Order #{order.id.substring(0, 8).toUpperCase()}</h4>
-                         <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{new Date(order.createdAt).toLocaleDateString()}</p>
+                         <p className="text-[10px] text-gray-600 font-bold uppercase tracking-widest">{new Date(order.createdAt).toLocaleDateString()}</p>
                       </div>
                    </div>
                    <div className="flex items-center justify-between sm:justify-end gap-8 md:gap-12 border-t sm:border-none pt-4 sm:pt-0">
@@ -141,7 +141,7 @@ export default async function ClientDashboard() {
                       </span>
                       <div className="text-right">
                          <p className="text-base md:text-lg font-black text-gray-900">₦{order.total.toLocaleString()}</p>
-                         <p className="text-[8px] font-black uppercase tracking-[0.2em] text-gray-400">Total Amount</p>
+                         <p className="text-[8px] font-black uppercase tracking-[0.2em] text-gray-600">Total Amount</p>
                       </div>
                    </div>
                 </div>

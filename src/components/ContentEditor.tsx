@@ -59,7 +59,7 @@ export default function ContentEditor({ initialSettings }: ContentEditorProps) {
     <div className="flex flex-col gap-10">
       <div className="mb-4">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Site Content Editor</h1>
-        <p className="text-gray-500 font-medium">Update the text and messaging across the platform in real-time.</p>
+        <p className="text-gray-800 font-medium">Update the text and messaging across the platform in real-time.</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -76,7 +76,7 @@ export default function ContentEditor({ initialSettings }: ContentEditorProps) {
               {group.fields.map(field => (
                 <div key={field.key} className="flex flex-col gap-2">
                   <div className="flex items-center justify-between">
-                    <label className="text-xs font-black text-gray-400 uppercase tracking-widest px-1">{field.label}</label>
+                    <label className="text-xs font-black text-gray-600 uppercase tracking-widest px-1">{field.label}</label>
                     <button 
                       onClick={() => handleSave(field.key)}
                       disabled={loading === field.key}
@@ -92,7 +92,7 @@ export default function ContentEditor({ initialSettings }: ContentEditorProps) {
                       value={settings[field.key] || ""}
                       onChange={(e) => handleChange(field.key, e.target.value)}
                       placeholder={field.placeholder}
-                      className="p-4 rounded-2xl border border-gray-100 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all font-medium text-sm leading-relaxed"
+                      className="p-4 rounded-2xl border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all font-medium text-sm leading-relaxed"
                     />
                   ) : (
                     <input 
@@ -100,7 +100,7 @@ export default function ContentEditor({ initialSettings }: ContentEditorProps) {
                       value={settings[field.key] || ""}
                       onChange={(e) => handleChange(field.key, e.target.value)}
                       placeholder={field.placeholder}
-                      className="p-4 rounded-2xl border border-gray-100 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all font-medium text-sm"
+                      className="p-4 rounded-2xl border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all font-medium text-sm"
                     />
                   )}
                 </div>

@@ -42,30 +42,30 @@ export default function SettingsForm({ initialSettings }: { initialSettings: Rec
           
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-2">
-              <label className="text-xs font-black text-gray-400 uppercase tracking-widest">Site Name</label>
+              <label className="text-xs font-black text-gray-600 uppercase tracking-widest">Site Name</label>
               <input 
                 type="text"
                 value={settings.siteName}
                 onChange={(e) => setSettings({ ...settings, siteName: e.target.value })}
-                className="p-4 rounded-2xl border border-gray-100 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all"
+                className="p-4 rounded-2xl border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all"
               />
             </div>
             <div className="flex flex-col gap-2">
-              <label className="text-xs font-black text-gray-400 uppercase tracking-widest">Support Email</label>
+              <label className="text-xs font-black text-gray-600 uppercase tracking-widest">Support Email</label>
               <input 
                 type="email"
                 value={settings.supportEmail}
                 onChange={(e) => setSettings({ ...settings, supportEmail: e.target.value })}
-                className="p-4 rounded-2xl border border-gray-100 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all"
+                className="p-4 rounded-2xl border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all"
               />
             </div>
             <div className="flex flex-col gap-2">
-              <label className="text-xs font-black text-gray-400 uppercase tracking-widest">Contact Phone</label>
+              <label className="text-xs font-black text-gray-600 uppercase tracking-widest">Contact Phone</label>
               <input 
                 type="text"
                 value={settings.contactPhone}
                 onChange={(e) => setSettings({ ...settings, contactPhone: e.target.value })}
-                className="p-4 rounded-2xl border border-gray-100 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all"
+                className="p-4 rounded-2xl border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all"
               />
             </div>
           </div>
@@ -79,10 +79,10 @@ export default function SettingsForm({ initialSettings }: { initialSettings: Rec
           </div>
           
           <div className="flex flex-col gap-6">
-            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-2xl">
+            <div className="flex items-center justify-between p-4 bg-gray-50 text-gray-900 rounded-2xl">
               <div className="flex flex-col gap-1">
                 <span className="text-sm font-bold text-gray-900">Guest Checkout</span>
-                <span className="text-xs text-gray-500 font-medium">Allow orders without account.</span>
+                <span className="text-xs text-gray-800 font-medium">Allow orders without account.</span>
               </div>
               <button 
                 type="button"
@@ -93,10 +93,10 @@ export default function SettingsForm({ initialSettings }: { initialSettings: Rec
               </button>
             </div>
 
-            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-2xl">
+            <div className="flex items-center justify-between p-4 bg-gray-50 text-gray-900 rounded-2xl">
               <div className="flex flex-col gap-1">
                 <span className="text-sm font-bold text-gray-900">Maintenance Mode</span>
-                <span className="text-xs text-gray-500 font-medium">Redirect all traffic to holding page.</span>
+                <span className="text-xs text-gray-800 font-medium">Redirect all traffic to holding page.</span>
               </div>
               <button 
                 type="button"
@@ -108,12 +108,12 @@ export default function SettingsForm({ initialSettings }: { initialSettings: Rec
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-xs font-black text-gray-400 uppercase tracking-widest">Reward Points Rate (%)</label>
+              <label className="text-xs font-black text-gray-600 uppercase tracking-widest">Reward Points Rate (%)</label>
               <input 
                 type="number"
                 value={settings.rewardRate}
                 onChange={(e) => setSettings({ ...settings, rewardRate: e.target.value })}
-                className="p-4 rounded-2xl border border-gray-100 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all"
+                className="p-4 rounded-2xl border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all"
               />
             </div>
           </div>

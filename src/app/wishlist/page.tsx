@@ -25,7 +25,7 @@ export default function WishlistPage() {
           <HeartCrack className="w-16 h-16" />
         </div>
         <h2 className="text-3xl font-bold text-gray-900">Your wishlist is empty</h2>
-        <p className="text-gray-500">You haven't saved any items yet.</p>
+        <p className="text-gray-800">You haven't saved any items yet.</p>
         <Link href="/shop" className="btn-primary mt-4">Explore Shop</Link>
       </div>
     );
@@ -41,7 +41,7 @@ export default function WishlistPage() {
             <div key={item.id} className="group flex flex-col bg-white rounded-3xl border border-gray-100 overflow-hidden hover:-translate-y-2 transition-all duration-300">
               <div className="relative aspect-square bg-[#F9F9F9] flex items-center justify-center p-6">
                 <Image 
-                  src={item.image ? `/images/scraped/${item.image}` : '/images/scraped/woocommerce-placeholder.webp'} 
+                  src={item.image ? (item.image.startsWith('http') ? item.image : `/images/scraped/${item.image}`) : '/images/scraped/woocommerce-placeholder.webp'} 
                   alt={item.name} 
                   fill 
                   className="object-contain p-6 group-hover:scale-110 transition-transform duration-500" 

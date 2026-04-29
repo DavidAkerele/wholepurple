@@ -26,7 +26,7 @@ export default async function RewardsPage() {
           </Link>
           <div>
             <h1 className="text-3xl font-black text-gray-900 uppercase tracking-tighter">Whole Purple Rewards</h1>
-            <p className="text-gray-500 font-medium text-sm">Earn while you eat. Redeen points for seasonal harvests.</p>
+            <p className="text-gray-800 font-medium text-sm">Earn while you eat. Redeen points for seasonal harvests.</p>
           </div>
         </div>
       </div>
@@ -62,7 +62,7 @@ export default async function RewardsPage() {
                  <div className="relative h-3 md:h-4 bg-gray-100 rounded-full overflow-hidden mb-4">
                     <div className="absolute top-0 left-0 h-full bg-[var(--accent-green)] transition-all duration-1000" style={{ width: '40%' }}></div>
                  </div>
-                 <div className="flex justify-between text-[8px] md:text-[10px] font-black uppercase tracking-widest text-gray-400">
+                 <div className="flex justify-between text-[8px] md:text-[10px] font-black uppercase tracking-widest text-gray-600">
                     <span>{user?.rewardPoints || 0} PTS</span>
                     <span>1000 PTS</span>
                  </div>
@@ -70,7 +70,7 @@ export default async function RewardsPage() {
 
               <div className="mt-6 md:mt-8">
                  <p className="text-xs md:text-sm font-bold text-gray-900 mb-1 md:mb-2">₦5,000 Voucher</p>
-                 <p className="text-[10px] md:text-xs text-gray-400 font-medium leading-relaxed">Keep shopping to unlock this exclusive harvest discount.</p>
+                 <p className="text-[10px] md:text-xs text-gray-600 font-medium leading-relaxed">Keep shopping to unlock this exclusive harvest discount.</p>
               </div>
 
               <Link href="/shop" className="w-full mt-6 md:mt-8 bg-gray-900 text-white py-4 md:py-5 rounded-xl md:rounded-2xl font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-2 hover:bg-[var(--primary-purple)] transition-all">
@@ -90,12 +90,12 @@ export default async function RewardsPage() {
               { title: "Artisanal Gift", points: 750, desc: "One free mystery spice or tea." }
             ].map((reward, idx) => (
               <div key={idx} className="bg-white p-8 rounded-[40px] border border-gray-100 group hover:border-[var(--primary-purple)] transition-all">
-                 <div className="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center text-[var(--primary-purple)] mb-6 group-hover:scale-110 transition-transform">
+                 <div className="w-14 h-14 bg-gray-50 text-gray-900 rounded-2xl flex items-center justify-center text-[var(--primary-purple)] mb-6 group-hover:scale-110 transition-transform">
                     <Gift className="w-6 h-6" />
                  </div>
                  <h4 className="text-xl font-black text-gray-900 uppercase tracking-tight mb-2">{reward.title}</h4>
-                 <p className="text-xs text-gray-400 font-medium mb-8">{reward.desc}</p>
-                 <button className="w-full border border-gray-100 py-4 rounded-xl text-[10px] font-black uppercase tracking-widest text-gray-400 group-hover:bg-[var(--primary-purple)] group-hover:text-white group-hover:border-transparent transition-all">
+                 <p className="text-xs text-gray-600 font-medium mb-8">{reward.desc}</p>
+                 <button className="w-full border border-gray-100 py-4 rounded-xl text-[10px] font-black uppercase tracking-widest text-gray-600 group-hover:bg-[var(--primary-purple)] group-hover:text-white group-hover:border-transparent transition-all">
                     {reward.points} Points Needed
                  </button>
               </div>

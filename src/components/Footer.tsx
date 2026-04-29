@@ -58,8 +58,7 @@ export default function Footer() {
 
       <div className="container mx-auto px-4 md:px-8 border-t border-gray-300 pt-8 flex flex-col md:flex-row items-center justify-between">
         <div className="flex flex-col items-center md:items-start gap-1">
-          <p className="text-gray-500 text-sm">© {new Date().getFullYear()} Whole Purple. All rights reserved.</p>
-          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Powered by Briph</p>
+          <p className="text-gray-800 text-sm">© {new Date().getFullYear()} Whole Purple. All rights reserved.</p>
         </div>
         <div className="flex gap-4 mt-4 md:mt-0 opacity-60">
            {/* Dummy payment icons could go here */}

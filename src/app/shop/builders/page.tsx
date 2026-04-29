@@ -36,7 +36,7 @@ export default function BuildersLandingPage() {
           <h1 className="text-5xl md:text-7xl font-black text-gray-900 tracking-tighter uppercase leading-none mb-8">
             The Bowl <br /> Builder
           </h1>
-          <p className="text-xl text-gray-500 font-medium leading-relaxed">
+          <p className="text-xl text-gray-800 font-medium leading-relaxed">
             Take full control of your plate. Select from our freshest farm arrivals to build a bowl that matches your taste and nutritional goals perfectly.
           </p>
         </div>

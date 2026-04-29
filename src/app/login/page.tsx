@@ -1,12 +1,19 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import toast from "react-hot-toast";
+
+const slideImages = [
+  "/images/login-hero.png",
+  "/images/scraped/ella-olsson-I-uYa5P-EgM-unsplash.jpg",
+  "/images/scraped/nrd-D6Tu_L3chLE-unsplash.jpg",
+  "/images/scraped/Home13_bg12.jpg",
+];
 
 export default function LoginPage() {
   const router = useRouter();
@@ -14,6 +21,14 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slideImages.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,15 +69,19 @@ export default function LoginPage() {
 
   return (
     <div className="h-screen flex bg-white overflow-hidden">
-      {/* Left Side - Image */}
+      {/* Left Side - Slideshow */}
       <div className="hidden lg:flex w-1/2 relative bg-gray-900">
-        <Image 
-          src="/images/login-hero.png" 
-          alt="Fresh Farm Produce" 
-          fill 
-          className="object-cover opacity-90"
-          priority
-        />
+        {slideImages.map((src, idx) => (
+          <Image 
+            key={src}
+            src={src} 
+            alt="Fresh Farm Produce" 
+            fill 
+            className={`object-cover transition-all duration-[2000ms] ease-in-out ${idx === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`}
+            priority={idx === 0}
+          />
+        ))}
+        
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30"></div>
         <div className="absolute inset-0 p-12 flex flex-col justify-between z-10">
           <Link href="/" className="inline-block w-fit">
@@ -71,7 +90,12 @@ export default function LoginPage() {
             </div>
           </Link>
           <div className="text-white max-w-lg">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            <div className="flex items-center gap-4 mb-6">
+               {slideImages.map((_, idx) => (
+                 <div key={idx} className={`h-1 rounded-full transition-all duration-500 ${idx === currentSlide ? 'w-8 bg-white' : 'w-2 bg-white/30'}`}></div>
+               ))}
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight transition-all">
               Welcome Back to<br/>Whole Purple
             </h2>
             <p className="text-lg text-white/80 leading-relaxed font-medium">
@@ -85,7 +109,7 @@ export default function LoginPage() {
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 md:p-16 lg:p-24 overflow-hidden">
         <div className="max-w-md w-full">
           <div className="flex justify-start mb-12 lg:hidden">
-            <Link href="/" className="flex items-center gap-2 text-gray-500 hover:text-[var(--primary-purple)] font-bold transition-colors">
+            <Link href="/" className="flex items-center gap-2 text-gray-800 hover:text-[var(--primary-purple)] font-bold transition-colors">
               <ArrowLeft className="w-4 h-4" /> Back to Home
             </Link>
           </div>
@@ -93,7 +117,7 @@ export default function LoginPage() {
           <div className="mb-10">
             <Image src="/images/scraped/cropped-wholepurplee-removebg-preview.png" alt="Whole Purple" width={160} height={50} className="object-contain mb-8" />
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Sign In</h1>
-            <p className="text-gray-500">Please enter your details to sign in.</p>
+            <p className="text-gray-800">Please enter your details to sign in.</p>
           </div>
 
           {error && (
@@ -111,7 +135,7 @@ export default function LoginPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="p-4 rounded-2xl border border-gray-200 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] focus:border-transparent transition-all"
+                className="p-4 rounded-2xl border border-gray-200 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] focus:border-transparent transition-all"
                 placeholder="you@example.com"
               />
             </div>
@@ -126,7 +150,7 @@ export default function LoginPage() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="p-4 rounded-2xl border border-gray-200 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] focus:border-transparent transition-all"
+                className="p-4 rounded-2xl border border-gray-200 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] focus:border-transparent transition-all"
                 placeholder="••••••••"
               />
             </div>
@@ -149,7 +173,7 @@ export default function LoginPage() {
 
           {/* Development Quick Login */}
           <div className="pt-8 border-t border-gray-100">
-            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider text-center mb-4">Quick Login (Testing)</h3>
+            <h3 className="text-xs font-bold text-gray-600 uppercase tracking-wider text-center mb-4">Quick Login (Testing)</h3>
             <div className="grid grid-cols-2 gap-2">
               <button 
                 onClick={() => { setEmail("admin@wholepurple.com"); setPassword("admin123"); }}

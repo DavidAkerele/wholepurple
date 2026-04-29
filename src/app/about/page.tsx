@@ -15,7 +15,7 @@ export default function AboutPage() {
 
       {/* Narrative Section */}
       <section className="container mx-auto px-4 md:px-8 mt-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-24 items-center max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-24 items-center max-w-[1700px] mx-auto">
           <div className="relative aspect-square rounded-[60px] overflow-hidden border-8 border-white shadow-2xl shadow-purple-900/5">
              <Image 
                 src="/images/scraped/ella-olsson-I-uYa5P-EgM-unsplash.jpg" 
@@ -31,7 +31,7 @@ export default function AboutPage() {
                    </p>
                    <div className="mt-4 flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full bg-[var(--primary-purple)]"></div>
-                      <span className="text-xs font-black uppercase tracking-widest text-gray-900">Powered by Briph</span>
+                      <span className="text-xs font-black uppercase tracking-widest text-gray-900">Whole Purple Team</span>
                    </div>
                 </div>
              </div>
@@ -43,10 +43,10 @@ export default function AboutPage() {
               <h2 className="text-4xl md:text-5xl font-black text-gray-900 uppercase tracking-tighter leading-[0.9] mb-8">
                 Open. <span className="text-[var(--accent-green)]">Cook.</span> Eat.
               </h2>
-              <p className="text-lg text-gray-500 font-medium leading-relaxed mb-6">
+              <p className="text-lg text-gray-800 font-medium leading-relaxed mb-6">
                 Whole Purple focuses on "Ready to Roast" and "No Prep Grill" solutions, bridging the gap between Nigeria's finest local farms and your urban kitchen table. 
               </p>
-              <p className="text-lg text-gray-500 font-medium leading-relaxed">
+              <p className="text-lg text-gray-800 font-medium leading-relaxed">
                 We believe that high-quality, fresh food should be accessible without compromising on the urban pace of life. Our mission is simple: No Prep. Less Stress. Just fresh, whole food delivered to your door.
               </p>
             </div>
@@ -54,11 +54,11 @@ export default function AboutPage() {
             <div className="grid grid-cols-2 gap-6">
                <div className="p-6 bg-white rounded-3xl border border-gray-100">
                   <h4 className="text-2xl font-black text-gray-900 mb-2">100%</h4>
-                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Local Sourcing</p>
+                  <p className="text-xs font-bold text-gray-600 uppercase tracking-widest">Local Sourcing</p>
                </div>
                <div className="p-6 bg-white rounded-3xl border border-gray-100">
                   <h4 className="text-2xl font-black text-gray-900 mb-2">24h</h4>
-                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Farm-to-Door</p>
+                  <p className="text-xs font-bold text-gray-600 uppercase tracking-widest">Farm-to-Door</p>
                </div>
             </div>
           </div>
@@ -67,10 +67,10 @@ export default function AboutPage() {
 
       {/* Values & Principles */}
       <section className="container mx-auto px-4 md:px-8 mt-32">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1700px] mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-black text-gray-900 uppercase tracking-tighter mb-4">Our Principles</h2>
-            <p className="text-gray-500 font-medium max-w-xl mx-auto leading-relaxed">
+            <p className="text-gray-800 font-medium max-w-xl mx-auto leading-relaxed">
               We operate on three core pillars that define every product we curate and every delivery we make.
             </p>
           </div>
@@ -101,7 +101,7 @@ export default function AboutPage() {
                   {value.icon}
                 </div>
                 <h3 className="text-xl font-black text-gray-900 uppercase tracking-tighter mb-4">{value.title}</h3>
-                <p className="text-gray-500 font-medium text-sm leading-relaxed">{value.desc}</p>
+                <p className="text-gray-800 font-medium text-sm leading-relaxed">{value.desc}</p>
               </div>
             ))}
           </div>

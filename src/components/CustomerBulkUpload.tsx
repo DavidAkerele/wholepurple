@@ -51,7 +51,7 @@ export default function CustomerBulkUpload() {
         </div>
         <div>
           <h3 className="text-xl font-bold text-gray-900">Bulk Customer Upload</h3>
-          <p className="text-sm text-gray-500 font-medium">Upload a CSV file with 'name', 'email', and 'role' columns.</p>
+          <p className="text-sm text-gray-800 font-medium">Upload a CSV file with 'name', 'email', and 'role' columns.</p>
         </div>
       </div>
 
@@ -73,13 +73,13 @@ export default function CustomerBulkUpload() {
             <FileText className="w-12 h-12 text-green-500" />
             <div className="text-center">
               <p className="font-bold text-gray-900">{file.name}</p>
-              <p className="text-xs text-gray-500">{(file.size / 1024).toFixed(2)} KB</p>
+              <p className="text-xs text-gray-800">{(file.size / 1024).toFixed(2)} KB</p>
             </div>
           </>
         ) : (
           <>
-            <Upload className="w-12 h-12 text-gray-300" />
-            <p className="font-bold text-gray-400">Click to select CSV file</p>
+            <Upload className="w-12 h-12 text-gray-500" />
+            <p className="font-bold text-gray-600">Click to select CSV file</p>
           </>
         )}
       </div>
@@ -101,9 +101,9 @@ export default function CustomerBulkUpload() {
         </button>
       )}
 
-      <div className="p-4 bg-gray-50 rounded-2xl flex gap-3 items-start">
-        <AlertCircle className="w-5 h-5 text-gray-400 shrink-0 mt-0.5" />
-        <p className="text-xs text-gray-500 font-medium leading-relaxed">
+      <div className="p-4 bg-gray-50 text-gray-900 rounded-2xl flex gap-3 items-start">
+        <AlertCircle className="w-5 h-5 text-gray-600 shrink-0 mt-0.5" />
+        <p className="text-xs text-gray-800 font-medium leading-relaxed">
           Ensure your CSV file uses commas as separators. The first row must be the header. 
           Valid roles are: <code className="bg-gray-200 px-1 rounded">ADMIN</code>, 
           <code className="bg-gray-200 px-1 rounded">SHOP_MANAGER</code>, 

@@ -11,21 +11,26 @@ export default async function ShopManagerProductsPage() {
     redirect("/dashboard");
   }
 
-  const products = await prisma.product.findMany({
-    orderBy: { name: 'asc' },
-    include: { category: true }
-  });
+  const [products, categories] = await Promise.all([
+    prisma.product.findMany({
+      orderBy: { name: 'asc' },
+      include: { category: true }
+    }),
+    prisma.category.findMany({
+      orderBy: { name: 'asc' }
+    })
+  ]);
 
   return (
-    <div className="flex flex-col gap-10">
-      <div className="flex items-center justify-between">
+    <div className="flex flex-col gap-10 pb-20">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Inventory Management</h1>
-          <p className="text-gray-500 font-medium">Update stock, pricing, and product details.</p>
+          <h1 className="text-4xl font-black text-gray-900 mb-2 tracking-tight">Inventory Management</h1>
+          <p className="text-gray-800 font-medium text-lg">Update stock, pricing, and product details across the catalog.</p>
         </div>
       </div>
 
-      <ProductInventoryTable products={products} />
+      <ProductInventoryTable products={products} categories={categories} />
     </div>
   );
 }

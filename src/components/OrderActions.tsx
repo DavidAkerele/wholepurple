@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Printer, RefreshCw, XCircle, ChevronDown, CheckCircle2, Clock, Truck, ShieldCheck } from "lucide-react";
+import { Printer, RefreshCw, XCircle, ChevronDown, CheckCircle2, Clock, Truck, ShieldCheck, Check } from "lucide-react";
 import { updateOrderStatus } from "@/app/actions/order";
 import toast from "react-hot-toast";
 
@@ -61,11 +61,11 @@ export default function OrderActions({ orderId, currentStatus }: { orderId: stri
                  <button
                    key={s.value}
                    onClick={() => handleUpdateStatus(s.value)}
-                   className="w-full flex items-center gap-3 px-6 py-4 hover:bg-gray-50 transition-colors border-b border-gray-50 last:border-0"
+                   className="w-full flex items-center gap-3 px-6 py-4 hover:bg-gray-50 text-gray-900 transition-colors border-b border-gray-50 last:border-0"
                  >
                     <s.icon className={`w-4 h-4 ${s.color}`} />
                     <span className="text-xs font-black uppercase tracking-tight text-gray-900">{s.label}</span>
-                    {currentStatus === s.value && <CheckCircle2 className="w-4 h-4 text-green-500 ml-auto" />}
+                    {currentStatus === s.value && <Check className="w-4 h-4 text-green-500 ml-auto" />}
                  </button>
                ))}
             </div>

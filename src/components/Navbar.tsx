@@ -35,12 +35,12 @@ export default function Navbar() {
   const isDarkNav = pathname !== '/' || isScrolled;
 
   return (
-    <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${isDarkNav ? 'bg-white border-b border-gray-100 py-1' : 'bg-white py-2'}`}>
+    <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${isDarkNav ? 'bg-white border-b border-gray-100 py-0' : 'bg-white py-0'}`}>
       <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
         {/* Logo - Left */}
         <Link href="/" className="flex items-center gap-2">
           <div className="transition-all">
-             <Image src="/images/scraped/cropped-wholepurplee-removebg-preview.png" alt="Whole Purple" width={100} height={30} className="object-contain" priority />
+             <Image src="/images/scraped/cropped-wholepurplee-removebg-preview.png" alt="Whole Purple" width={60} height={16} className="object-contain" priority />
           </div>
         </Link>
 
@@ -62,13 +62,13 @@ export default function Navbar() {
           <div className="flex items-center gap-2">
             {session ? (
               <div className="relative group">
-                <Link href="/dashboard" className="flex items-center gap-3 px-4 py-2 bg-gray-50 rounded-full border border-gray-100 hover:bg-white transition-all group/btn">
+                <Link href="/dashboard" className="flex items-center gap-2 px-2 py-0.5 bg-gray-50 text-gray-900 rounded-full border border-gray-100 hover:bg-white transition-all group/btn">
                   <div className="w-6 h-6 rounded-full bg-[var(--primary-purple)] flex items-center justify-center text-white text-[10px] font-bold">
                     {session.user.name?.charAt(0)}
                   </div>
                   <div className="hidden sm:flex flex-col items-start leading-none">
                     <span className="text-[10px] font-black uppercase tracking-widest text-gray-900 group-hover/btn:text-[var(--primary-purple)]">{session.user.name}</span>
-                    <span className="text-[8px] font-bold text-gray-400 uppercase tracking-widest mt-0.5">{session.user.role}</span>
+                    <span className="text-[8px] font-bold text-gray-600 uppercase tracking-widest mt-0.5">{session.user.role}</span>
                   </div>
                 </Link>
 
@@ -99,7 +99,7 @@ export default function Navbar() {
             )}
           </div>
 
-          <Link href="/cart" aria-label="Cart" className={`flex items-center gap-2 px-4 py-2 rounded-full border ${isDarkNav ? 'border-gray-200 text-black hover:border-[var(--primary-purple)]' : 'border-gray-900/10 text-black hover:bg-black/5'} transition-all group relative`}>
+          <Link href="/cart" aria-label="Cart" className={`flex items-center gap-2 px-2 py-0.5 rounded-full border ${isDarkNav ? 'border-gray-200 text-black hover:border-[var(--primary-purple)]' : 'border-gray-900/10 text-black hover:bg-black/5'} transition-all group relative`}>
             <ShoppingCart className="w-4 h-4" />
             <span className="text-[10px] font-black uppercase tracking-widest hidden sm:inline">Basket</span>
             <span className="absolute -top-1 -right-1 bg-[var(--primary-purple)] text-white text-[8px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
@@ -125,7 +125,7 @@ export default function Navbar() {
         >
           <div className="flex justify-between items-center p-4 border-b border-gray-100">
             <span className="font-bold text-[var(--primary-purple)]">Menu</span>
-            <button onClick={() => setMobileMenuOpen(false)} className="text-gray-500 hover:text-red-500">
+            <button onClick={() => setMobileMenuOpen(false)} className="text-gray-800 hover:text-red-500">
               <X className="w-6 h-6" />
             </button>
           </div>

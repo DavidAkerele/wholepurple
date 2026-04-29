@@ -12,13 +12,13 @@ export default function ContactPage() {
       />
 
       <section className="container mx-auto px-4 md:px-8 mt-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 xl:gap-24 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 xl:gap-24 max-w-[1700px] mx-auto">
           
           {/* Contact Info Side */}
           <div className="lg:col-span-5 flex flex-col gap-12">
             <div>
               <h2 className="text-4xl font-black text-gray-900 uppercase tracking-tighter mb-6">Let's Talk <br /> <span className="text-[var(--primary-purple)]">Harvest</span></h2>
-              <p className="text-gray-500 font-medium leading-relaxed max-w-sm">
+              <p className="text-gray-800 font-medium leading-relaxed max-w-sm">
                 Our support team is available Monday to Saturday to assist you with orders, subscriptions, or partnership inquiries.
               </p>
             </div>
@@ -49,7 +49,7 @@ export default function ContactPage() {
                     {item.icon}
                   </div>
                   <div>
-                    <h3 className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">{item.title}</h3>
+                    <h3 className="text-[10px] font-black uppercase tracking-widest text-gray-600 mb-1">{item.title}</h3>
                     <p className="text-lg font-bold text-gray-900">{item.value}</p>
                   </div>
                 </div>
@@ -58,10 +58,10 @@ export default function ContactPage() {
 
             {/* Social Links */}
             <div>
-              <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-6">Follow the Journey</h4>
+              <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-600 mb-6">Follow the Journey</h4>
               <div className="flex gap-4">
                 {[Camera, Share2, Globe].map((Icon, idx) => (
-                  <div key={idx} className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-gray-400 hover:text-[var(--primary-purple)] hover:border-[var(--primary-purple)] border border-gray-100 cursor-pointer transition-all shadow-sm">
+                  <div key={idx} className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-gray-600 hover:text-[var(--primary-purple)] hover:border-[var(--primary-purple)] border border-gray-100 cursor-pointer transition-all shadow-sm">
                     <Icon className="w-5 h-5" />
                   </div>
                 ))}
@@ -76,23 +76,23 @@ export default function ContactPage() {
               <form className="flex flex-col gap-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="flex flex-col gap-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">First Name</label>
-                    <input type="text" className="w-full bg-gray-50 border-none rounded-2xl px-6 py-4 text-sm font-medium focus:ring-2 focus:ring-[var(--primary-purple)]/20 outline-none transition-all" placeholder="John" />
+                    <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 ml-1">First Name</label>
+                    <input type="text" className="w-full bg-gray-50 text-gray-900 border-none rounded-2xl px-6 py-4 text-sm font-medium focus:ring-2 focus:ring-[var(--primary-purple)]/20 outline-none transition-all" placeholder="John" />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Last Name</label>
-                    <input type="text" className="w-full bg-gray-50 border-none rounded-2xl px-6 py-4 text-sm font-medium focus:ring-2 focus:ring-[var(--primary-purple)]/20 outline-none transition-all" placeholder="Doe" />
+                    <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 ml-1">Last Name</label>
+                    <input type="text" className="w-full bg-gray-50 text-gray-900 border-none rounded-2xl px-6 py-4 text-sm font-medium focus:ring-2 focus:ring-[var(--primary-purple)]/20 outline-none transition-all" placeholder="Doe" />
                   </div>
                 </div>
                 
                 <div className="flex flex-col gap-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Email Address</label>
-                  <input type="email" className="w-full bg-gray-50 border-none rounded-2xl px-6 py-4 text-sm font-medium focus:ring-2 focus:ring-[var(--primary-purple)]/20 outline-none transition-all" placeholder="john@example.com" />
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 ml-1">Email Address</label>
+                  <input type="email" className="w-full bg-gray-50 text-gray-900 border-none rounded-2xl px-6 py-4 text-sm font-medium focus:ring-2 focus:ring-[var(--primary-purple)]/20 outline-none transition-all" placeholder="john@example.com" />
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Subject</label>
-                  <select className="w-full bg-gray-50 border-none rounded-2xl px-6 py-4 text-sm font-medium focus:ring-2 focus:ring-[var(--primary-purple)]/20 outline-none transition-all appearance-none">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 ml-1">Subject</label>
+                  <select className="w-full bg-gray-50 text-gray-900 border-none rounded-2xl px-6 py-4 text-sm font-medium focus:ring-2 focus:ring-[var(--primary-purple)]/20 outline-none transition-all appearance-none">
                     <option>Order Inquiry</option>
                     <option>Product Question</option>
                     <option>Partnership</option>
@@ -101,8 +101,8 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Message</label>
-                  <textarea rows={5} className="w-full bg-gray-50 border-none rounded-2xl px-6 py-4 text-sm font-medium focus:ring-2 focus:ring-[var(--primary-purple)]/20 outline-none transition-all resize-none" placeholder="How can we help?"></textarea>
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 ml-1">Message</label>
+                  <textarea rows={5} className="w-full bg-gray-50 text-gray-900 border-none rounded-2xl px-6 py-4 text-sm font-medium focus:ring-2 focus:ring-[var(--primary-purple)]/20 outline-none transition-all resize-none" placeholder="How can we help?"></textarea>
                 </div>
 
                 <button type="button" className="flex items-center justify-center gap-3 bg-[var(--primary-purple)] text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:shadow-2xl transition-all mt-4 group">
@@ -134,7 +134,7 @@ export default function ContactPage() {
               <MapPin className="w-6 h-6" />
             </div>
             <h4 className="text-xl font-black text-gray-900 uppercase tracking-tighter mb-2">Our Store</h4>
-            <p className="text-gray-500 font-medium text-sm leading-relaxed mb-6">
+            <p className="text-gray-800 font-medium text-sm leading-relaxed mb-6">
               123 Fresh Produce Lane, Victoria Island, Lagos, Nigeria.
             </p>
             <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[var(--accent-green)]">

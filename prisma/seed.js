@@ -62,6 +62,7 @@ async function main() {
     { name: "Whole Purple Stir-Dust - Original", slug: "stir-dust-original", price: 2500, categoryId: spices.id, image: "Gemini_Generated_Image_j41es1j41es1j41e-removebg-preview.png" },
     { name: "Mixed Pepper Flakes", slug: "mixed-pepper-flakes-premium", price: 2500, categoryId: spices.id, image: "Gemini_Generated_Image_gzf290gzf290gzf2-removebg-preview.png" },
     { name: "Suya Spice", slug: "suya-spice-premium", price: 2500, categoryId: spices.id, image: "Gemini_Generated_Image_iidz78iidz78iidz-removebg-preview.png" },
+    { name: "Epic Suya", slug: "epic-suya", price: 3500, categoryId: spices.id, image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=900&auto=format&fit=crop&q=60" },
 
     { name: "Zucchini", slug: "zucchini", price: 1500, categoryId: vegetables.id, image: "zucchini-transparent-background-png.webp" },
     { name: "White Sweet Potato", slug: "white-sweet-potato", price: 800, categoryId: vegetables.id, image: "120163_46375542-982d-4238-94bb-7f655d078858.webp" },
@@ -77,7 +78,7 @@ async function main() {
     { name: "Carrots", slug: "carrots", price: 3500, categoryId: vegetables.id, image: "ai-generated-fresh-carrot-isolated-free-png.webp" },
     { name: "Green Cabbage", slug: "green-cabbage", price: 2000, categoryId: vegetables.id, image: "fresh-pointed-cabbage-isolated-on-a-transparent-background-showcasing-its-vibrant-green-leaves-and-natural-textures-pointed-cabbage-isolated-on-transparent-background-free-png.webp" },
     { name: "Avocado", slug: "avocado", price: 2000, categoryId: fruits.id, image: "Layer1_1946x_bdece6b5-db92-4b57-8d7a-7771d6a5218e.webp" },
-    { name: "Bell Pepper", slug: "bell-pepper", price: 10500, categoryId: vegetables.id, image: "Green-Bell-Pepper-hero@2x.png" },
+    { name: "Bell Pepper", slug: "bell-pepper", price: 10500, categoryId: vegetables.id, image: "https://www.vhv.rs/dpng/d/444-4447463_free-to-use-green-pepper-transparents-bell-pepper.png" },
     { name: "Watermelon", slug: "watermelon", price: 4000, categoryId: fruits.id, image: "LDB0663-MVP_Retail-Product_Watermelon.png" },
     { name: "Pineapple", slug: "pineapple", price: 3000, categoryId: fruits.id, image: "pineaple.png" },
     { name: "Passion Fruit", slug: "passion-fruit", price: 5000, categoryId: fruits.id, image: "Pasted-20210219-110059_clipped_rev_1.webp" },
@@ -98,7 +99,13 @@ async function main() {
     
     // Proteins
     { name: "Marinated Chicken Breasts", slug: "marinated-chicken-breasts", price: 6500, categoryId: proteins.id, image: "Gemini_Generated_Image_gzf290gzf290gzf2-removebg-preview.png" },
-    { name: "Herb-Crusted Beef", slug: "herb-crusted-beef", price: 9500, categoryId: proteins.id, image: "Gemini_Generated_Image_iidz78iidz78iidz-removebg-preview.png" }
+    { name: "Herb-Crusted Beef", slug: "herb-crusted-beef", price: 9500, categoryId: proteins.id, image: "Gemini_Generated_Image_iidz78iidz78iidz-removebg-preview.png" },
+    { name: "All Purpose Seasoning", slug: "all-purpose-seasoning", price: 1000, categoryId: spices.id, image: "Gemini_Generated_Image_sve31jsve31jsve3-removebg-preview.png" },
+    { name: "Gourmet Garlic Pepper", slug: "gourmet-garlic-pepper", price: 1000, categoryId: spices.id, image: "Gemini_Generated_Image_iidz78iidz78iidz-removebg-preview.png" },
+    { name: "Kickin' Chicken Powder", slug: "kickin-chicken-powder", price: 1000, categoryId: spices.id, image: "" },
+    { name: "Mixed Pepper Flakes", slug: "mixed-pepper-flakes", price: 1000, categoryId: spices.id, image: "Gemini_Generated_Image_gzf290gzf290gzf2-removebg-preview.png" },
+    { name: "Stir-Dust", slug: "stir-dust", price: 1000, categoryId: spices.id, image: "Gemini_Generated_Image_j41es1j41es1j41e-removebg-preview.png" },
+    { name: "Red Meat Simmer", slug: "red-meat-simmer", price: 1000, categoryId: spices.id, image: "" },
   ];
 
   for (const prod of productsData) {

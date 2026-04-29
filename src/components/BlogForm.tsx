@@ -43,7 +43,7 @@ export default function BlogForm({ initialData }: BlogFormProps) {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-8 max-w-5xl mx-auto">
       <div className="flex items-center justify-between gap-4">
-        <Link href="/dashboard/editor" className="flex items-center gap-2 text-gray-500 font-bold hover:text-gray-900 transition-colors">
+        <Link href="/dashboard/editor" className="flex items-center gap-2 text-gray-800 font-bold hover:text-gray-900 transition-colors">
           <ArrowLeft className="w-4 h-4" /> Back to Dashboard
         </Link>
         <div className="flex items-center gap-3">
@@ -71,51 +71,51 @@ export default function BlogForm({ initialData }: BlogFormProps) {
 
       <div className="bg-white p-10 rounded-[40px] border border-gray-100 flex flex-col gap-8">
         <div className="flex flex-col gap-2">
-          <label className="text-xs font-black text-gray-400 uppercase tracking-widest px-1">Article Title</label>
+          <label className="text-xs font-black text-gray-600 uppercase tracking-widest px-1">Article Title</label>
           <input 
             type="text"
             required
             placeholder="e.g. The Secret to Perfectly Ripe Ube"
             value={formData.title}
             onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-            className="text-3xl font-black p-4 bg-gray-50 border-none focus:bg-white focus:ring-0 transition-all placeholder:text-gray-200"
+            className="text-3xl font-black p-4 bg-gray-50 text-gray-900 border-none focus:bg-white focus:ring-0 transition-all placeholder:text-gray-200"
           />
         </div>
 
         <div className="flex flex-col gap-2">
-          <label className="text-xs font-black text-gray-400 uppercase tracking-widest px-1">Featured Image URL</label>
+          <label className="text-xs font-black text-gray-600 uppercase tracking-widest px-1">Featured Image URL</label>
           <div className="relative">
             <input 
               type="text"
               placeholder="https://images.unsplash.com/..."
               value={formData.image}
               onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-              className="w-full p-4 pl-12 rounded-2xl border border-gray-100 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all font-medium"
+              className="w-full p-4 pl-12 rounded-2xl border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all font-medium"
             />
-            <ImageIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-300" />
+            <ImageIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
           </div>
         </div>
 
         <div className="flex flex-col gap-2">
-          <label className="text-xs font-black text-gray-400 uppercase tracking-widest px-1">Excerpt (Short Summary)</label>
+          <label className="text-xs font-black text-gray-600 uppercase tracking-widest px-1">Excerpt (Short Summary)</label>
           <textarea 
             rows={2}
             placeholder="A brief introduction to your article..."
             value={formData.excerpt}
             onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })}
-            className="p-4 rounded-2xl border border-gray-100 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all font-medium resize-none"
+            className="p-4 rounded-2xl border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all font-medium resize-none"
           />
         </div>
 
         <div className="flex flex-col gap-2">
-          <label className="text-xs font-black text-gray-400 uppercase tracking-widest px-1">Article Content (Markdown Supported)</label>
+          <label className="text-xs font-black text-gray-600 uppercase tracking-widest px-1">Article Content (Markdown Supported)</label>
           <textarea 
             rows={15}
             required
             placeholder="Once upon a time in the world of whole foods..."
             value={formData.content}
             onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-            className="p-6 rounded-[32px] border border-gray-100 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all font-medium leading-relaxed"
+            className="p-6 rounded-[32px] border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all font-medium leading-relaxed"
           />
         </div>
       </div>

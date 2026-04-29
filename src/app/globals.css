@@ -5,7 +5,47 @@
   --color-accent-green: #89C836;
   --color-accent-red: #D32F2F;
   --color-section-bg: #F5F1ED;
-  --font-sans: "Quicksand", "Inter", sans-serif;
+  --font-sans: var(--font-inter), "Inter", sans-serif;
+
+  --animate-slide-up: slide-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-bounce-slow: bounce-slow 4s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes slide-up {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  @keyframes bounce-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(3deg); }
+  }
+}
+
+/* Custom Container for wider layout */
+@utility container {
+  margin-inline: auto;
+  padding-inline: 1rem;
+  width: 100%;
+
+  @media (width >= 640px) {
+    max-width: 640px;
+  }
+  @media (width >= 768px) {
+    max-width: 768px;
+  }
+  @media (width >= 1024px) {
+    max-width: 1024px;
+  }
+  @media (width >= 1280px) {
+    max-width: 1500px;
+  }
+  @media (width >= 1536px) {
+    max-width: 1700px;
+  }
 }
 
 :root {

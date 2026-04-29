@@ -28,7 +28,7 @@ export default async function ProductSection({ title, categorySlug, limit = 4 }:
         </div>
         <Link 
           href={categorySlug ? `/shop?category=${categorySlug}` : "/shop"}
-          className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-gray-400 hover:text-[var(--primary-purple)] transition-colors border-b border-gray-100 pb-1"
+          className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-gray-600 hover:text-[var(--primary-purple)] transition-colors border-b border-gray-100 pb-1"
         >
           View Collection <ArrowRight className="w-4 h-4" />
         </Link>

@@ -58,10 +58,10 @@ export default function ProductEditModal({ product, isOpen, onClose }: ProductEd
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200">
       <div className="bg-white rounded-[32px] w-full max-w-lg overflow-hidden shadow-2xl animate-in zoom-in-95 duration-200">
-        <div className="p-6 border-b border-gray-100 flex items-center justify-between bg-gray-50/50">
+        <div className="p-6 border-b border-gray-100 flex items-center justify-between bg-gray-50 text-gray-900/50">
           <h3 className="text-xl font-bold text-gray-900">Edit Product</h3>
           <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
-            <X className="w-5 h-5 text-gray-500" />
+            <X className="w-5 h-5 text-gray-800" />
           </button>
         </div>
 
@@ -73,7 +73,7 @@ export default function ProductEditModal({ product, isOpen, onClose }: ProductEd
               required
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="p-4 rounded-2xl border border-gray-100 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all"
+              className="p-4 rounded-2xl border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all"
             />
           </div>
 
@@ -85,7 +85,7 @@ export default function ProductEditModal({ product, isOpen, onClose }: ProductEd
                 required
                 value={formData.price}
                 onChange={(e) => setFormData({ ...formData, price: parseFloat(e.target.value) })}
-                className="p-4 rounded-2xl border border-gray-100 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all"
+                className="p-4 rounded-2xl border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all"
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -95,7 +95,7 @@ export default function ProductEditModal({ product, isOpen, onClose }: ProductEd
                 required
                 value={formData.stock}
                 onChange={(e) => setFormData({ ...formData, stock: parseInt(e.target.value) })}
-                className="p-4 rounded-2xl border border-gray-100 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all"
+                className="p-4 rounded-2xl border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all"
               />
             </div>
           </div>
@@ -106,7 +106,7 @@ export default function ProductEditModal({ product, isOpen, onClose }: ProductEd
               rows={4}
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              className="p-4 rounded-2xl border border-gray-100 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all resize-none"
+              className="p-4 rounded-2xl border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all resize-none"
             />
           </div>
 
@@ -114,7 +114,7 @@ export default function ProductEditModal({ product, isOpen, onClose }: ProductEd
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 py-4 rounded-2xl border border-gray-100 font-bold text-gray-500 hover:bg-gray-50 transition-all"
+              className="flex-1 py-4 rounded-2xl border border-gray-100 font-bold text-gray-800 hover:bg-gray-50 text-gray-900 transition-all"
             >
               Cancel
             </button>

@@ -23,7 +23,7 @@ export default async function ReferralsPage() {
           </Link>
           <div>
             <h1 className="text-3xl font-black text-gray-900 uppercase tracking-tighter">Refer & Earn</h1>
-            <p className="text-gray-500 font-medium text-sm">Grow the Whole Purple community and earn harvest credits.</p>
+            <p className="text-gray-800 font-medium text-sm">Grow the Whole Purple community and earn harvest credits.</p>
           </div>
         </div>
       </div>
@@ -37,12 +37,12 @@ export default async function ReferralsPage() {
               <h2 className="text-3xl md:text-6xl font-black text-gray-900 uppercase tracking-tighter leading-tight md:leading-[0.9] mb-6 md:mb-8">
                 Share the <br /> <span className="text-[var(--primary-purple)]">Freshness</span>
               </h2>
-              <p className="text-base md:text-xl text-gray-500 font-medium leading-relaxed mb-8 md:mb-10 max-w-md">
+              <p className="text-base md:text-xl text-gray-800 font-medium leading-relaxed mb-8 md:mb-10 max-w-md">
                 Invite your friends to experience ethical sourcing. They get <span className="text-gray-900 font-black italic">₦2,000 off</span> their first harvest, and you get <span className="text-gray-900 font-black italic">₦2,000 credit</span> in your wallet.
               </p>
               
               <div className="flex flex-col gap-4">
-                 <label className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 ml-1">Your Unique Invite Code</label>
+                 <label className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] text-gray-600 ml-1">Your Unique Invite Code</label>
                  <div className="flex items-center gap-2">
                     <div className="flex-1 bg-white border border-gray-100 rounded-xl md:rounded-2xl px-4 md:px-6 py-4 md:py-5 font-black text-base md:text-xl tracking-widest text-[var(--primary-purple)] shadow-sm">
                        {referralCode}
@@ -57,7 +57,7 @@ export default async function ReferralsPage() {
                  <button className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[var(--primary-purple)] text-white px-8 md:px-10 py-4 md:py-5 rounded-xl md:rounded-2xl font-black uppercase tracking-widest text-[10px] md:text-xs hover:shadow-2xl transition-all group">
                     Send Invites <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                  </button>
-                 <button className="flex items-center gap-3 text-gray-500 hover:text-gray-900 font-black uppercase tracking-widest text-[10px] md:text-xs transition-colors">
+                 <button className="flex items-center gap-3 text-gray-800 hover:text-gray-900 font-black uppercase tracking-widest text-[10px] md:text-xs transition-colors">
                     <Share2 className="w-4 h-4" /> Share Socially
                  </button>
               </div>
@@ -75,7 +75,7 @@ export default async function ReferralsPage() {
                    </div>
                    <div>
                       <h4 className="text-base md:text-lg font-black text-gray-900 uppercase tracking-tight mb-1 md:mb-2">{item.title}</h4>
-                      <p className="text-[10px] md:text-xs text-gray-400 font-medium leading-relaxed">{item.desc}</p>
+                      <p className="text-[10px] md:text-xs text-gray-600 font-medium leading-relaxed">{item.desc}</p>
                    </div>
                 </div>
               ))}
@@ -90,15 +90,15 @@ export default async function ReferralsPage() {
       {/* Referral Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
          <div className="bg-white p-10 rounded-[50px] border border-gray-100 shadow-xl shadow-purple-900/5 text-center">
-            <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-2">Total Referrals</h4>
+            <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-600 mb-2">Total Referrals</h4>
             <div className="text-4xl font-black text-gray-900">0</div>
          </div>
          <div className="bg-white p-10 rounded-[50px] border border-gray-100 shadow-xl shadow-purple-900/5 text-center">
-            <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-2">Pending Rewards</h4>
+            <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-600 mb-2">Pending Rewards</h4>
             <div className="text-4xl font-black text-gray-900">₦0</div>
          </div>
          <div className="bg-white p-10 rounded-[50px] border border-gray-100 shadow-xl shadow-purple-900/5 text-center border-b-4 border-b-[var(--accent-green)]">
-            <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-2">Total Earned</h4>
+            <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-600 mb-2">Total Earned</h4>
             <div className="text-4xl font-black text-[var(--accent-green)]">₦0</div>
          </div>
       </div>

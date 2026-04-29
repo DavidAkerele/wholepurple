@@ -53,7 +53,7 @@ export default async function ShopManagerDashboard() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
           <h1 className="text-3xl md:text-4xl font-black text-gray-900 mb-2 tracking-tight">Operations Hub</h1>
-          <p className="text-gray-500 font-medium text-lg">Inventory oversight and fulfillment logistics.</p>
+          <p className="text-gray-800 font-medium text-lg">Inventory oversight and fulfillment logistics.</p>
         </div>
         <div className="flex items-center gap-2 md:gap-3 bg-white p-2 rounded-2xl border border-gray-100 self-start md:self-end">
            <div className="flex items-center gap-2 px-4 py-2 bg-green-50 text-green-600 rounded-xl text-xs font-black uppercase tracking-widest">
@@ -73,7 +73,7 @@ export default async function ShopManagerDashboard() {
             <Link href="/dashboard/shop-manager/products" className="text-[10px] font-black text-[var(--primary-purple)] uppercase tracking-widest hover:underline">Manage</Link>
           </div>
           <div>
-            <span className="text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Active Inventory</span>
+            <span className="text-xs font-black text-gray-600 uppercase tracking-[0.2em]">Active Inventory</span>
             <div className="text-3xl font-black text-gray-900 mt-2">{totalProducts} Items</div>
           </div>
         </div>
@@ -89,7 +89,7 @@ export default async function ShopManagerDashboard() {
             </div>
           </div>
           <div>
-            <span className="text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Pending Orders</span>
+            <span className="text-xs font-black text-gray-600 uppercase tracking-[0.2em]">Pending Orders</span>
             <div className="text-3xl font-black text-gray-900 mt-2">{pendingOrders}</div>
           </div>
         </div>
@@ -103,7 +103,7 @@ export default async function ShopManagerDashboard() {
             <span className="text-[10px] font-black text-red-600 bg-red-50 px-3 py-1.5 rounded-full uppercase tracking-widest">3 Alerts</span>
           </div>
           <div>
-            <span className="text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Critical Levels</span>
+            <span className="text-xs font-black text-gray-600 uppercase tracking-[0.2em]">Critical Levels</span>
             <div className="text-3xl font-black text-gray-900 mt-2">{lowStockProducts.length} Skus</div>
           </div>
         </div>
@@ -117,7 +117,7 @@ export default async function ShopManagerDashboard() {
             <span className="text-[10px] font-black text-green-600 bg-green-50 px-3 py-1.5 rounded-full uppercase tracking-widest">Excellent</span>
           </div>
           <div>
-            <span className="text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Dispatch Rate</span>
+            <span className="text-xs font-black text-gray-600 uppercase tracking-[0.2em]">Dispatch Rate</span>
             <div className="text-3xl font-black text-gray-900 mt-2">98.4%</div>
           </div>
         </div>
@@ -128,9 +128,9 @@ export default async function ShopManagerDashboard() {
         <SalesChart data={fulfillmentData} title="Fulfillment Velocity" />
       </div>
 
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
         {/* Recent Activity Feed */}
-        <div className="xl:col-span-2 bg-white p-8 rounded-[40px] border border-gray-100 shadow-xl shadow-purple-900/5">
+        <div className="xl:col-span-3 bg-white p-8 rounded-[40px] border border-gray-100 shadow-xl shadow-purple-900/5">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-xl font-black text-gray-900 uppercase tracking-tight">Recent Fulfillments</h2>
             <Link href="/dashboard/shop-manager/orders" className="text-xs font-black text-[var(--primary-purple)] uppercase tracking-widest hover:underline">View All Orders</Link>
@@ -142,7 +142,7 @@ export default async function ShopManagerDashboard() {
                 <Link 
                   key={order.id} 
                   href={`/dashboard/shop-manager/orders/${order.id}`}
-                  className="flex items-center justify-between p-6 rounded-3xl hover:bg-gray-50 transition-all border border-transparent hover:border-gray-100 group"
+                  className="flex items-center justify-between p-6 rounded-3xl hover:bg-gray-50 text-gray-900 transition-all border border-transparent hover:border-gray-100 group"
                 >
                   <div className="flex items-center gap-6">
                     <div className="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center text-[var(--primary-purple)] font-black group-hover:scale-110 transition-transform">
@@ -150,7 +150,7 @@ export default async function ShopManagerDashboard() {
                     </div>
                     <div>
                       <p className="text-sm font-black text-gray-900 uppercase tracking-tight">{order.user.name || 'Guest'}</p>
-                      <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Order #{order.id.slice(-6).toUpperCase()}</p>
+                      <p className="text-[10px] font-bold text-gray-600 uppercase tracking-widest mt-1">Order #{order.id.slice(-6).toUpperCase()}</p>
                     </div>
                   </div>
                   <div className="text-right flex flex-col items-end gap-2">
@@ -160,7 +160,7 @@ export default async function ShopManagerDashboard() {
                 </Link>
               ))
             ) : (
-              <div className="flex flex-col items-center justify-center py-20 text-gray-400 bg-gray-50/50 rounded-3xl border border-dashed border-gray-200">
+              <div className="flex flex-col items-center justify-center py-20 text-gray-600 bg-gray-50 text-gray-900/50 rounded-3xl border border-dashed border-gray-200">
                 <p className="font-bold uppercase tracking-widest text-xs">No Recent Orders</p>
               </div>
             )}

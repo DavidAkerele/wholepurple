@@ -55,7 +55,7 @@ export default async function Home() {
             <h2 className="text-4xl font-black text-gray-900 tracking-tighter uppercase">Meal Inspiration</h2>
             <div className="w-16 h-1.5 bg-[var(--primary-purple)] mt-4"></div>
           </div>
-          <Link href="/blog" className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-gray-400 hover:text-[var(--primary-purple)] transition-colors border-b border-gray-100 pb-1">
+          <Link href="/blog" className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-gray-600 hover:text-[var(--primary-purple)] transition-colors border-b border-gray-100 pb-1">
             View All Recipes <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -75,7 +75,7 @@ export default async function Home() {
               <h3 className="text-2xl font-black text-gray-900 mb-4 line-clamp-2 leading-tight group-hover:text-[var(--primary-purple)] transition-colors">
                 {recipe.title}
               </h3>
-              <p className="text-gray-500 font-medium mb-8 line-clamp-2 leading-relaxed">
+              <p className="text-gray-800 font-medium mb-8 line-clamp-2 leading-relaxed">
                 {recipe.excerpt || "Discover how to prepare this delicious, healthy meal using our fresh ingredients."}
               </p>
               <Link 
@@ -97,7 +97,7 @@ export default async function Home() {
             <span className="text-[var(--primary-purple)] font-black text-[10px] uppercase tracking-[0.3em] mb-2 block">Brewed Goodness</span>
             <h2 className="text-4xl font-black text-gray-900 tracking-tighter uppercase mb-6 leading-none">Wellness Teas</h2>
             <div className="w-12 h-1 bg-[var(--accent-green)] mb-8"></div>
-            <p className="text-gray-500 font-medium mb-10 leading-relaxed">Experience our hand-crafted herbal infusions, designed to soothe the soul and nourish the body.</p>
+            <p className="text-gray-800 font-medium mb-10 leading-relaxed">Experience our hand-crafted herbal infusions, designed to soothe the soul and nourish the body.</p>
             <Link 
               href="/shop?category=teas"
               className="inline-flex items-center gap-2 text-white bg-[var(--primary-purple)] font-black text-xs uppercase tracking-widest px-8 py-4 rounded-2xl hover:shadow-xl hover:shadow-purple-200 transition-all"
@@ -112,7 +112,7 @@ export default async function Home() {
               <div key={product.id} className="group bg-white rounded-[32px] border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-500 flex flex-col">
                 <div className="relative aspect-square bg-[#FBFBFB] p-6 flex items-center justify-center">
                   <Image 
-                    src={`/images/scraped/${product.image || 'woocommerce-placeholder.webp'}`} 
+                    src={product.image?.startsWith('http') ? product.image : `/images/scraped/${product.image || 'woocommerce-placeholder.webp'}`} 
                     alt={product.name}
                     fill
                     className="object-contain p-6 group-hover:scale-110 transition-transform duration-700"
@@ -141,7 +141,7 @@ export default async function Home() {
             <Camera className="w-8 h-8 text-[var(--primary-purple)]" />
           </div>
           <h2 className="text-3xl font-black text-gray-900 tracking-tighter uppercase mb-4">Join the Community</h2>
-          <p className="text-gray-500 text-lg font-medium">Tag @WholePurple to be featured on our page.</p>
+          <p className="text-gray-800 text-lg font-medium">Tag @WholePurple to be featured on our page.</p>
         </div>
         <div className="flex w-full overflow-hidden">
           {[

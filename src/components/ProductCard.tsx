@@ -30,7 +30,7 @@ export default function ProductCard({ product }: { product: any }) {
       {/* Image Container */}
       <div className="relative aspect-square bg-[#FDFCFB] overflow-hidden">
         <Image 
-          src={`/images/scraped/${product.image || 'woocommerce-placeholder.webp'}`} 
+          src={product.image?.startsWith('http') ? product.image : `/images/scraped/${product.image || 'woocommerce-placeholder.webp'}`} 
           alt={product.name}
           fill
           className={`object-contain p-10 transition-all duration-700 ease-out ${isHovered ? 'scale-110 rotate-2' : 'scale-100 rotate-0'}`}
@@ -38,7 +38,7 @@ export default function ProductCard({ product }: { product: any }) {
         
         {/* Floating Category Tag */}
         <div className="absolute top-6 left-6 z-10">
-          <span className="px-4 py-1.5 bg-white/90 backdrop-blur-md rounded-full border border-gray-100 text-[9px] font-black uppercase tracking-[0.2em] text-gray-400">
+          <span className="px-4 py-1.5 bg-white/90 backdrop-blur-md rounded-full border border-gray-100 text-[9px] font-black uppercase tracking-[0.2em] text-gray-600">
             {product.category.name}
           </span>
         </div>
@@ -63,14 +63,14 @@ export default function ProductCard({ product }: { product: any }) {
             </h3>
           </Link>
           <div className="text-right">
-            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Price</p>
+            <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-1">Price</p>
             <p className="text-xl font-black text-[var(--primary-purple)] tracking-tighter">
               ₦{product.price.toLocaleString()}
             </p>
           </div>
         </div>
         
-        <p className="text-gray-400 text-sm font-medium mb-8 line-clamp-2 leading-relaxed">
+        <p className="text-gray-600 text-sm font-medium mb-8 line-clamp-2 leading-relaxed">
           Sourced from our ethical partner farms, guaranteed fresh and delivered within 24 hours.
         </p>
 

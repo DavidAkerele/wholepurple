@@ -87,12 +87,12 @@ export default function CheckoutPage() {
             <CheckCircle2 className="w-12 h-12" />
           </div>
           <h1 className="text-4xl md:text-6xl font-black text-gray-900 uppercase tracking-tighter leading-none">Order Secured!</h1>
-          <p className="text-lg text-gray-500 font-medium leading-relaxed">
+          <p className="text-lg text-gray-800 font-medium leading-relaxed">
             Your fresh harvest is being prepared by our partner farmers. We'll notify you as soon as it's out for delivery.
           </p>
           
           <div className="bg-[#FDFCFB] p-8 rounded-[40px] w-full border border-gray-100 flex flex-col gap-2">
-             <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Confirmation Number</p>
+             <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest">Confirmation Number</p>
              <p className="font-black text-[var(--primary-purple)] text-3xl tracking-tighter">WP-{Math.random().toString(36).substring(2, 10).toUpperCase()}</p>
           </div>
 
@@ -100,7 +100,7 @@ export default function CheckoutPage() {
             <Link href="/dashboard/client/orders" className="flex-1 bg-gray-900 text-white px-8 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-black transition-all">
               Track Harvest
             </Link>
-            <Link href="/shop" className="flex-1 bg-white border border-gray-100 text-gray-900 px-8 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-gray-50 transition-all">
+            <Link href="/shop" className="flex-1 bg-white border border-gray-100 text-gray-900 px-8 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-gray-50 text-gray-900 transition-all">
               Continue Shopping
             </Link>
           </div>
@@ -114,11 +114,11 @@ export default function CheckoutPage() {
       {/* Header Section */}
       <div className="bg-white border-b border-gray-100 pt-32 pb-12">
         <div className="container mx-auto px-4 md:px-8">
-           <Link href="/cart" className="text-gray-400 hover:text-[var(--primary-purple)] flex items-center gap-2 font-black text-[10px] uppercase tracking-[0.2em] mb-6 transition-colors">
+           <Link href="/cart" className="text-gray-600 hover:text-[var(--primary-purple)] flex items-center gap-2 font-black text-[10px] uppercase tracking-[0.2em] mb-6 transition-colors">
             <ArrowLeft className="w-4 h-4" /> Back to Cart
           </Link>
           <h1 className="text-4xl md:text-6xl font-black text-gray-900 uppercase tracking-tighter leading-none">Checkout</h1>
-          <p className="text-gray-500 font-medium mt-4">Secure your premium local harvest in just a few steps.</p>
+          <p className="text-gray-800 font-medium mt-4">Secure your premium local harvest in just a few steps.</p>
         </div>
       </div>
 
@@ -139,32 +139,32 @@ export default function CheckoutPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="flex flex-col gap-3">
-                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest">First Name</label>
-                    <input required name="firstName" type="text" defaultValue={firstName} className="w-full p-4 rounded-2xl border border-gray-100 focus:ring-2 focus:ring-[var(--primary-purple)] focus:border-transparent outline-none bg-gray-50 font-medium transition-all" placeholder="Jane" />
+                    <label className="text-[10px] font-black text-gray-600 uppercase tracking-widest">First Name</label>
+                    <input required name="firstName" type="text" defaultValue={firstName} className="w-full p-4 rounded-2xl border border-gray-100 focus:ring-2 focus:ring-[var(--primary-purple)] focus:border-transparent outline-none bg-gray-50 text-gray-900 font-medium transition-all" placeholder="Jane" />
                   </div>
                   <div className="flex flex-col gap-3">
-                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Last Name</label>
-                    <input required name="lastName" type="text" defaultValue={lastName} className="w-full p-4 rounded-2xl border border-gray-100 focus:ring-2 focus:ring-[var(--primary-purple)] focus:border-transparent outline-none bg-gray-50 font-medium transition-all" placeholder="Doe" />
+                    <label className="text-[10px] font-black text-gray-600 uppercase tracking-widest">Last Name</label>
+                    <input required name="lastName" type="text" defaultValue={lastName} className="w-full p-4 rounded-2xl border border-gray-100 focus:ring-2 focus:ring-[var(--primary-purple)] focus:border-transparent outline-none bg-gray-50 text-gray-900 font-medium transition-all" placeholder="Doe" />
                   </div>
                   <div className="flex flex-col gap-3">
-                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Email Address</label>
-                    <input required name="email" type="email" defaultValue={session?.user?.email || ""} className="w-full p-4 rounded-2xl border border-gray-100 focus:ring-2 focus:ring-[var(--primary-purple)] focus:border-transparent outline-none bg-gray-50 font-medium transition-all" placeholder="jane@example.com" />
+                    <label className="text-[10px] font-black text-gray-600 uppercase tracking-widest">Email Address</label>
+                    <input required name="email" type="email" defaultValue={session?.user?.email || ""} className="w-full p-4 rounded-2xl border border-gray-100 focus:ring-2 focus:ring-[var(--primary-purple)] focus:border-transparent outline-none bg-gray-50 text-gray-900 font-medium transition-all" placeholder="jane@example.com" />
                   </div>
                   <div className="flex flex-col gap-3">
-                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                    <label className="text-[10px] font-black text-gray-600 uppercase tracking-widest flex items-center gap-2">
                        <Phone className="w-3 h-3" /> Phone Number
                     </label>
-                    <input required name="phone" type="tel" className="w-full p-4 rounded-2xl border border-gray-100 focus:ring-2 focus:ring-[var(--primary-purple)] focus:border-transparent outline-none bg-gray-50 font-medium transition-all" placeholder="+234..." />
+                    <input required name="phone" type="tel" className="w-full p-4 rounded-2xl border border-gray-100 focus:ring-2 focus:ring-[var(--primary-purple)] focus:border-transparent outline-none bg-gray-50 text-gray-900 font-medium transition-all" placeholder="+234..." />
                   </div>
                   <div className="flex flex-col gap-3 md:col-span-2">
-                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Delivery Address (Lagos Only)</label>
-                    <input required name="address" type="text" className="w-full p-4 rounded-2xl border border-gray-100 focus:ring-2 focus:ring-[var(--primary-purple)] focus:border-transparent outline-none bg-gray-50 font-medium transition-all" placeholder="123 Fresh Lane, Ikoyi" />
+                    <label className="text-[10px] font-black text-gray-600 uppercase tracking-widest">Delivery Address (Lagos Only)</label>
+                    <input required name="address" type="text" className="w-full p-4 rounded-2xl border border-gray-100 focus:ring-2 focus:ring-[var(--primary-purple)] focus:border-transparent outline-none bg-gray-50 text-gray-900 font-medium transition-all" placeholder="123 Fresh Lane, Ikoyi" />
                   </div>
                   <div className="flex flex-col gap-3 md:col-span-2">
-                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                    <label className="text-[10px] font-black text-gray-600 uppercase tracking-widest flex items-center gap-2">
                        <MessageSquare className="w-3 h-3" /> Special Instructions
                     </label>
-                    <textarea name="instructions" rows={3} className="w-full p-4 rounded-2xl border border-gray-100 focus:ring-2 focus:ring-[var(--primary-purple)] focus:border-transparent outline-none bg-gray-50 font-medium transition-all resize-none" placeholder="e.g. Leave with security, ring bell twice..." />
+                    <textarea name="instructions" rows={3} className="w-full p-4 rounded-2xl border border-gray-100 focus:ring-2 focus:ring-[var(--primary-purple)] focus:border-transparent outline-none bg-gray-50 text-gray-900 font-medium transition-all resize-none" placeholder="e.g. Leave with security, ring bell twice..." />
                   </div>
                 </div>
               </div>
@@ -189,17 +189,17 @@ export default function CheckoutPage() {
                      </div>
                      <div className="flex flex-col">
                         <span className="font-black text-gray-900 uppercase tracking-tight text-sm">Pay with Card / Bank Transfer</span>
-                        <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Instant Fulfillment</span>
+                        <span className="text-[10px] text-gray-600 font-bold uppercase tracking-widest">Instant Fulfillment</span>
                      </div>
                    </label>
                    
-                   <label className="flex items-center gap-5 p-6 border-2 border-gray-50 bg-gray-50/30 rounded-3xl cursor-not-allowed opacity-50 grayscale">
+                   <label className="flex items-center gap-5 p-6 border-2 border-gray-50 bg-gray-50 text-gray-900/30 rounded-3xl cursor-not-allowed opacity-50 grayscale">
                      <div className="w-6 h-6 border-2 border-gray-200 rounded-full flex items-center justify-center">
                         <div className="w-3 h-3 bg-gray-300 rounded-full"></div>
                      </div>
                      <div className="flex flex-col">
-                        <span className="font-black text-gray-400 uppercase tracking-tight text-sm">Pay on Delivery</span>
-                        <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Temporarily Disabled</span>
+                        <span className="font-black text-gray-600 uppercase tracking-tight text-sm">Pay on Delivery</span>
+                        <span className="text-[10px] text-gray-600 font-bold uppercase tracking-widest">Temporarily Disabled</span>
                      </div>
                    </label>
                  </div>
@@ -228,7 +228,7 @@ export default function CheckoutPage() {
                      </div>
                      <div className="flex-1 min-w-0">
                         <h4 className="text-xs font-black text-gray-900 uppercase tracking-tight truncate">{item.name}</h4>
-                        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-1">Fresh Harvest</p>
+                        <p className="text-[10px] text-gray-600 font-bold uppercase tracking-widest mt-1">Fresh Harvest</p>
                      </div>
                      <span className="font-black text-gray-900 text-sm">₦{(item.price * item.quantity).toLocaleString()}</span>
                    </div>
@@ -237,11 +237,11 @@ export default function CheckoutPage() {
 
                <div className="flex flex-col gap-4 mb-10 pt-6 border-t border-gray-50">
                  <div className="flex justify-between items-center">
-                   <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Subtotal</span>
+                   <span className="text-[10px] font-black text-gray-600 uppercase tracking-widest">Subtotal</span>
                    <span className="font-bold text-gray-900">₦{getTotalPrice().toLocaleString()}</span>
                  </div>
                  <div className="flex justify-between items-center">
-                   <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Delivery (Lagos)</span>
+                   <span className="text-[10px] font-black text-gray-600 uppercase tracking-widest">Delivery (Lagos)</span>
                    <span className="font-bold text-gray-900">₦1,500</span>
                  </div>
                  <div className="flex justify-between items-center pt-6 border-t border-gray-50">
@@ -256,7 +256,7 @@ export default function CheckoutPage() {
                  disabled={isProcessing}
                  className={`w-full flex items-center justify-center gap-3 py-6 rounded-3xl font-black text-xs uppercase tracking-widest transition-all ${
                    isProcessing 
-                   ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
+                   ? 'bg-gray-100 text-gray-600 cursor-not-allowed' 
                    : 'bg-[var(--primary-purple)] text-white hover:scale-[1.02] shadow-xl shadow-purple-900/20'
                  }`}
                >
@@ -269,7 +269,7 @@ export default function CheckoutPage() {
                  )}
                </button>
                
-               <p className="text-center mt-6 text-[9px] font-bold text-gray-300 uppercase tracking-[0.2em] flex items-center justify-center gap-2">
+               <p className="text-center mt-6 text-[9px] font-bold text-gray-500 uppercase tracking-[0.2em] flex items-center justify-center gap-2">
                   <ShieldCheck className="w-3 h-3" /> SSL Encrypted Checkout
                </p>
             </div>

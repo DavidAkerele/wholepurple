@@ -134,13 +134,13 @@ export default function MealBuilder({ type, title, description, basePrice, categ
       {/* Top Bar - Improved Mobile Padding */}
       <div className="sticky top-20 z-30 bg-white/90 backdrop-blur-md border-b border-gray-100 py-6 md:py-4 px-4 md:px-8">
         <div className="container mx-auto flex items-center justify-between">
-          <Link href="/shop" className="flex items-center gap-2 text-gray-500 hover:text-gray-900 transition-colors">
+          <Link href="/shop" className="flex items-center gap-2 text-gray-800 hover:text-gray-900 transition-colors">
             <ArrowLeft className="w-4 h-4" />
             <span className="text-sm font-bold uppercase tracking-widest">Back to Shop</span>
           </Link>
           <div className="flex items-center gap-4">
              <div className="text-right hidden sm:block">
-               <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Current Total</p>
+               <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest">Current Total</p>
                <p className="text-xl font-black text-[var(--primary-purple)]">₦{totalPrice.toLocaleString()}</p>
              </div>
              <button 
@@ -149,7 +149,7 @@ export default function MealBuilder({ type, title, description, basePrice, categ
                className={`flex items-center gap-3 px-6 md:px-8 py-3 rounded-2xl font-black text-[10px] md:text-xs uppercase tracking-widest transition-all ${
                  isValid 
                  ? 'bg-[var(--primary-purple)] text-white hover:shadow-xl hover:shadow-purple-200' 
-                 : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                 : 'bg-gray-100 text-gray-600 cursor-not-allowed'
                }`}
              >
                {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <ShoppingCart className="w-4 h-4" />}
@@ -195,12 +195,12 @@ export default function MealBuilder({ type, title, description, basePrice, categ
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-gray-100 pb-6">
                   <div>
                     <h2 className="text-3xl font-black text-gray-900 tracking-tighter uppercase">{cat.name}</h2>
-                    <p className="text-gray-500 font-medium mt-1">
+                    <p className="text-gray-800 font-medium mt-1">
                       Select {cat.minItems === cat.maxItems ? cat.minItems : `${cat.minItems}-${cat.maxItems}`} items
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
-                     <span className={`text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-full ${isMaxReached ? 'bg-purple-100 text-[var(--primary-purple)]' : 'bg-gray-100 text-gray-400'}`}>
+                     <span className={`text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-full ${isMaxReached ? 'bg-purple-100 text-[var(--primary-purple)]' : 'bg-gray-100 text-gray-600'}`}>
                         {selectedCount} / {cat.maxItems} Selected
                      </span>
                   </div>
@@ -221,12 +221,12 @@ export default function MealBuilder({ type, title, description, basePrice, categ
                             isSelected 
                             ? 'border-[var(--primary-purple)] bg-purple-50/50 shadow-xl shadow-purple-900/5' 
                             : isDisabled
-                              ? 'border-gray-50 bg-gray-50/50 opacity-40 grayscale'
+                              ? 'border-gray-50 bg-gray-50 text-gray-900/50 opacity-40 grayscale'
                               : 'border-gray-50 bg-white hover:border-purple-200'
                           }`}
                         >
                           <div className="relative w-20 h-20 mb-4 transition-transform group-hover:scale-110">
-                            <Image src={`/images/scraped/${item.image}`} alt={item.name} fill className="object-contain" />
+                            <Image src={item.image?.startsWith('http') ? item.image : `/images/scraped/${item.image}`} alt={item.name} fill className="object-contain" />
                             {isSelected && (
                               <div className="absolute -top-2 -right-2 w-6 h-6 bg-[var(--primary-purple)] text-white rounded-full flex items-center justify-center shadow-lg">
                                 <Check className="w-3 h-3" />
@@ -248,7 +248,7 @@ export default function MealBuilder({ type, title, description, basePrice, categ
                           <div className="flex items-center justify-center gap-4 bg-white border border-gray-100 rounded-2xl p-2 shadow-sm animate-in fade-in slide-in-from-top-2 duration-300">
                              <button 
                                onClick={() => handleUpdateQuantity(cat.id, item.id, -1)}
-                               className="w-8 h-8 rounded-xl bg-gray-50 flex items-center justify-center text-gray-900 hover:bg-gray-100"
+                               className="w-8 h-8 rounded-xl bg-gray-50 text-gray-900 flex items-center justify-center text-gray-900 hover:bg-gray-100"
                              >
                                 <Minus className="w-3 h-3" />
                              </button>
@@ -284,10 +284,10 @@ export default function MealBuilder({ type, title, description, basePrice, categ
                           const itemIds = Object.keys(items);
                           return (
                             <div key={cat.id}>
-                               <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">{cat.name}</h4>
+                               <h4 className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-3">{cat.name}</h4>
                                <div className="flex flex-wrap gap-2">
                                   {itemIds.length === 0 ? (
-                                    <span className="text-xs text-gray-300 italic">No selections</span>
+                                    <span className="text-xs text-gray-500 italic">No selections</span>
                                   ) : (
                                     itemIds.map(id => {
                                       const item = cat.items.find(i => i.id === id);
@@ -308,7 +308,7 @@ export default function MealBuilder({ type, title, description, basePrice, categ
 
                      <div className="flex flex-col justify-end items-end gap-6 text-right">
                         <div>
-                          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Final Build Total</p>
+                          <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-2">Final Build Total</p>
                           <p className="text-6xl font-black text-gray-900 tracking-tighter">₦{totalPrice.toLocaleString()}</p>
                         </div>
                         <button 
@@ -317,7 +317,7 @@ export default function MealBuilder({ type, title, description, basePrice, categ
                           className={`w-full md:w-auto flex items-center justify-center gap-3 px-12 py-6 rounded-[30px] font-black text-sm uppercase tracking-widest transition-all ${
                             isValid 
                             ? 'bg-[var(--primary-purple)] text-white hover:scale-105 shadow-2xl shadow-purple-900/20' 
-                            : 'bg-gray-100 text-gray-300 cursor-not-allowed border border-gray-100'
+                            : 'bg-gray-100 text-gray-500 cursor-not-allowed border border-gray-100'
                           }`}
                         >
                           {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <ShoppingCart className="w-5 h-5" />}

@@ -14,24 +14,24 @@ export default function InvoiceTemplate({ order }: { order: any }) {
         </div>
         <div className="text-right">
           <h1 className="text-4xl font-black uppercase tracking-tighter mb-2">Invoice</h1>
-          <p className="text-sm font-bold uppercase tracking-widest text-gray-400">Order #{order.id.slice(-8).toUpperCase()}</p>
-          <p className="text-xs text-gray-500 mt-1">{new Date(order.createdAt).toLocaleDateString()}</p>
+          <p className="text-sm font-bold uppercase tracking-widest text-gray-600">Order #{order.id.slice(-8).toUpperCase()}</p>
+          <p className="text-xs text-gray-800 mt-1">{new Date(order.createdAt).toLocaleDateString()}</p>
         </div>
       </div>
 
       {/* Parties */}
       <div className="grid grid-cols-2 gap-12 mb-12">
         <div>
-          <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-3">Bill To:</h4>
+          <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-600 mb-3">Bill To:</h4>
           <p className="font-black text-lg uppercase">{order.user.name || "Guest Customer"}</p>
           <p className="text-sm text-gray-600 mt-1">{order.user.email}</p>
           <p className="text-sm text-gray-600 mt-2">{order.address}</p>
           <p className="text-sm text-gray-600">{order.phone}</p>
         </div>
         <div className="text-right">
-          <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-3">Payment Status:</h4>
+          <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-600 mb-3">Payment Status:</h4>
           <p className="text-lg font-black uppercase text-green-600">{order.status}</p>
-          <p className="text-xs text-gray-500 mt-1">Payment Method: Online (Paystack)</p>
+          <p className="text-xs text-gray-800 mt-1">Payment Method: Online (Paystack)</p>
         </div>
       </div>
 
@@ -50,7 +50,7 @@ export default function InvoiceTemplate({ order }: { order: any }) {
             <tr key={item.id} className="text-sm">
               <td className="py-6 pr-4">
                 <p className="font-black uppercase tracking-tight">{item.product.name}</p>
-                <p className="text-[10px] text-gray-400 uppercase tracking-widest mt-0.5">Fresh Category Product</p>
+                <p className="text-[10px] text-gray-600 uppercase tracking-widest mt-0.5">Fresh Category Product</p>
               </td>
               <td className="py-6 text-center font-bold">{item.quantity}</td>
               <td className="py-6 text-right font-medium">₦{item.price.toLocaleString()}</td>
@@ -63,11 +63,11 @@ export default function InvoiceTemplate({ order }: { order: any }) {
       {/* Summary */}
       <div className="flex justify-end pt-8 border-t-2 border-black">
         <div className="w-64 flex flex-col gap-3">
-          <div className="flex justify-between text-xs font-bold uppercase tracking-widest text-gray-400">
+          <div className="flex justify-between text-xs font-bold uppercase tracking-widest text-gray-600">
             <span>Subtotal</span>
             <span className="text-black font-black">₦{order.total.toLocaleString()}</span>
           </div>
-          <div className="flex justify-between text-xs font-bold uppercase tracking-widest text-gray-400">
+          <div className="flex justify-between text-xs font-bold uppercase tracking-widest text-gray-600">
             <span>Delivery Fee</span>
             <span className="text-black font-black">₦0.00</span>
           </div>
@@ -80,8 +80,8 @@ export default function InvoiceTemplate({ order }: { order: any }) {
 
       {/* Footer */}
       <div className="mt-20 pt-10 border-t border-gray-100 text-center">
-        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-300">Thank you for choosing Whole Purple</p>
-        <p className="text-[9px] font-medium text-gray-400 mt-2 italic">This is a computer-generated invoice. No signature is required.</p>
+        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-500">Thank you for choosing Whole Purple</p>
+        <p className="text-[9px] font-medium text-gray-600 mt-2 italic">This is a computer-generated invoice. No signature is required.</p>
       </div>
     </div>
   );
