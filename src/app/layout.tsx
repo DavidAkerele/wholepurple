@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     siteName: "Whole Purple",
     images: [
       {
-        url: "/images/scraped/cropped-wholepurplee-removebg-preview.png",
+        url: "/images/social-preview.png",
         width: 1200,
         height: 630,
         alt: "Whole Purple - Ethically Sourced Foods",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Whole Purple | Ethically Sourced, Always",
     description: "Experience the purity of nature. Ethically sourced fresh produce delivered to your doorstep.",
-    images: ["/images/scraped/cropped-wholepurplee-removebg-preview.png"],
+    images: ["/images/social-preview.png"],
   },
   icons: {
     icon: "/favicon.ico",
