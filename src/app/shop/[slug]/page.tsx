@@ -99,8 +99,18 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
                 <h1 className="text-3xl lg:text-5xl font-black text-gray-900 mb-3 tracking-tighter uppercase leading-none">
                   {product.name}
                 </h1>
-                <div className="text-2xl lg:text-3xl font-black text-[var(--primary-purple)]">
+                <div className="text-2xl lg:text-3xl font-black text-[var(--primary-purple)] mb-4">
                   ₦{product.price.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                </div>
+                
+                {/* Loyalty Points */}
+                <div className="flex items-center gap-2 mb-8">
+                  <div className="flex items-center justify-center w-6 h-6 bg-purple-50 text-[var(--primary-purple)] rounded-full">
+                    <span className="text-[10px] font-black">★</span>
+                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-gray-500">
+                    Purchase & earn <span className="text-[var(--primary-purple)]">{Math.floor(product.price / 100)}</span> points!
+                  </span>
                 </div>
               </div>
 

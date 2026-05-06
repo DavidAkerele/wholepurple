@@ -44,10 +44,10 @@ export default function HomeHero({ title, subtitle }: HomeHeroProps) {
               className="object-cover"
               priority={idx === 0}
             />
-            {/* Overlays - Gradient Tint */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--primary-purple)]/[0.08] lg:to-[var(--primary-purple)]/[0.05] z-10"></div>
-            <div className="absolute inset-0 bg-white/20 lg:hidden backdrop-blur-[0.5px] z-20"></div>
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/60 lg:hidden z-30"></div>
+            {/* Overlays - Gradient Tint & Blur */}
+            <div className="absolute inset-0 bg-[#2D1B4E]/30 lg:bg-[#2D1B4E]/40 z-10"></div>
+            <div className="absolute inset-0 backdrop-blur-[4px] z-10"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#2D1B4E]/80 via-transparent to-[#2D1B4E]/20 z-20"></div>
           </div>
         ))}
       </div>
@@ -70,7 +70,7 @@ export default function HomeHero({ title, subtitle }: HomeHeroProps) {
               </span>
             </div>
 
-            <h1 className="text-[2.2rem] sm:text-5xl md:text-8xl xl:text-[7.5rem] font-medium font-serif text-gray-900 leading-[0.95] lg:leading-[0.9] mb-4 lg:mb-10 tracking-tight whitespace-pre-line italic">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl xl:text-[5.5rem] font-medium font-serif text-white leading-[1.1] lg:leading-[1.05] mb-4 lg:mb-8 tracking-tight whitespace-pre-line italic drop-shadow-2xl">
               {heroTitle.split('\n').map((line, i) => (
                 <span key={i} className="block overflow-hidden">
                   <span className="block animate-slide-up" style={{ animationDelay: `${line.includes('Kitchen') ? '0.4s' : i * 0.2 + 's'}` }}>
@@ -80,12 +80,12 @@ export default function HomeHero({ title, subtitle }: HomeHeroProps) {
               ))}
             </h1>
 
-            <p className="lg:hidden text-gray-900 text-[10px] font-black uppercase tracking-[0.3em] mb-6 opacity-60">
+            <p className="lg:hidden text-white/80 text-[10px] font-black uppercase tracking-[0.3em] mb-6">
                Ethical • Pure • Fresh
             </p>
 
             <div className="flex flex-col md:flex-row items-center lg:items-center gap-8 lg:gap-12 mb-8 lg:mb-12">
-               <p className="text-gray-800 text-sm md:text-xl max-w-lg leading-relaxed font-medium opacity-90 lg:border-l-4 border-[var(--accent-green)] lg:pl-8">
+               <p className="text-white/90 text-sm md:text-xl max-w-lg leading-relaxed font-medium lg:border-l-4 border-[var(--accent-green)] lg:pl-8">
                  {heroSubtitle}
                </p>
                
@@ -95,8 +95,8 @@ export default function HomeHero({ title, subtitle }: HomeHeroProps) {
                       <Star key={i} className="w-3.5 h-3.5 fill-[var(--accent-green)] text-[var(--accent-green)]" />
                     ))}
                   </div>
-                  <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest text-center">Lagos Community</span>
-                  <span className="text-lg font-black text-gray-900">4.9/5 User Rating</span>
+                  <span className="text-[10px] font-black text-white/60 uppercase tracking-widest text-center">Lagos Community</span>
+                  <span className="text-lg font-black text-white">4.9/5 User Rating</span>
                </div>
             </div>
 

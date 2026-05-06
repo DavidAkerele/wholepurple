@@ -35,6 +35,7 @@ export default function ProductCard({ product }: { product: any }) {
           alt={product.name}
           fill
           sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+          quality={90}
           className={`object-contain p-4 sm:p-6 lg:p-10 transition-all duration-700 ease-out ${isHovered ? 'scale-110 rotate-2' : 'scale-100 rotate-0'}`}
         />
         
@@ -69,6 +70,11 @@ export default function ProductCard({ product }: { product: any }) {
             <p className="text-sm lg:text-xl font-black text-[var(--primary-purple)] tracking-tighter whitespace-nowrap">
               ₦{product.price.toLocaleString()}
             </p>
+            {/* Loyalty Points Badge */}
+            <div className="flex items-center gap-1 mt-1 justify-start lg:justify-end">
+              <div className="w-3 h-3 bg-purple-50 text-[var(--primary-purple)] rounded-full flex items-center justify-center text-[6px] font-black">★</div>
+              <span className="text-[7px] font-black uppercase tracking-widest text-gray-400">+{Math.floor(product.price / 100)} Points</span>
+            </div>
           </div>
         </div>
         

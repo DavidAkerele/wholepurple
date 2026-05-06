@@ -45,7 +45,14 @@ export default async function BlogPage({
               <div key={blog.id} className="flex flex-col border border-gray-100 rounded-3xl overflow-hidden bg-white transition-all duration-300 hover:-translate-y-2">
                 <div className="aspect-video relative bg-[#F5F1ED] flex items-center justify-center text-gray-600">
                   {blog.image ? (
-                    <Image src={blog.image} alt={blog.title} fill className="object-cover" />
+                    <Image 
+                      src={blog.image} 
+                      alt={blog.title} 
+                      fill 
+                      className="object-cover"
+                      quality={90}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
                   ) : (
                     <FileText className="w-8 h-8 opacity-20" />
                   )}
