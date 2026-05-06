@@ -46,7 +46,7 @@ export default function HomeHero({ title, subtitle }: HomeHeroProps) {
             />
             {/* Overlays - Gradient Tint & Blur */}
             <div className="absolute inset-0 bg-[#2D1B4E]/30 lg:bg-[#2D1B4E]/40 z-10"></div>
-            <div className="absolute inset-0 backdrop-blur-[4px] z-10"></div>
+            <div className="absolute inset-0 lg:backdrop-blur-[4px] z-10"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-[#2D1B4E]/80 via-transparent to-[#2D1B4E]/20 z-20"></div>
           </div>
         ))}

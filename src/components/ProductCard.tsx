@@ -46,8 +46,8 @@ export default function ProductCard({ product }: { product: any }) {
           </span>
         </div>
 
-        {/* Hover Actions Overlay */}
-        <div className={`absolute inset-0 bg-black/5 backdrop-blur-[2px] transition-opacity duration-300 flex items-center justify-center gap-2 lg:gap-3 z-20 lg:opacity-0 ${isHovered ? 'lg:opacity-100' : ''}`}>
+        {/* Hover Actions Overlay - Restricted to Desktop Hover */}
+        <div className={`absolute inset-0 lg:bg-black/5 lg:backdrop-blur-[2px] transition-opacity duration-300 flex items-center justify-center gap-2 lg:gap-3 z-20 opacity-0 ${isHovered ? 'opacity-100' : ''}`}>
           <button className="w-8 h-8 lg:w-12 lg:h-12 bg-white rounded-full flex items-center justify-center text-gray-900 hover:bg-[var(--primary-purple)] hover:text-white transition-all shadow-xl active:scale-90">
             <Heart className="w-3.5 h-3.5 lg:w-5 lg:h-5" />
           </button>

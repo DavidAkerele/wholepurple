@@ -13,6 +13,8 @@ interface BuilderItem {
   name: string;
   image: string;
   price?: number; // Optional add-on price
+  calories?: number; // Optional calorie count
+  size?: string; // Optional size/portion info
 }
 
 interface BuilderCategory {
@@ -87,6 +89,25 @@ export default function MealBuilder({ type, title, description, basePrice, categ
     });
     return total;
   }, [selections, basePrice, categories]);
+  
+  const totalCalories = useMemo(() => {
+    let total = 0;
+    // Estimate base calories (base greens/grains)
+    total += type === 'salad' ? 120 : 250; 
+    
+    Object.entries(selections).forEach(([catId, items]) => {
+      const category = categories.find(c => c.id === catId);
+      Object.entries(items).forEach(([itemId, qty]) => {
+        const item = category?.items.find(i => i.id === itemId);
+        if (item) {
+          // Fallback calories based on common ingredients if not provided
+          const itemCalories = item.calories || 45; 
+          total += (itemCalories * qty);
+        }
+      });
+    });
+    return total;
+  }, [selections, categories, type]);
 
   const isValid = useMemo(() => {
     return categories.every(cat => {
@@ -138,23 +159,39 @@ export default function MealBuilder({ type, title, description, basePrice, categ
             <ArrowLeft className="w-4 h-4" />
             <span className="text-sm font-bold uppercase tracking-widest">Back to Shop</span>
           </Link>
-          <div className="flex items-center gap-4">
-             <div className="text-right hidden sm:block">
-               <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest">Current Total</p>
-               <p className="text-xl font-black text-[var(--primary-purple)]">₦{totalPrice.toLocaleString()}</p>
+          <div className="flex items-center gap-6">
+             <div className="text-right">
+               <div className="flex items-center gap-4 justify-end">
+                 <div className="flex flex-col items-end">
+                   <p className="text-[8px] md:text-[9px] font-black text-gray-500 uppercase tracking-widest leading-none mb-1">Calories</p>
+                   <p className="text-xs md:text-sm font-black text-orange-600 leading-none">{totalCalories} kcal</p>
+                 </div>
+                 <div className="w-px h-6 bg-gray-200"></div>
+                 <div className="flex flex-col items-end">
+                   <p className="text-[8px] md:text-[9px] font-black text-gray-500 uppercase tracking-widest leading-none mb-1">Price</p>
+                   <p className="text-lg md:text-xl font-black text-[var(--primary-purple)] leading-none">₦{totalPrice.toLocaleString()}</p>
+                 </div>
+               </div>
              </div>
-             <button 
-               onClick={handleAddToCart}
-               disabled={!isValid || loading}
-               className={`flex items-center gap-3 px-6 md:px-8 py-3 rounded-2xl font-black text-[10px] md:text-xs uppercase tracking-widest transition-all ${
-                 isValid 
-                 ? 'bg-[var(--primary-purple)] text-white hover:shadow-xl hover:shadow-purple-200' 
-                 : 'bg-gray-100 text-gray-600 cursor-not-allowed'
-               }`}
-             >
-               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <ShoppingCart className="w-4 h-4" />}
-               Add To Basket
-             </button>
+               <div className="relative">
+                 <button 
+                   onClick={handleAddToCart}
+                   disabled={!isValid || loading}
+                   className={`flex items-center gap-3 px-6 md:px-8 py-3 rounded-2xl font-black text-[10px] md:text-xs uppercase tracking-widest transition-all ${
+                     isValid 
+                     ? 'bg-[var(--primary-purple)] text-white hover:shadow-xl hover:shadow-purple-200' 
+                     : 'bg-gray-100 text-gray-400 cursor-not-allowed border border-gray-100'
+                   }`}
+                 >
+                   {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <ShoppingCart className="w-4 h-4" />}
+                   {isValid ? "Add To Basket" : "Complete Selections"}
+                 </button>
+                 {!isValid && (
+                   <p className="absolute -bottom-6 right-0 text-[8px] font-black text-orange-600 uppercase tracking-[0.2em] animate-pulse whitespace-nowrap hidden md:block">
+                     Check requirements below
+                   </p>
+                 )}
+               </div>
           </div>
         </div>
       </div>
@@ -236,8 +273,18 @@ export default function MealBuilder({ type, title, description, basePrice, categ
                           <span className={`text-sm font-bold transition-colors ${isSelected ? 'text-gray-900' : 'text-gray-600'}`}>
                             {item.name}
                           </span>
+                          
+                          <div className="flex flex-wrap items-center justify-center gap-1.5 mt-2 opacity-80">
+                            <span className="text-[7px] md:text-[8px] font-black text-orange-600 bg-orange-50 px-2 py-0.5 rounded-md uppercase tracking-widest">
+                              {item.calories || 45} kcal
+                            </span>
+                            <span className="text-[7px] md:text-[8px] font-black text-gray-400 bg-gray-50 px-2 py-0.5 rounded-md uppercase tracking-widest">
+                              {item.size || '100g'}
+                            </span>
+                          </div>
+
                           {item.price && (
-                            <span className="text-[10px] font-black text-[var(--primary-purple)] mt-1 tracking-widest">
+                            <span className="text-[10px] font-black text-[var(--primary-purple)] mt-2 tracking-widest">
                               +₦{item.price.toLocaleString()}
                             </span>
                           )}
@@ -307,10 +354,16 @@ export default function MealBuilder({ type, title, description, basePrice, categ
                      </div>
 
                      <div className="flex flex-col justify-end items-end gap-6 text-right">
-                        <div>
-                          <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-2">Final Build Total</p>
-                          <p className="text-6xl font-black text-gray-900 tracking-tighter">₦{totalPrice.toLocaleString()}</p>
-                        </div>
+                         <div className="flex flex-col md:flex-row items-end gap-6 md:gap-10">
+                            <div className="text-right">
+                              <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-2">Total Nutrition</p>
+                              <p className="text-4xl font-black text-orange-600 tracking-tighter">{totalCalories} kcal</p>
+                            </div>
+                            <div className="text-right">
+                              <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-2">Final Build Total</p>
+                              <p className="text-6xl font-black text-gray-900 tracking-tighter">₦{totalPrice.toLocaleString()}</p>
+                            </div>
+                         </div>
                         <button 
                           onClick={handleAddToCart}
                           disabled={!isValid || loading}

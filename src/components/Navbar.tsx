@@ -41,7 +41,7 @@ export default function Navbar() {
         {/* Logo - Left */}
         <Link href="/" className="flex items-center gap-2">
           <div className="transition-all">
-             <Image src="/images/scraped/cropped-wholepurplee-removebg-preview.png" alt="Whole Purple" width={60} height={16} className="object-contain" priority />
+             <Image src="/images/scraped/cropped-wholepurplee-removebg-preview.png" alt="Whole Purple" width={90} height={24} className="object-contain" priority />
           </div>
         </Link>
 
@@ -125,7 +125,7 @@ export default function Navbar() {
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex justify-between items-center p-6 border-b border-gray-100">
-             <Image src="/images/scraped/cropped-wholepurplee-removebg-preview.png" alt="Whole Purple" width={100} height={26} className="object-contain" />
+             <Image src="/images/scraped/cropped-wholepurplee-removebg-preview.png" alt="Whole Purple" width={120} height={32} className="object-contain" />
             <button onClick={() => setMobileMenuOpen(false)} className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-900">
               <X className="w-5 h-5" />
             </button>
