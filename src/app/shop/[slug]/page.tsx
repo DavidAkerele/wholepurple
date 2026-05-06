@@ -32,38 +32,38 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
     <div className="min-h-screen bg-[#FDFCFB]">
       
       {/* Spacer for fixed transparent navbar, but we want it to sit over the top content if we had a hero. Since there's no hero, we use a solid padding */}
-      <div className="pt-32 pb-16">
+      <div className="pt-24 lg:pt-32 pb-12 lg:pb-16">
         <div className="container mx-auto px-4 md:px-8">
           
           {/* Breadcrumbs */}
-          <nav className="flex items-center gap-2 text-sm text-gray-800 font-medium mb-8">
-            <Link href="/" className="hover:text-[var(--primary-purple)] transition-colors">Home</Link>
-            <ChevronRight className="w-4 h-4 text-gray-500" />
-            <Link href="/shop" className="hover:text-[var(--primary-purple)] transition-colors">Shop</Link>
-            <ChevronRight className="w-4 h-4 text-gray-500" />
-            <Link href={`/shop?category=${product.category.slug}`} className="hover:text-[var(--primary-purple)] transition-colors capitalize">
+          <nav className="flex items-center gap-2 text-[10px] lg:text-sm text-gray-800 font-medium mb-6 lg:mb-8 overflow-x-auto whitespace-nowrap pb-2 scrollbar-hide">
+            <Link href="/" className="hover:text-[var(--primary-purple)] transition-colors uppercase tracking-widest">Home</Link>
+            <ChevronRight className="w-3 h-3 lg:w-4 lg:h-4 text-gray-400" />
+            <Link href="/shop" className="hover:text-[var(--primary-purple)] transition-colors uppercase tracking-widest">Shop</Link>
+            <ChevronRight className="w-3 h-3 lg:w-4 lg:h-4 text-gray-400" />
+            <Link href={`/shop?category=${product.category.slug}`} className="hover:text-[var(--primary-purple)] transition-colors capitalize uppercase tracking-widest">
               {product.category.name}
             </Link>
-            <ChevronRight className="w-4 h-4 text-gray-500" />
-            <span className="text-gray-900">{product.name}</span>
+            <ChevronRight className="w-3 h-3 lg:w-4 lg:h-4 text-gray-400" />
+            <span className="text-gray-900 uppercase tracking-widest">{product.name}</span>
           </nav>
 
           {/* Product Split Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 mb-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-20 mb-16 lg:mb-24">
             
             {/* Image Gallery Side */}
-            <div className="flex flex-col gap-6">
-              <div className="relative aspect-square md:aspect-[4/3] lg:aspect-square bg-gray-50 text-gray-900 rounded-[40px] flex items-center justify-center p-12 border border-gray-100 overflow-hidden group">
+            <div className="flex flex-col gap-4 lg:gap-6">
+              <div className="relative aspect-square md:aspect-[4/3] lg:aspect-square bg-gray-50 text-gray-900 rounded-[32px] lg:rounded-[40px] flex items-center justify-center p-8 lg:p-12 border border-gray-100 overflow-hidden group">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <Image 
                   src={getProductImageUrl(product.image)} 
                   alt={product.name}
                   fill
-                  className="object-contain p-12 hover:scale-105 transition-transform duration-700 ease-out"
+                  className="object-contain p-6 lg:p-12 hover:scale-105 transition-transform duration-700 ease-out"
                   priority
                 />
-                <div className="absolute top-6 right-6 w-12 h-12 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-[var(--accent-red)] transition-colors z-10 cursor-pointer shadow-sm">
-                  <Heart className="w-6 h-6" />
+                <div className="absolute top-4 lg:top-6 right-4 lg:right-6 w-10 h-10 lg:w-12 lg:h-12 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-[var(--accent-red)] transition-colors z-10 cursor-pointer shadow-sm active:scale-90">
+                  <Heart className="w-5 h-5 lg:w-6 lg:h-6" />
                 </div>
               </div>
 
@@ -72,9 +72,9 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
                 const images = getAllProductImages(product.image);
                 if (images.length > 1) {
                   return (
-                    <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
+                    <div className="flex gap-3 lg:gap-4 overflow-x-auto pb-2 scrollbar-hide">
                       {images.map((img, idx) => (
-                        <div key={idx} className="relative w-24 h-24 rounded-2xl bg-gray-50 border border-gray-100 overflow-hidden shrink-0 cursor-pointer hover:border-purple-300 transition-colors">
+                        <div key={idx} className="relative w-16 h-16 lg:w-24 lg:h-24 rounded-xl lg:rounded-2xl bg-gray-50 border border-gray-100 overflow-hidden shrink-0 cursor-pointer hover:border-purple-300 transition-colors">
                           <Image 
                             src={img} 
                             alt={`${product.name} ${idx + 1}`} 
@@ -92,20 +92,20 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
 
             {/* Product Info Side */}
             <div className="flex flex-col justify-center">
-              <div className="mb-8">
-                <span className="inline-block px-3 py-1 bg-green-50 text-[var(--accent-green)] text-xs font-bold uppercase tracking-wider rounded-lg mb-4">
+              <div className="mb-6 lg:mb-8 text-center lg:text-left">
+                <span className="inline-block px-3 py-1 bg-green-50 text-[var(--accent-green)] text-[10px] font-black uppercase tracking-widest rounded-lg mb-3">
                   {product.category.name}
                 </span>
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight leading-tight">
+                <h1 className="text-3xl lg:text-5xl font-black text-gray-900 mb-3 tracking-tighter uppercase leading-none">
                   {product.name}
                 </h1>
-                <div className="text-3xl font-black text-[var(--primary-purple)]">
+                <div className="text-2xl lg:text-3xl font-black text-[var(--primary-purple)]">
                   ₦{product.price.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                 </div>
               </div>
 
               {/* Action Form */}
-              <div className="bg-white p-6 rounded-3xl border border-gray-100 mb-8">
+              <div className="bg-white p-5 lg:p-6 rounded-[32px] border border-gray-100 mb-6 lg:mb-8 shadow-sm">
                 <ProductActionForm product={product} />
               </div>
 
@@ -113,24 +113,24 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
               <ProductDetailsTabs product={product} />
               
               {/* Guarantees */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-purple-50 rounded-full flex items-center justify-center text-[var(--primary-purple)]">
                     <ShieldCheck className="w-5 h-5" />
                   </div>
-                  <span className="text-sm font-bold text-gray-700">100% Quality</span>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-gray-700">100% Quality</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center text-[var(--accent-green)]">
                     <Leaf className="w-5 h-5" />
                   </div>
-                  <span className="text-sm font-bold text-gray-700">Organic</span>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-gray-700">Organic</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center text-[var(--accent-red)]">
                     <Truck className="w-5 h-5" />
                   </div>
-                  <span className="text-sm font-bold text-gray-700">Fast Delivery</span>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-gray-700">Fast Delivery</span>
                 </div>
               </div>
             </div>

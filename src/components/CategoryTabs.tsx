@@ -39,12 +39,12 @@ export default function CategoryTabs() {
           <Link 
             key={idx}
             href={tab.href}
-            className={`flex flex-col items-center justify-center text-center p-10 rounded-[32px] border border-white shadow-xl shadow-black/5 transition-all hover:-translate-y-1 hover:shadow-2xl ${tab.color} ${tab.width}`}
+            className={`flex flex-col items-center justify-center text-center p-6 sm:p-10 rounded-[32px] border border-white shadow-xl shadow-black/5 transition-all hover:-translate-y-1 hover:shadow-2xl ${tab.color} ${tab.width}`}
           >
-            <span className={`text-[10px] font-black uppercase tracking-[0.2em] mb-2 ${tab.textColor}`}>
+            <span className={`text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] mb-2 ${tab.textColor}`}>
               {tab.title}
             </span>
-            <h3 className={`font-black text-gray-900 leading-tight mb-4 ${tab.dominant ? 'text-2xl md:text-3xl' : 'text-xl'}`}>
+            <h3 className={`font-black text-gray-900 leading-tight mb-4 ${tab.dominant ? 'text-xl sm:text-2xl md:text-3xl' : 'text-lg sm:text-xl'}`}>
               {tab.subtitle}
             </h3>
             <div className={`w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform`}>

@@ -49,9 +49,9 @@ export default function CartPage() {
           </div>
 
           {items.map(item => (
-            <div key={item.id} className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center py-6 border-b border-gray-100 group">
-              <div className="col-span-1 md:col-span-6 flex items-center gap-6">
-                <div className="relative w-24 h-24 bg-gray-50 text-gray-900 rounded-2xl flex items-center justify-center p-2 shrink-0 border border-gray-100 overflow-hidden">
+            <div key={item.id} className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center py-8 border-b border-gray-100 group">
+              <div className="col-span-1 md:col-span-6 flex items-center gap-4 lg:gap-6">
+                <div className="relative w-20 h-20 lg:w-24 lg:h-24 bg-gray-50 text-gray-900 rounded-2xl flex items-center justify-center p-2 shrink-0 border border-gray-100 overflow-hidden">
                   <Image 
                     src={getProductImageUrl(item.image)} 
                     alt={item.name} 
@@ -59,41 +59,50 @@ export default function CartPage() {
                     className="object-contain p-2" 
                   />
                 </div>
-                <div>
-                  <h3 className="font-bold text-lg text-gray-900 hover:text-[var(--primary-purple)] cursor-pointer">{item.name}</h3>
+                <div className="flex-1">
+                  <h3 className="font-black text-base lg:text-lg text-gray-900 hover:text-[var(--primary-purple)] cursor-pointer leading-tight uppercase tracking-tight">{item.name}</h3>
                   {item.selections && item.selections.length > 0 && (
                     <div className="flex flex-wrap gap-1 mt-2">
                       {item.selections.map((selection, idx) => (
-                        <span key={idx} className="text-[10px] font-bold px-2 py-0.5 bg-gray-100 text-gray-600 rounded-md">
+                        <span key={idx} className="text-[8px] font-black uppercase tracking-widest px-2 py-0.5 bg-gray-100 text-gray-500 rounded-md">
                           {selection}
                         </span>
                       ))}
                     </div>
                   )}
-                  <button onClick={() => removeItem(item.id)} className="text-red-500 text-sm flex items-center gap-1 mt-2 hover:underline opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Trash2 className="w-4 h-4" /> Remove
+                  <button onClick={() => removeItem(item.id)} className="text-red-500 text-[10px] font-black uppercase tracking-widest flex items-center gap-1 mt-3 hover:underline lg:opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Trash2 className="w-3.5 h-3.5" /> Remove Item
                   </button>
                 </div>
               </div>
               
-              <div className="col-span-1 md:col-span-2 text-center font-bold text-gray-700">
-                ₦{item.price.toLocaleString(undefined, { minimumFractionDigits: 2 })}
-              </div>
-              
-              <div className="col-span-1 md:col-span-2 flex justify-center">
-                <div className="flex items-center border border-gray-200 rounded-full p-1 bg-white">
-                  <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100 text-gray-600">
-                    <Minus className="w-4 h-4" />
-                  </button>
-                  <span className="w-10 text-center font-bold">{item.quantity}</span>
-                  <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100 text-gray-600">
-                    <Plus className="w-4 h-4" />
-                  </button>
+              <div className="flex md:contents justify-between items-center bg-white/50 p-4 rounded-2xl md:bg-transparent md:p-0">
+                <div className="md:hidden text-[8px] font-black text-gray-400 uppercase tracking-widest">Price</div>
+                <div className="col-span-1 md:col-span-2 text-center font-black text-gray-700 text-sm lg:text-base">
+                  ₦{item.price.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                 </div>
               </div>
               
-              <div className="col-span-1 md:col-span-2 text-right font-bold text-[var(--primary-purple)] text-lg">
-                ₦{(item.price * item.quantity).toLocaleString(undefined, { minimumFractionDigits: 2 })}
+              <div className="flex md:contents justify-between items-center bg-white/50 p-4 rounded-2xl md:bg-transparent md:p-0">
+                <div className="md:hidden text-[8px] font-black text-gray-400 uppercase tracking-widest">Quantity</div>
+                <div className="col-span-1 md:col-span-2 flex justify-center">
+                  <div className="flex items-center border border-gray-100 rounded-full p-1 bg-white shadow-sm">
+                    <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100 text-gray-600 transition-colors">
+                      <Minus className="w-3.5 h-3.5" />
+                    </button>
+                    <span className="w-10 text-center font-black text-sm">{item.quantity}</span>
+                    <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100 text-gray-600 transition-colors">
+                      <Plus className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="flex md:contents justify-between items-center bg-white/50 p-4 rounded-2xl md:bg-transparent md:p-0">
+                <div className="md:hidden text-[8px] font-black text-gray-400 uppercase tracking-widest">Subtotal</div>
+                <div className="col-span-1 md:col-span-2 text-right font-black text-[var(--primary-purple)] text-base lg:text-lg tracking-tight">
+                  ₦{(item.price * item.quantity).toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                </div>
               </div>
             </div>
           ))}

@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { Search, User, Heart, ShoppingCart, Menu, X, LogOut } from "lucide-react";
+import { Search, User, Heart, ShoppingCart, Menu, X, LogOut, ChevronRight } from "lucide-react";
 import { useCartStore, useWishlistStore } from "@/lib/store";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
@@ -119,25 +119,78 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu Drawer */}
-      <div className={`fixed inset-0 bg-black/50 z-[60] lg:hidden transition-opacity duration-300 ${mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`} onClick={() => setMobileMenuOpen(false)}>
+      <div className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] lg:hidden transition-opacity duration-500 ${mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`} onClick={() => setMobileMenuOpen(false)}>
         <div 
-          className={`absolute top-0 right-0 w-64 h-full bg-white transition-transform duration-300 transform ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+          className={`absolute top-0 right-0 w-[85%] max-w-sm h-full bg-white transition-transform duration-500 transform ease-out shadow-2xl ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="flex justify-between items-center p-4 border-b border-gray-100">
-            <span className="font-bold text-[var(--primary-purple)]">Menu</span>
-            <button onClick={() => setMobileMenuOpen(false)} className="text-gray-800 hover:text-red-500">
-              <X className="w-6 h-6" />
+          <div className="flex justify-between items-center p-6 border-b border-gray-100">
+             <Image src="/images/scraped/cropped-wholepurplee-removebg-preview.png" alt="Whole Purple" width={100} height={26} className="object-contain" />
+            <button onClick={() => setMobileMenuOpen(false)} className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-900">
+              <X className="w-5 h-5" />
             </button>
           </div>
-          <div className="flex flex-col p-4 gap-4">
-            <Link onClick={() => setMobileMenuOpen(false)} href="/" className="text-gray-800 font-medium text-lg border-b border-gray-50 pb-2">Home</Link>
-            <Link onClick={() => setMobileMenuOpen(false)} href="/shop" className="text-gray-800 font-medium text-lg border-b border-gray-50 pb-2">Shop</Link>
-            <Link onClick={() => setMobileMenuOpen(false)} href="/about" className="text-gray-800 font-medium text-lg border-b border-gray-50 pb-2">About us</Link>
-            <Link onClick={() => setMobileMenuOpen(false)} href="/blog" className="text-gray-800 font-medium text-lg border-b border-gray-50 pb-2">Blog</Link>
-            <Link onClick={() => setMobileMenuOpen(false)} href="/faqs" className="text-gray-800 font-medium text-lg border-b border-gray-50 pb-2">Faqs</Link>
-            <Link onClick={() => setMobileMenuOpen(false)} href="/contact" className="text-gray-800 font-medium text-lg border-b border-gray-50 pb-2">Contact us</Link>
-            <Link onClick={() => setMobileMenuOpen(false)} href="/login" className="text-[var(--primary-purple)] font-bold text-lg mt-4 flex items-center gap-2"><User className="w-5 h-5"/> Account / Login</Link>
+          
+          <div className="flex flex-col p-8 gap-6 h-[calc(100%-80px)] overflow-y-auto custom-scrollbar">
+            {/* User Profile in Mobile Menu */}
+            {session ? (
+              <div className="mb-4 p-4 bg-purple-50 rounded-3xl border border-purple-100 flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-[var(--primary-purple)] flex items-center justify-center text-white font-black">
+                  {session.user.name?.charAt(0)}
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-xs font-black uppercase tracking-widest text-gray-900">{session.user.name}</span>
+                  <span className="text-[10px] font-bold text-[var(--primary-purple)] uppercase tracking-widest">{session.user.role}</span>
+                </div>
+              </div>
+            ) : (
+              <Link onClick={() => setMobileMenuOpen(false)} href="/login" className="mb-4 flex items-center justify-between p-5 bg-gray-900 text-white rounded-2xl group active:scale-95 transition-all">
+                 <div className="flex items-center gap-3">
+                   <User className="w-5 h-5" />
+                   <span className="text-[10px] font-black uppercase tracking-[0.2em]">Account Login</span>
+                 </div>
+                 <ChevronRight className="w-4 h-4 text-white/50 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            )}
+
+            <div className="flex flex-col gap-2">
+              <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] mb-2 px-2">Navigation</span>
+              {[
+                { name: 'Home', href: '/' },
+                { name: 'Shop', href: '/shop' },
+                { name: 'About us', href: '/about' },
+                { name: 'Blog', href: '/blog' },
+                { name: 'Faqs', href: '/faqs' },
+                { name: 'Contact us', href: '/contact' },
+              ].map((item) => (
+                <Link 
+                  key={item.name}
+                  onClick={() => setMobileMenuOpen(false)} 
+                  href={item.href} 
+                  className={`flex items-center justify-between p-4 rounded-xl font-black text-[10px] uppercase tracking-[0.2em] transition-all ${pathname === item.href ? 'bg-purple-50 text-[var(--primary-purple)]' : 'text-gray-900 hover:bg-gray-50'}`}
+                >
+                  {item.name}
+                  <ChevronRight className={`w-3 h-3 ${pathname === item.href ? 'text-[var(--primary-purple)]' : 'text-gray-300'}`} />
+                </Link>
+              ))}
+            </div>
+
+            {session && (
+              <div className="mt-auto pt-8 border-t border-gray-100 flex flex-col gap-2">
+                <Link onClick={() => setMobileMenuOpen(false)} href="/dashboard" className="flex items-center gap-3 p-4 text-[10px] font-black uppercase tracking-[0.2em] text-gray-900 hover:bg-gray-50 rounded-xl">
+                  Dashboard
+                </Link>
+                <button 
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    signOut({ callbackUrl: '/' });
+                  }} 
+                  className="flex items-center gap-3 p-4 text-[10px] font-black uppercase tracking-[0.2em] text-red-600 hover:bg-red-50 rounded-xl text-left"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

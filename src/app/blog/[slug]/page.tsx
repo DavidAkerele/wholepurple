@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
 import { ChevronLeft, Calendar, User, Tag } from "lucide-react";
 import Image from "next/image";
@@ -13,7 +13,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   });
 
   if (!post) {
-    notFound();
+    redirect('/blog');
   }
 
   return (

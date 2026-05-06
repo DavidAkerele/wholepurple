@@ -50,50 +50,47 @@ export default async function ShopPage({
           
           {/* Sidebar - Clean & Modern */}
           <aside className="w-full lg:w-72 shrink-0">
-            <div className="sticky top-28 flex flex-col gap-10">
+            <div className="lg:sticky lg:top-28 flex flex-col gap-10">
               {/* Category Filter */}
               <div>
-                <div className="flex items-center gap-3 mb-8">
-                  <div className="w-10 h-10 rounded-2xl bg-white border border-gray-100 flex items-center justify-center shadow-sm">
-                    <ListFilter className="w-5 h-5 text-[var(--primary-purple)]" />
+                <div className="flex items-center gap-3 mb-6 lg:mb-8">
+                  <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center shadow-sm">
+                    <ListFilter className="w-4 h-4 lg:w-5 lg:h-5 text-[var(--primary-purple)]" />
                   </div>
-                  <h3 className="text-sm font-black text-gray-900 uppercase tracking-widest">Filter by Aisle</h3>
+                  <h3 className="text-[10px] lg:text-sm font-black text-gray-900 uppercase tracking-widest">Filter by Aisle</h3>
                 </div>
                 
-                <ul className="flex flex-col gap-2">
-                  <li>
+                <div className="flex lg:flex-col gap-3 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 scrollbar-hide -mx-4 px-4 lg:mx-0 lg:px-0">
+                  <Link 
+                    href="/shop" 
+                    className={`group flex items-center justify-between p-3 lg:p-4 rounded-2xl transition-all shrink-0 lg:shrink-1 whitespace-nowrap lg:whitespace-normal ${
+                      !categoryFilter 
+                      ? 'bg-white shadow-xl shadow-purple-900/5 text-[var(--primary-purple)] border border-gray-50' 
+                      : 'text-gray-800 hover:text-gray-900 hover:bg-white/50 border border-transparent'
+                    }`}
+                  >
+                    <span className="text-[10px] lg:text-sm font-black uppercase tracking-tight">All Products</span>
+                    {!categoryFilter && <div className="hidden lg:block w-1.5 h-1.5 rounded-full bg-[var(--primary-purple)] animate-pulse ml-4"></div>}
+                  </Link>
+                  {categories.map(cat => (
                     <Link 
-                      href="/shop" 
-                      className={`group flex items-center justify-between p-4 rounded-2xl transition-all ${
-                        !categoryFilter 
+                      key={cat.id}
+                      href={`/shop?category=${cat.slug}`} 
+                      className={`group flex items-center justify-between p-3 lg:p-4 rounded-2xl transition-all shrink-0 lg:shrink-1 whitespace-nowrap lg:whitespace-normal ${
+                        categoryFilter === cat.slug 
                         ? 'bg-white shadow-xl shadow-purple-900/5 text-[var(--primary-purple)] border border-gray-50' 
-                        : 'text-gray-800 hover:text-gray-900 hover:bg-white/50'
+                        : 'text-gray-800 hover:text-gray-900 hover:bg-white/50 border border-transparent'
                       }`}
                     >
-                      <span className="text-sm font-black uppercase tracking-tight">All Products</span>
-                      {!categoryFilter && <div className="w-1.5 h-1.5 rounded-full bg-[var(--primary-purple)] animate-pulse"></div>}
+                      <span className="text-[10px] lg:text-sm font-black uppercase tracking-tight">{cat.name}</span>
+                      {categoryFilter === cat.slug && <div className="hidden lg:block w-1.5 h-1.5 rounded-full bg-[var(--primary-purple)] animate-pulse ml-4"></div>}
                     </Link>
-                  </li>
-                  {categories.map(cat => (
-                    <li key={cat.id}>
-                      <Link 
-                        href={`/shop?category=${cat.slug}`} 
-                        className={`group flex items-center justify-between p-4 rounded-2xl transition-all ${
-                          categoryFilter === cat.slug 
-                          ? 'bg-white shadow-xl shadow-purple-900/5 text-[var(--primary-purple)] border border-gray-50' 
-                          : 'text-gray-800 hover:text-gray-900 hover:bg-white/50'
-                        }`}
-                      >
-                        <span className="text-sm font-black uppercase tracking-tight">{cat.name}</span>
-                        {categoryFilter === cat.slug && <div className="w-1.5 h-1.5 rounded-full bg-[var(--primary-purple)] animate-pulse"></div>}
-                      </Link>
-                    </li>
                   ))}
-                </ul>
+                </div>
               </div>
 
               {/* Promo Widget */}
-              <div className="bg-[#1A0B2E] rounded-[40px] p-10 overflow-hidden relative group cursor-pointer">
+              <div className="hidden lg:block bg-[#1A0B2E] rounded-[40px] p-10 overflow-hidden relative group cursor-pointer">
                 <div className="relative z-10">
                   <span className="text-[var(--accent-green)] font-black text-[9px] uppercase tracking-widest mb-3 block">Member Exclusive</span>
                   <h4 className="text-xl font-black text-white uppercase leading-tight mb-4">Get 20% Off <br /> Your First Box</h4>
@@ -193,7 +190,7 @@ export default async function ShopPage({
                   </div>
                 ) : (
                   <>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-8">
                       {products.map(product => (
                         <ProductCard key={product.id} product={product} />
                       ))}
