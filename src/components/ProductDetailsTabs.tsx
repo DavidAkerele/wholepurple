@@ -51,6 +51,87 @@ export default function ProductDetailsTabs({ product }: { product: any }) {
         fiber: "1.0g",
         vitamins: "Vitamin C, A, B6",
         minerals: "Potassium, Manganese"
+      },
+      'white-sweet-potato': {
+        calories: "86 kcal",
+        protein: "1.6g",
+        carbs: "20.1g",
+        fat: "0.1g",
+        fiber: "3.0g",
+        vitamins: "Vitamin A, B5, B6",
+        minerals: "Potassium, Manganese"
+      },
+      'ube-african-pear': {
+        calories: "230 kcal",
+        protein: "4.5g",
+        carbs: "12g",
+        fat: "18g",
+        fiber: "3.5g",
+        vitamins: "Vitamin C, E",
+        minerals: "Magnesium, Calcium"
+      },
+      'kale': {
+        calories: "35 kcal",
+        protein: "2.9g",
+        carbs: "4.4g",
+        fat: "0.6g",
+        fiber: "4.1g",
+        vitamins: "Vitamin K, A, C",
+        minerals: "Calcium, Manganese"
+      },
+      'cauliflower': {
+        calories: "25 kcal",
+        protein: "1.9g",
+        carbs: "5g",
+        fat: "0.3g",
+        fiber: "2g",
+        vitamins: "Vitamin C, K, B6",
+        minerals: "Potassium, Manganese"
+      },
+      'broccoli': {
+        calories: "34 kcal",
+        protein: "2.8g",
+        carbs: "6.6g",
+        fat: "0.4g",
+        fiber: "2.6g",
+        vitamins: "Vitamin C, K, A",
+        minerals: "Folate, Potassium"
+      },
+      'imported-tangerine': {
+        calories: "53 kcal",
+        protein: "0.8g",
+        carbs: "13.3g",
+        fat: "0.3g",
+        fiber: "1.8g",
+        vitamins: "Vitamin C, A",
+        minerals: "Potassium, Thiamin"
+      },
+      'blueberries': {
+        calories: "57 kcal",
+        protein: "0.7g",
+        carbs: "14.5g",
+        fat: "0.3g",
+        fiber: "2.4g",
+        vitamins: "Vitamin K, C",
+        minerals: "Manganese"
+      },
+      'suya-spice-premium': {
+        calories: "450 kcal",
+        protein: "25g",
+        carbs: "15g",
+        fat: "35g",
+        fiber: "8g",
+        vitamins: "Niacin, E",
+        minerals: "Magnesium, Phosphorus"
+      },
+      'belly-brew': {
+        calories: "2 kcal",
+        protein: "0.1g",
+        carbs: "0.4g",
+        fat: "0g",
+        fiber: "0g",
+        vitamins: "Antioxidants",
+        minerals: "Potassium"
       }
     };
 
@@ -155,15 +236,10 @@ export default function ProductDetailsTabs({ product }: { product: any }) {
               ) : (
                 <>
                   <p className="mb-6 text-base text-gray-900 font-bold italic border-l-4 border-[var(--accent-green)] pl-6">
-                    {product.name} is a premium selection from our {product.category.name.toLowerCase()} range, known for its {product.category.slug === 'fruits' ? 'natural sweetness and hydrating properties' : product.category.slug === 'vegetables' ? 'crisp texture and dense nutrient profile' : 'exceptional quality and flavor'}.
+                    {product.name} is a high-contrast hero of our {product.category.name.toLowerCase()} collection, curated for those who value purity, flavor, and the undeniable quality of a clean harvest.
                   </p>
                   <p>
-                    {product.category.slug === 'teas' 
-                      ? `Our ${product.name.toLowerCase()} is crafted for those seeking a moment of tranquility and wellness. Sourced from organic herbs, it delivers a pure, unadulterated experience in every cup.`
-                      : product.category.slug === 'proteins'
-                      ? `This ${product.name.toLowerCase()} is expertly prepared and marinated to lock in moisture and flavor. Perfect for those who value both nutrition and convenience in their kitchen.`
-                      : `Hand-selected from our sustainable partner farms, our ${product.name.toLowerCase()} is grown using clean, chemical-free methods. We prioritize freshness and quality so you get the true taste of nature, delivered straight to your door.`
-                    }
+                    Whether you're looking for a nutrient-dense boost or a clean, flavorful addition to your next gourmet creation, this {product.name.toLowerCase()} is picked at peak ripeness and handled with the utmost care. It represents our commitment to sustainable farming and the true, unadulterated taste of nature. Think of it as a farm-to-table love letter, delivered straight to your door.
                   </p>
                 </>
               )}
