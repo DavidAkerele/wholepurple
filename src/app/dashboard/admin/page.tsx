@@ -281,10 +281,10 @@ export default async function AdminDashboard() {
               <HealthBar label="Out of Stock" value={outOfStock} total={totalInv} color="bg-red-500" />
             </div>
             {outOfStock > 0 && (
-              <div className="mt-10 p-4 bg-red-50 rounded-2xl border border-red-100 flex items-center gap-3">
+              <Link href="/dashboard/shop-manager/products?stock=out" className="mt-10 p-4 bg-red-50 rounded-2xl border border-red-100 flex items-center gap-3 hover:bg-red-100/50 transition-all">
                 <AlertCircle className="w-5 h-5 text-red-500 shrink-0" />
                 <p className="text-xs font-bold text-red-700">Action needed: {outOfStock} products are currently unavailable.</p>
-              </div>
+              </Link>
             )}
           </div>
 

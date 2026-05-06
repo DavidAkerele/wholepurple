@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ChevronRight, Heart, ShieldCheck, Truck, Leaf } from "lucide-react";
 import ProductActionForm from "./ProductActionForm";
 import ProductDetailsTabs from "@/components/ProductDetailsTabs";
+import { getProductImageUrl, getAllProductImages } from "@/lib/image-utils";
 
 export default async function ProductDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
@@ -51,21 +52,42 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 mb-24">
             
             {/* Image Gallery Side */}
-            <div className="relative aspect-square md:aspect-[4/3] lg:aspect-square bg-gray-50 text-gray-900 rounded-[40px] flex items-center justify-center p-12 border border-gray-100 overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <Image 
-                src={product.image?.startsWith('http') ? product.image : `/images/scraped/${product.image || 'woocommerce-placeholder.webp'}`} 
-                alt={product.name}
-                fill
-                className="object-contain p-12 hover:scale-105 transition-transform duration-700 ease-out"
-                priority
-              />
-              {/* Note: In a Server Component we can't easily hook up useWishlistStore. 
-                  But since it's just a top-right icon, we can either extract it or leave it static for the hero image.
-                  Let's just leave it as a decorative element for now, the real interaction happens in the Shop Grid. */}
-              <div className="absolute top-6 right-6 w-12 h-12 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-[var(--accent-red)] transition-colors z-10 cursor-pointer shadow-sm">
-                <Heart className="w-6 h-6" />
+            <div className="flex flex-col gap-6">
+              <div className="relative aspect-square md:aspect-[4/3] lg:aspect-square bg-gray-50 text-gray-900 rounded-[40px] flex items-center justify-center p-12 border border-gray-100 overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <Image 
+                  src={getProductImageUrl(product.image)} 
+                  alt={product.name}
+                  fill
+                  className="object-contain p-12 hover:scale-105 transition-transform duration-700 ease-out"
+                  priority
+                />
+                <div className="absolute top-6 right-6 w-12 h-12 bg-white rounded-full flex items-center justify-center text-gray-600 hover:text-[var(--accent-red)] transition-colors z-10 cursor-pointer shadow-sm">
+                  <Heart className="w-6 h-6" />
+                </div>
               </div>
+
+              {/* Thumbnails */}
+              {(() => {
+                const images = getAllProductImages(product.image);
+                if (images.length > 1) {
+                  return (
+                    <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
+                      {images.map((img, idx) => (
+                        <div key={idx} className="relative w-24 h-24 rounded-2xl bg-gray-50 border border-gray-100 overflow-hidden shrink-0 cursor-pointer hover:border-purple-300 transition-colors">
+                          <Image 
+                            src={img} 
+                            alt={`${product.name} ${idx + 1}`} 
+                            fill 
+                            className="object-contain p-2" 
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  );
+                }
+                return null;
+              })()}
             </div>
 
             {/* Product Info Side */}
@@ -132,7 +154,7 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
                   <Link key={relProduct.id} href={`/shop/${relProduct.slug}`} className="group bg-white rounded-3xl border border-gray-100 overflow-hidden transition-all duration-300 flex flex-col">
                     <div className="relative aspect-square bg-gray-50 text-gray-900 p-6 flex items-center justify-center">
                       <Image 
-                        src={relProduct.image?.startsWith('http') ? relProduct.image : `/images/scraped/${relProduct.image || 'woocommerce-placeholder.webp'}`} 
+                        src={getProductImageUrl(relProduct.image)} 
                         alt={relProduct.name} 
                         fill 
                         className="object-contain p-6 group-hover:scale-110 transition-transform duration-500" 

@@ -14,6 +14,14 @@ export default function SettingsForm({ initialSettings }: { initialSettings: Rec
     allowGuestCheckout: initialSettings.allowGuestCheckout || "true",
     maintenanceMode: initialSettings.maintenanceMode || "false",
     rewardRate: initialSettings.rewardRate || "5",
+    deliveryFee: initialSettings.deliveryFee || "2500",
+    minOrderAmount: initialSettings.minOrderAmount || "5000",
+    taxRate: initialSettings.taxRate || "7.5",
+    instagramUrl: initialSettings.instagramUrl || "https://instagram.com/wholepurple",
+    facebookUrl: initialSettings.facebookUrl || "https://facebook.com/wholepurple",
+    twitterUrl: initialSettings.twitterUrl || "https://twitter.com/wholepurple",
+    openingHours: initialSettings.openingHours || "8:00 AM - 6:00 PM",
+    deliveryTimes: initialSettings.deliveryTimes || "Mon - Sat, 9 AM - 5 PM",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -114,6 +122,96 @@ export default function SettingsForm({ initialSettings }: { initialSettings: Rec
                 value={settings.rewardRate}
                 onChange={(e) => setSettings({ ...settings, rewardRate: e.target.value })}
                 className="p-4 rounded-2xl border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+        {/* Financial Controls */}
+        <div className="bg-white p-10 rounded-[40px] border border-gray-100 flex flex-col gap-8">
+          <div className="flex items-center gap-3">
+            <Smartphone className="w-6 h-6 text-blue-500" />
+            <h3 className="text-xl font-bold text-gray-900">Financial Controls</h3>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="flex flex-col gap-2">
+              <label className="text-xs font-black text-gray-600 uppercase tracking-widest">Base Delivery Fee (₦)</label>
+              <input 
+                type="number"
+                value={settings.deliveryFee}
+                onChange={(e) => setSettings({ ...settings, deliveryFee: e.target.value })}
+                className="p-4 rounded-2xl border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all font-bold"
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="text-xs font-black text-gray-600 uppercase tracking-widest">Min. Order Amount (₦)</label>
+              <input 
+                type="number"
+                value={settings.minOrderAmount}
+                onChange={(e) => setSettings({ ...settings, minOrderAmount: e.target.value })}
+                className="p-4 rounded-2xl border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all font-bold"
+              />
+            </div>
+            <div className="flex flex-col gap-2 md:col-span-2">
+              <label className="text-xs font-black text-gray-600 uppercase tracking-widest">Tax Rate (%)</label>
+              <input 
+                type="number"
+                step="0.1"
+                value={settings.taxRate}
+                onChange={(e) => setSettings({ ...settings, taxRate: e.target.value })}
+                className="p-4 rounded-2xl border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all font-bold"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Social & Operations */}
+        <div className="bg-white p-10 rounded-[40px] border border-gray-100 flex flex-col gap-8">
+          <div className="flex items-center gap-3">
+            <Bell className="w-6 h-6 text-orange-500" />
+            <h3 className="text-xl font-bold text-gray-900">Social & Operations</h3>
+          </div>
+          
+          <div className="flex flex-col gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="flex flex-col gap-2">
+                <label className="text-xs font-black text-gray-600 uppercase tracking-widest">Instagram URL</label>
+                <input 
+                  type="text"
+                  value={settings.instagramUrl}
+                  onChange={(e) => setSettings({ ...settings, instagramUrl: e.target.value })}
+                  className="p-4 rounded-2xl border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all text-sm font-medium"
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label className="text-xs font-black text-gray-600 uppercase tracking-widest">Facebook URL</label>
+                <input 
+                  type="text"
+                  value={settings.facebookUrl}
+                  onChange={(e) => setSettings({ ...settings, facebookUrl: e.target.value })}
+                  className="p-4 rounded-2xl border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all text-sm font-medium"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="text-xs font-black text-gray-600 uppercase tracking-widest">Opening Hours</label>
+              <input 
+                type="text"
+                value={settings.openingHours}
+                onChange={(e) => setSettings({ ...settings, openingHours: e.target.value })}
+                className="p-4 rounded-2xl border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all text-sm font-bold"
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="text-xs font-black text-gray-600 uppercase tracking-widest">Delivery Schedule</label>
+              <input 
+                type="text"
+                value={settings.deliveryTimes}
+                onChange={(e) => setSettings({ ...settings, deliveryTimes: e.target.value })}
+                className="p-4 rounded-2xl border border-gray-100 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] transition-all text-sm font-bold"
               />
             </div>
           </div>

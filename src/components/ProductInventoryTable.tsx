@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { 
   Edit2, 
@@ -14,15 +15,19 @@ import {
   ChevronRight
 } from "lucide-react";
 import ProductEditModal from "@/components/ProductEditModal";
+import { getProductImageUrl } from "@/lib/image-utils";
 
-export default function ProductInventoryTable({ products, categories }: { products: any[], categories: any[] }) {
+function ProductInventoryTableContent({ products, categories }: { products: any[], categories: any[] }) {
+  const searchParams = useSearchParams();
+  const initialStockFilter = searchParams.get("stock") || "all";
+  
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   
   // Filtering States
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const [stockFilter, setStockFilter] = useState("all");
+  const [stockFilter, setStockFilter] = useState(initialStockFilter);
   const [sortBy, setSortBy] = useState("name");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
@@ -152,11 +157,11 @@ export default function ProductInventoryTable({ products, categories }: { produc
                   <td className="px-8 py-5">
                     <div className="flex items-center gap-5">
                       <div className="w-16 h-16 relative bg-white rounded-3xl overflow-hidden border border-gray-100 flex items-center justify-center p-2 group-hover:scale-105 transition-transform duration-500 shadow-sm">
-                        <Image
-                          src={product.image ? (product.image.startsWith('http') ? product.image : `/images/scraped/${product.image}`) : "/images/woocommerce-placeholder.webp"}
+                        <Image 
+                          src={getProductImageUrl(product.image)} 
                           alt={product.name}
                           fill
-                          className="object-contain p-2"
+                          className="object-contain p-2 group-hover:scale-110 transition-transform duration-500"
                         />
                       </div>
                       <div className="flex flex-col">
@@ -322,6 +327,7 @@ export default function ProductInventoryTable({ products, categories }: { produc
       {selectedProduct && (
         <ProductEditModal
           product={selectedProduct}
+          categories={categories}
           isOpen={isModalOpen}
           onClose={() => {
             setIsModalOpen(false);
@@ -330,5 +336,13 @@ export default function ProductInventoryTable({ products, categories }: { produc
         />
       )}
     </div>
+  );
+}
+
+export default function ProductInventoryTable(props: { products: any[], categories: any[] }) {
+  return (
+    <Suspense fallback={<div>Loading inventory...</div>}>
+      <ProductInventoryTableContent {...props} />
+    </Suspense>
   );
 }

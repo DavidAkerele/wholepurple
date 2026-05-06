@@ -154,3 +154,25 @@ export async function updateOrderStatus(orderId: string, status: string) {
     return { success: false, error: "Failed to update status" };
   }
 }
+export async function bulkUpdateOrderStatus(orderIds: string[], status: string) {
+  try {
+    const session = await getServerSession(authOptions);
+    if (!session || (session.user.role !== "ADMIN" && session.user.role !== "SHOP_MANAGER")) {
+      return { success: false, error: "Unauthorized" };
+    }
+
+    await prisma.order.updateMany({
+      where: { id: { in: orderIds } },
+      data: { status }
+    });
+
+    revalidatePath("/dashboard/admin/orders");
+    revalidatePath("/dashboard/shop-manager/orders");
+    revalidatePath("/dashboard/client/orders");
+
+    return { success: true };
+  } catch (error) {
+    console.error("Error bulk updating order status:", error);
+    return { success: false, error: "Failed to update statuses" };
+  }
+}

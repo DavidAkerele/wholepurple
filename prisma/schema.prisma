@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -42,6 +42,7 @@ model User {
   password      String?
   role          String         @default("CLIENT")
   rewardPoints  Int            @default(0)
+  walletBalance Float          @default(0)
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
   accounts      Account[]
@@ -139,4 +140,16 @@ model Setting {
   id    String @id @default(cuid())
   key   String @unique
   value String
+}
+
+model Builder {
+  id          String   @id @default(cuid())
+  type        String   @unique // e.g. "stir-fry", "salad"
+  title       String
+  description String
+  basePrice   Float
+  image       String
+  categories  String   // JSON string storing categories and items
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

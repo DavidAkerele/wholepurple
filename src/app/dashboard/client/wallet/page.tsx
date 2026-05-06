@@ -12,6 +12,15 @@ export default async function WalletPage() {
     redirect("/dashboard");
   }
 
+  const user = await prisma.user.findUnique({
+    where: { id: session.user.id },
+    select: { walletBalance: true }
+  });
+
+  const balance = user?.walletBalance || 0;
+  const balanceInt = Math.floor(balance);
+  const balanceDec = (balance % 1).toFixed(2).split('.')[1];
+
   return (
     <div className="flex flex-col gap-10">
       <div className="flex items-center justify-between">
@@ -40,7 +49,7 @@ export default async function WalletPage() {
               </div>
               <h3 className="text-[10px] md:text-sm font-black uppercase tracking-[0.3em] text-white/40 mb-2 md:mb-4">Total Balance</h3>
               <div className="text-5xl md:text-8xl font-black tracking-tighter mb-8 leading-none">
-                ₦0<span className="text-2xl md:text-4xl opacity-40">.00</span>
+                ₦{balanceInt.toLocaleString()}<span className="text-2xl md:text-4xl opacity-40">.{balanceDec}</span>
               </div>
            </div>
 

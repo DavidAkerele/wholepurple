@@ -74,6 +74,7 @@ export const metadata: Metadata = {
 };
 
 import AnnouncementBar from "@/components/AnnouncementBar";
+import CustomerService from "@/components/CustomerService";
 
 export default function RootLayout({
   children,
@@ -81,8 +82,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} antialiased min-h-screen flex flex-col font-sans`}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.variable} antialiased min-h-screen flex flex-col font-sans`} suppressHydrationWarning>
         <Providers>
           <AnnouncementBar />
           <Navbar />
@@ -90,6 +91,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
+          <CustomerService />
         </Providers>
       </body>
     </html>

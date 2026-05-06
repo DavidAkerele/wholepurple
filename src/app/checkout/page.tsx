@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
+import { getProductImageUrl } from "@/lib/image-utils";
 
 import { createOrder } from "@/app/actions/order";
 import toast from "react-hot-toast";
@@ -215,12 +216,12 @@ export default function CheckoutPage() {
                <div className="flex flex-col gap-6 mb-10 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
                  {items.map(item => (
                    <div key={item.id} className="flex gap-4 items-center">
-                     <div className="relative w-16 h-16 bg-[#FDFCFB] rounded-2xl border border-gray-50 shrink-0 overflow-hidden">
+                     <div className="relative w-16 h-16 bg-gray-50 text-gray-900 rounded-xl overflow-hidden shrink-0 p-2 border border-gray-100 flex items-center justify-center">
                         <Image 
-                          src={item.image ? (item.image.startsWith('http') ? item.image : `/images/scraped/${item.image}`) : '/images/scraped/woocommerce-placeholder.webp'} 
+                          src={getProductImageUrl(item.image)} 
                           alt={item.name} 
                           fill 
-                          className="object-contain p-2" 
+                          className="object-contain p-1" 
                         />
                         <div className="absolute top-0 right-0 bg-[var(--primary-purple)] text-white text-[9px] font-black w-5 h-5 flex items-center justify-center rounded-bl-xl">
                            {item.quantity}

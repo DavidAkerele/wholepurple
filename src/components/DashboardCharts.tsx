@@ -65,7 +65,7 @@ export function OrderStatusChart({ data, title }: { data: any[], title: string }
       <h2 className="text-xl font-black text-gray-900 mb-8 tracking-tight">{title}</h2>
       <div className="h-[300px] w-full">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }} barSize={32}>
+          <BarChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 40 }} barSize={32}>
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#F3F4F6" />
             <XAxis 
               dataKey="name" 

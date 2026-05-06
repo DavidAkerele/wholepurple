@@ -2,6 +2,16 @@
 
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
+import { cache } from "react";
+
+export const getSettings = cache(async () => {
+  const settings = await prisma.setting.findMany();
+  const settingsMap: Record<string, string> = {};
+  settings.forEach(s => {
+    settingsMap[s.key] = s.value;
+  });
+  return settingsMap;
+});
 
 export async function saveSettings(settings: Record<string, string>) {
   try {

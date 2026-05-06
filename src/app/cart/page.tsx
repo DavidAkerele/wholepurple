@@ -4,6 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Trash2, Minus, Plus, ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import EmptyCart from "@/components/EmptyCart";
+import { getProductImageUrl } from "@/lib/image-utils";
 
 import PageHeader from "@/components/PageHeader";
 
@@ -21,16 +24,7 @@ export default function CartPage() {
 
   if (items.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[100vh] bg-[#FAF7F2] gap-6">
-        <div className="w-32 h-32 bg-white rounded-[40px] shadow-xl shadow-purple-900/5 border border-gray-50 flex items-center justify-center text-[var(--primary-purple)]">
-          <svg className="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-          </svg>
-        </div>
-        <h2 className="text-3xl font-black text-gray-900 uppercase tracking-tighter">Your cart is empty</h2>
-        <p className="text-gray-800 font-medium">Looks like you haven't added any fresh goodness yet.</p>
-        <Link href="/shop" className="btn-primary mt-4">Start Shopping</Link>
-      </div>
+      <EmptyCart />
     );
   }
 
@@ -59,10 +53,7 @@ export default function CartPage() {
               <div className="col-span-1 md:col-span-6 flex items-center gap-6">
                 <div className="relative w-24 h-24 bg-gray-50 text-gray-900 rounded-2xl flex items-center justify-center p-2 shrink-0 border border-gray-100 overflow-hidden">
                   <Image 
-                    src={item.image 
-                      ? (item.image.startsWith('http') || item.image.startsWith('/') ? item.image : `/images/scraped/${item.image}`) 
-                      : '/images/scraped/woocommerce-placeholder.webp'
-                    } 
+                    src={getProductImageUrl(item.image)} 
                     alt={item.name} 
                     fill 
                     className="object-contain p-2" 

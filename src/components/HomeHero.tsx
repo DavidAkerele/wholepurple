@@ -106,6 +106,7 @@ export default function HomeHero({ title, subtitle }: HomeHeroProps) {
                   src={src} 
                   alt="Organic Produce" 
                   fill 
+                  sizes="(max-width: 1024px) 100vw, 40vw"
                   className={`object-cover transition-all duration-[2000ms] ease-in-out ${idx === current ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`}
                   priority={idx === 0}
                 />

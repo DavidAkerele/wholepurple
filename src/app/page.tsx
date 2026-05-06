@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import Image from "next/image";
 import Link from "next/link";
 import { Camera, ArrowRight, ChevronRight, ShoppingCart } from "lucide-react";
+import { getProductImageUrl } from "@/lib/image-utils";
 import HomeHero from "@/components/HomeHero";
 import CategoryTabs from "@/components/CategoryTabs";
 import ProductSection from "@/components/ProductSection";
@@ -112,10 +113,10 @@ export default async function Home() {
               <div key={product.id} className="group bg-white rounded-[32px] border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-500 flex flex-col">
                 <div className="relative aspect-square bg-[#FBFBFB] p-6 flex items-center justify-center">
                   <Image 
-                    src={product.image?.startsWith('http') ? product.image : `/images/scraped/${product.image || 'woocommerce-placeholder.webp'}`} 
+                    src={getProductImageUrl(product.image)} 
                     alt={product.name}
                     fill
-                    className="object-contain p-6 group-hover:scale-110 transition-transform duration-700"
+                    className="object-contain p-8 group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>
                 <div className="p-6">

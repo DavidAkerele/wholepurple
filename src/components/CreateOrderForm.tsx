@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Search, Plus, Minus, Trash2, User, Mail, CreditCard, CheckCircle2 } from "lucide-react";
 import { createManualOrder } from "@/app/actions/order";
+import { getProductImageUrl } from "@/lib/image-utils";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
@@ -105,7 +106,7 @@ export default function CreateOrderForm({ products }: { products: any[] }) {
               >
                 <div className="relative aspect-square bg-gray-50 text-gray-900 rounded-xl overflow-hidden flex items-center justify-center p-4">
                   <Image 
-                    src={product.image?.startsWith('http') ? product.image : `/images/scraped/${product.image || 'woocommerce-placeholder.webp'}`}
+                    src={getProductImageUrl(product.image)}
                     alt={product.name}
                     fill
                     className="object-contain p-2 group-hover:scale-110 transition-transform duration-300"
@@ -186,10 +187,10 @@ export default function CreateOrderForm({ products }: { products: any[] }) {
                 <div key={item.product.id} className="flex items-center gap-3 p-3 rounded-2xl border border-gray-50 bg-gray-50 text-gray-900/50">
                   <div className="w-12 h-12 relative bg-white rounded-lg overflow-hidden shrink-0 border border-gray-100 flex items-center justify-center p-1">
                     <Image 
-                      src={item.product.image?.startsWith('http') ? item.product.image : `/images/scraped/${item.product.image || 'woocommerce-placeholder.webp'}`}
+                      src={getProductImageUrl(item.product.image)}
                       alt={item.product.name}
                       fill
-                      className="object-contain"
+                      className="object-contain p-2"
                     />
                   </div>
                   <div className="flex-1 min-w-0">

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Heart, ShoppingCart, ArrowUpRight } from "lucide-react";
 import AddToCartButton from "./AddToCartButton";
 import { useState } from "react";
+import { getProductImageUrl } from "@/lib/image-utils";
 
 interface Product {
   id: string;
@@ -30,9 +31,10 @@ export default function ProductCard({ product }: { product: any }) {
       {/* Image Container */}
       <div className="relative aspect-square bg-[#FDFCFB] overflow-hidden">
         <Image 
-          src={product.image?.startsWith('http') ? product.image : `/images/scraped/${product.image || 'woocommerce-placeholder.webp'}`} 
+          src={getProductImageUrl(product.image)} 
           alt={product.name}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
           className={`object-contain p-10 transition-all duration-700 ease-out ${isHovered ? 'scale-110 rotate-2' : 'scale-100 rotate-0'}`}
         />
         

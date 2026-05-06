@@ -16,6 +16,7 @@ export default function BlogForm({ initialData }: BlogFormProps) {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     title: initialData?.title || "",
+    slug: initialData?.slug || "",
     excerpt: initialData?.excerpt || "",
     content: initialData?.content || "",
     image: initialData?.image || "",
@@ -77,9 +78,31 @@ export default function BlogForm({ initialData }: BlogFormProps) {
             required
             placeholder="e.g. The Secret to Perfectly Ripe Ube"
             value={formData.title}
-            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+            onChange={(e) => {
+              const newTitle = e.target.value;
+              const autoSlug = newTitle.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+              setFormData({ 
+                ...formData, 
+                title: newTitle,
+                slug: formData.slug === formData.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '') ? autoSlug : formData.slug
+              });
+            }}
             className="text-3xl font-black p-4 bg-gray-50 text-gray-900 border-none focus:bg-white focus:ring-0 transition-all placeholder:text-gray-200"
           />
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <label className="text-xs font-black text-gray-600 uppercase tracking-widest px-1">Article URL Slug</label>
+          <div className="flex items-center gap-2 bg-gray-50 p-4 rounded-2xl border border-gray-100 focus-within:bg-white focus-within:ring-2 focus-within:ring-[var(--primary-purple)] transition-all">
+            <span className="text-gray-400 font-medium text-sm select-none">wholepurple.com/blog/</span>
+            <input 
+              type="text"
+              placeholder="article-slug-here"
+              value={formData.slug}
+              onChange={(e) => setFormData({ ...formData, slug: e.target.value.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '') })}
+              className="flex-1 bg-transparent border-none focus:ring-0 p-0 text-gray-900 font-bold text-sm"
+            />
+          </div>
         </div>
 
         <div className="flex flex-col gap-2">

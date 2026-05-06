@@ -17,7 +17,8 @@ import {
   FileText,
   Wallet,
   Gift,
-  X
+  X,
+  User
 } from "lucide-react";
 import { signOut } from "next-auth/react";
 
@@ -45,9 +46,14 @@ export default function DashboardSidebar({ session, role }: { session: any, role
   if (role === "ADMIN") {
     navItems = [
       { name: "Overview", href: "/dashboard/admin", icon: LayoutDashboard },
+      { name: "Create Order", href: "/dashboard/shop-manager/orders/new", icon: Menu },
       { name: "All Orders", href: "/dashboard/admin/orders", icon: ShoppingBag },
       { name: "Manage Products", href: "/dashboard/shop-manager/products", icon: Package },
+      { name: "Manage Blogs", href: "/dashboard/editor", icon: FileText },
+      { name: "Site Content", href: "/dashboard/editor/content", icon: Settings },
       { name: "Users & Roles", href: "/dashboard/admin/users", icon: Users },
+      { name: "Bowl Builders", href: "/dashboard/admin/builders", icon: Menu },
+      { name: "Wallet & Rewards", href: "/dashboard/admin/wallet-rewards", icon: Wallet },
       { name: "Settings", href: "/dashboard/admin/settings", icon: Settings },
     ];
   } else if (role === "SHOP_MANAGER") {
@@ -55,12 +61,13 @@ export default function DashboardSidebar({ session, role }: { session: any, role
       { name: "Overview", href: "/dashboard/shop-manager", icon: LayoutDashboard },
       { name: "Create Order", href: "/dashboard/shop-manager/orders/new", icon: Menu },
       { name: "Manage Products", href: "/dashboard/shop-manager/products", icon: Package },
+      { name: "Bowl Builders", href: "/dashboard/admin/builders", icon: Menu },
       { name: "Fulfill Orders", href: "/dashboard/shop-manager/orders", icon: ShoppingBag },
     ];
   } else if (role === "EDITOR") {
     navItems = [
       { name: "Content CMS", href: "/dashboard/editor", icon: LayoutDashboard },
-      { name: "Manage Blogs", href: "/dashboard/editor/blogs", icon: FileText },
+      { name: "Manage Blogs", href: "/dashboard/editor", icon: FileText },
       { name: "Site Content", href: "/dashboard/editor/content", icon: Settings },
     ];
   } else {

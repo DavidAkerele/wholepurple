@@ -5,6 +5,9 @@ import Link from "next/link";
 import { Trash2, HeartCrack } from "lucide-react";
 import { useEffect, useState } from "react";
 import AddToCartButton from "@/components/AddToCartButton";
+import PageHeader from "@/components/PageHeader";
+import EmptyWishlist from "@/components/EmptyWishlist";
+import { getProductImageUrl } from "@/lib/image-utils";
 
 export default function WishlistPage() {
   const [mounted, setMounted] = useState(false);
@@ -39,9 +42,9 @@ export default function WishlistPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {items.map(item => (
             <div key={item.id} className="group flex flex-col bg-white rounded-3xl border border-gray-100 overflow-hidden hover:-translate-y-2 transition-all duration-300">
-              <div className="relative aspect-square bg-[#F9F9F9] flex items-center justify-center p-6">
+              <div className="relative aspect-square bg-[#FBFBFB] p-6 flex items-center justify-center">
                 <Image 
-                  src={item.image ? (item.image.startsWith('http') ? item.image : `/images/scraped/${item.image}`) : '/images/scraped/woocommerce-placeholder.webp'} 
+                  src={getProductImageUrl(item.image)} 
                   alt={item.name} 
                   fill 
                   className="object-contain p-6 group-hover:scale-110 transition-transform duration-500" 

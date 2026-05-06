@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 
-export async function createBlog(formData: { title: string; content: string; excerpt?: string; image?: string; published: boolean }) {
+export async function createBlog(formData: { title: string; slug?: string; content: string; excerpt?: string; image?: string; published: boolean }) {
   const session = await getServerSession(authOptions);
   
   if (!session || (session.user.role !== "EDITOR" && session.user.role !== "ADMIN")) {
@@ -13,11 +13,15 @@ export async function createBlog(formData: { title: string; content: string; exc
   }
 
   try {
-    const slug = formData.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+    const slug = formData.slug || formData.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
     
     const blog = await prisma.blog.create({
       data: {
-        ...formData,
+        title: formData.title,
+        content: formData.content,
+        excerpt: formData.excerpt,
+        image: formData.image,
+        published: formData.published,
         slug,
         authorId: session.user.id,
       }
@@ -33,7 +37,7 @@ export async function createBlog(formData: { title: string; content: string; exc
   }
 }
 
-export async function updateBlog(id: string, formData: Partial<{ title: string; content: string; excerpt?: string; image?: string; published: boolean }>) {
+export async function updateBlog(id: string, formData: Partial<{ title: string; slug: string; content: string; excerpt?: string; image?: string; published: boolean }>) {
   const session = await getServerSession(authOptions);
   
   if (!session || (session.user.role !== "EDITOR" && session.user.role !== "ADMIN")) {
@@ -41,14 +45,14 @@ export async function updateBlog(id: string, formData: Partial<{ title: string; 
   }
 
   try {
-    const data: any = { ...formData };
-    if (formData.title) {
+    const data = { ...formData };
+    if (!data.slug && formData.title) {
       data.slug = formData.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
     }
 
     const blog = await prisma.blog.update({
       where: { id },
-      data
+      data: data as any // Keep as any for Prisma update since formData might be partial
     });
 
     revalidatePath("/dashboard/editor");

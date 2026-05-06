@@ -6,6 +6,7 @@ import { FileText, Plus, Eye, Edit3 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import DeleteBlogButton from "@/components/DeleteBlogButton";
+import BlogStatusToggle from "@/components/BlogStatusToggle";
 
 export default async function EditorDashboard() {
   const session = await getServerSession(authOptions);
@@ -83,11 +84,7 @@ export default async function EditorDashboard() {
                   </td>
                   <td className="px-8 py-6 text-gray-800 font-medium">{blog.author.name || 'Editor'}</td>
                   <td className="px-8 py-6">
-                    <span className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-tighter ${
-                      blog.published ? 'bg-green-50 text-green-600' : 'bg-orange-50 text-orange-600'
-                    }`}>
-                      {blog.published ? 'Published' : 'Draft'}
-                    </span>
+                    <BlogStatusToggle id={blog.id} initialPublished={blog.published} />
                   </td>
                   <td className="px-8 py-6 text-gray-800 font-medium">
                     {new Date(blog.createdAt).toLocaleDateString()}

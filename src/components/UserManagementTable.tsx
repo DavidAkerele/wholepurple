@@ -20,7 +20,7 @@ import Image from "next/image";
 interface User {
   id: string;
   name: string | null;
-  email: string;
+  email: string | null;
   role: string;
   createdAt: Date;
 }
@@ -39,7 +39,7 @@ export default function UserManagementTable({ users }: { users: User[] }) {
     return users
       .filter(u => {
         const matchesSearch = (u.name?.toLowerCase() || "").includes(searchQuery.toLowerCase()) || 
-                             u.email.toLowerCase().includes(searchQuery.toLowerCase());
+                             (u.email?.toLowerCase() || "").includes(searchQuery.toLowerCase());
         const matchesRole = roleFilter === "all" || u.role === roleFilter;
         return matchesSearch && matchesRole;
       })
@@ -164,7 +164,7 @@ export default function UserManagementTable({ users }: { users: User[] }) {
                   <td className="px-8 py-6">
                     <div className="flex items-center gap-5">
                       <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center text-gray-700 font-black text-lg border border-gray-100 group-hover:scale-110 transition-transform">
-                        {user.name?.[0] || user.email[0].toUpperCase()}
+                        {user.name?.[0] || (user.email?.[0]?.toUpperCase() || "?")}
                       </div>
                       <div className="flex flex-col">
                         <span className="font-black text-gray-900 text-base tracking-tight">{user.name || "Anonymous User"}</span>

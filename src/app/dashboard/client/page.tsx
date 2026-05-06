@@ -25,7 +25,7 @@ export default async function ClientDashboard() {
   const [userData, orders] = await Promise.all([
     prisma.user.findUnique({
       where: { id: session.user.id },
-      select: { rewardPoints: true, createdAt: true }
+      select: { rewardPoints: true, walletBalance: true, createdAt: true }
     }),
     prisma.order.findMany({
       where: { userId: session.user.id },
@@ -77,7 +77,7 @@ export default async function ClientDashboard() {
                 <Wallet className="w-6 h-6 text-[var(--accent-green)]" />
              </div>
              <h3 className="text-[10px] font-black uppercase tracking-widest text-gray-600 mb-2">My Wallet</h3>
-             <div className="text-4xl font-black text-gray-900 mb-2">₦0.00</div>
+             <div className="text-4xl font-black text-gray-900 mb-2">₦{(userData?.walletBalance || 0).toLocaleString(undefined, { minimumFractionDigits: 2 })}</div>
              <p className="text-xs font-medium text-gray-600 mb-6">Use your wallet for faster, one-click checkouts.</p>
              <Link href="/dashboard/client/wallet" className="inline-flex items-center gap-2 bg-gray-900 text-white px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all">
                 Top Up <ArrowUpRight className="w-3 h-3" />
