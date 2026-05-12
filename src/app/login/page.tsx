@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Eye, EyeOff } from "lucide-react";
 import toast from "react-hot-toast";
 
 const slideImages = [
@@ -22,6 +22,7 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -145,14 +146,24 @@ export default function LoginPage() {
                 <label className="text-sm font-bold text-gray-700">Password</label>
                 <Link href="#" className="text-sm font-bold text-[var(--primary-purple)] hover:underline">Forgot password?</Link>
               </div>
-              <input
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="p-4 rounded-2xl border border-gray-200 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] focus:border-transparent transition-all"
-                placeholder="••••••••"
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full p-4 pr-12 rounded-2xl border border-gray-200 bg-gray-50 text-gray-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-purple)] focus:border-transparent transition-all"
+                  placeholder="••••••••"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors focus:outline-none"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
+              </div>
             </div>
 
             <button
@@ -171,36 +182,7 @@ export default function LoginPage() {
             </Link>
           </p>
 
-          {/* Development Quick Login */}
-          <div className="pt-8 border-t border-gray-100">
-            <h3 className="text-xs font-bold text-gray-600 uppercase tracking-wider text-center mb-4">Quick Login (Testing)</h3>
-            <div className="grid grid-cols-2 gap-2">
-              <button 
-                onClick={() => { setEmail("admin@wholepurple.com"); setPassword("admin123"); }}
-                className="text-[10px] font-bold text-white bg-gray-900 rounded-lg py-2 px-1 hover:bg-gray-800 transition-colors"
-              >
-                ADMIN
-              </button>
-              <button 
-                onClick={() => { setEmail("manager@wholepurple.com"); setPassword("manager123"); }}
-                className="text-[10px] font-bold text-white bg-green-700 rounded-lg py-2 px-1 hover:bg-green-800 transition-colors"
-              >
-                MANAGER
-              </button>
-              <button 
-                onClick={() => { setEmail("editor@wholepurple.com"); setPassword("editor123"); }}
-                className="text-[10px] font-bold text-white bg-orange-600 rounded-lg py-2 px-1 hover:bg-orange-700 transition-colors"
-              >
-                EDITOR
-              </button>
-              <button 
-                onClick={() => { setEmail("client@wholepurple.com"); setPassword("client123"); }}
-                className="text-[10px] font-bold text-white bg-blue-600 rounded-lg py-2 px-1 hover:bg-blue-700 transition-colors"
-              >
-                CLIENT
-              </button>
-            </div>
-          </div>
+
         </div>
       </div>
     </div>

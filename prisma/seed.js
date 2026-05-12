@@ -115,26 +115,39 @@ async function main() {
     });
   }
 
+  // Clean up old test users
+  const oldTestEmails = [
+    'admin@wholepurple.com',
+    'manager@wholepurple.com',
+    'client@wholepurple.com',
+    'editor@wholepurple.com'
+  ];
+  await prisma.user.deleteMany({
+    where: {
+      email: { in: oldTestEmails }
+    }
+  });
+
   // Seed Admin User
-  const adminPassword = await bcrypt.hash('admin123', 10);
+  const adminPassword = await bcrypt.hash('WhP_Admin#2026!$', 10);
   await prisma.user.upsert({
-    where: { email: 'admin@wholepurple.com' },
-    update: {},
+    where: { email: 'management@wholepurple.com' },
+    update: { password: adminPassword },
     create: {
-      email: 'admin@wholepurple.com',
-      name: 'Admin User',
+      email: 'management@wholepurple.com',
+      name: 'System Admin',
       password: adminPassword,
       role: 'ADMIN',
     },
   });
 
   // Seed Shop Manager User
-  const managerPassword = await bcrypt.hash('manager123', 10);
+  const managerPassword = await bcrypt.hash('WhP_Store#2026!$', 10);
   await prisma.user.upsert({
-    where: { email: 'manager@wholepurple.com' },
-    update: {},
+    where: { email: 'store@wholepurple.com' },
+    update: { password: managerPassword },
     create: {
-      email: 'manager@wholepurple.com',
+      email: 'store@wholepurple.com',
       name: 'Store Manager',
       password: managerPassword,
       role: 'SHOP_MANAGER',
@@ -142,25 +155,25 @@ async function main() {
   });
 
   // Seed Client User
-  const clientPassword = await bcrypt.hash('client123', 10);
+  const clientPassword = await bcrypt.hash('WhP_Cust#2026!$', 10);
   await prisma.user.upsert({
-    where: { email: 'client@wholepurple.com' },
-    update: {},
+    where: { email: 'customer@wholepurple.com' },
+    update: { password: clientPassword },
     create: {
-      email: 'client@wholepurple.com',
-      name: 'Test Customer',
+      email: 'customer@wholepurple.com',
+      name: 'Customer',
       password: clientPassword,
       role: 'CLIENT',
     },
   });
 
   // Seed Editor User
-  const editorPassword = await bcrypt.hash('editor123', 10);
+  const editorPassword = await bcrypt.hash('WhP_Edit#2026!$', 10);
   await prisma.user.upsert({
-    where: { email: 'editor@wholepurple.com' },
-    update: {},
+    where: { email: 'content@wholepurple.com' },
+    update: { password: editorPassword },
     create: {
-      email: 'editor@wholepurple.com',
+      email: 'content@wholepurple.com',
       name: 'Lead Editor',
       password: editorPassword,
       role: 'EDITOR',
