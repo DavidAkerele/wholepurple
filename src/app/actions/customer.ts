@@ -31,7 +31,7 @@ export async function bulkUploadCustomers(csvData: string) {
       usersToCreate.push({
         email,
         name,
-        role: ["ADMIN", "SHOP_MANAGER", "CLIENT"].includes(role) ? role : "CLIENT",
+        role: ["SYSTEM_ADMIN", "SHOP_MANAGER", "CLIENT"].includes(role) ? role : "CLIENT",
       });
     }
 

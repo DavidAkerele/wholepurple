@@ -13,9 +13,10 @@ import {
   ChevronLeft,
   ChevronRight,
   ArrowUpDown,
-  UserPlus
+  UserPlus,
 } from "lucide-react";
 import Image from "next/image";
+import Pagination from "@/components/Pagination";
 
 interface User {
   id: string;
@@ -25,16 +26,28 @@ interface User {
   createdAt: Date;
 }
 
-export default function UserManagementTable({ users }: { users: User[] }) {
+export default function UserManagementTable({ 
+  users, 
+  totalUsers, 
+  currentPage, 
+  totalPages 
+}: { 
+  users: User[], 
+  totalUsers: number,
+  currentPage: number,
+  totalPages: number
+}) {
   const [searchQuery, setSearchQuery] = useState("");
   const [roleFilter, setRoleFilter] = useState("all");
-  const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
   // Sorting
   const [sortField, setSortField] = useState<"name" | "joined">("joined");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
 
+  // NOTE: Server-side pagination is now used, so we don't slice locally.
+  // In a real production app with search/filter, we should move those to the server too.
+  // For now, we'll keep search/filter local but they will only work on the current page.
   const filteredUsers = useMemo(() => {
     return users
       .filter(u => {
@@ -52,12 +65,7 @@ export default function UserManagementTable({ users }: { users: User[] }) {
       });
   }, [users, searchQuery, roleFilter, sortField, sortOrder]);
 
-  const paginatedUsers = filteredUsers.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
-
-  const totalPages = Math.ceil(filteredUsers.length / itemsPerPage);
+  const paginatedUsers = filteredUsers;
 
   const toggleSort = (field: "name" | "joined") => {
     if (sortField === field) {
@@ -70,7 +78,7 @@ export default function UserManagementTable({ users }: { users: User[] }) {
 
   const getRoleStyle = (role: string) => {
     switch (role) {
-      case "ADMIN":
+      case "SYSTEM_ADMIN":
         return "bg-red-50 text-red-700 border-red-100 ring-red-500/10";
       case "SHOP_MANAGER":
         return "bg-purple-50 text-purple-700 border-purple-100 ring-purple-500/10";
@@ -83,7 +91,7 @@ export default function UserManagementTable({ users }: { users: User[] }) {
 
   const getRoleIcon = (role: string) => {
     switch (role) {
-      case "ADMIN": return <ShieldCheck className="w-3.5 h-3.5" />;
+      case "SYSTEM_ADMIN": return <ShieldCheck className="w-3.5 h-3.5" />;
       case "SHOP_MANAGER": return <Shield className="w-3.5 h-3.5" />;
       case "EDITOR": return <UserIcon className="w-3.5 h-3.5" />;
       default: return <UserIcon className="w-3.5 h-3.5" />;
@@ -114,7 +122,7 @@ export default function UserManagementTable({ users }: { users: User[] }) {
               className="bg-transparent border-none text-xs font-black uppercase tracking-widest text-gray-800 outline-none cursor-pointer pr-8"
             >
               <option value="all">All Roles</option>
-              <option value="ADMIN">Admins</option>
+              <option value="SYSTEM_ADMIN">Admins</option>
               <option value="SHOP_MANAGER">Managers</option>
               <option value="EDITOR">Editors</option>
               <option value="CLIENT">Clients</option>
@@ -126,8 +134,8 @@ export default function UserManagementTable({ users }: { users: User[] }) {
       {/* Stats Cards Row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
-          { label: "Total Users", count: users.length, color: "bg-gray-50 text-gray-900" },
-          { label: "Admins", count: users.filter(u => u.role === "ADMIN").length, color: "bg-red-50 text-red-700" },
+          { label: "Total Users", count: totalUsers, color: "bg-gray-50 text-gray-900" },
+          { label: "Admins", count: users.filter(u => u.role === "SYSTEM_ADMIN").length, color: "bg-red-50 text-red-700" },
           { label: "Managers", count: users.filter(u => u.role === "SHOP_MANAGER").length, color: "bg-purple-50 text-purple-700" },
           { label: "Clients", count: users.filter(u => u.role === "CLIENT").length, color: "bg-green-50 text-green-700" },
         ].map((stat, i) => (
@@ -220,52 +228,14 @@ export default function UserManagementTable({ users }: { users: User[] }) {
         {/* Pagination */}
         <div className="bg-gray-50 text-gray-900/50 px-8 py-6 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-xs font-black text-gray-600 uppercase tracking-widest">
-            Showing {(currentPage - 1) * itemsPerPage + 1} - {Math.min(currentPage * itemsPerPage, filteredUsers.length)} of {filteredUsers.length} users
+            Showing {(currentPage - 1) * itemsPerPage + 1} - {Math.min(currentPage * itemsPerPage, totalUsers)} of {totalUsers} users
           </p>
 
-          {totalPages > 1 && (
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-                disabled={currentPage === 1}
-                className={`p-2.5 rounded-xl border transition-all ${
-                  currentPage === 1 
-                  ? 'border-gray-100 text-gray-400 cursor-not-allowed' 
-                  : 'border-gray-200 text-gray-700 hover:border-[var(--primary-purple)] hover:text-[var(--primary-purple)] active:scale-90'
-                }`}
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-
-              <div className="flex items-center gap-1.5">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                  <button
-                    key={page}
-                    onClick={() => setCurrentPage(page)}
-                    className={`w-10 h-10 rounded-xl font-black text-xs transition-all ${
-                      currentPage === page
-                      ? 'bg-[var(--primary-purple)] text-white shadow-lg shadow-purple-200'
-                      : 'bg-white border border-gray-200 text-gray-600 hover:border-[var(--primary-purple)] hover:text-[var(--primary-purple)]'
-                    }`}
-                  >
-                    {page}
-                  </button>
-                ))}
-              </div>
-
-              <button
-                onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-                disabled={currentPage === totalPages}
-                className={`p-2.5 rounded-xl border transition-all ${
-                  currentPage === totalPages 
-                  ? 'border-gray-100 text-gray-400 cursor-not-allowed' 
-                  : 'border-gray-200 text-gray-700 hover:border-[var(--primary-purple)] hover:text-[var(--primary-purple)] active:scale-90'
-                }`}
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            </div>
-          )}
+          <Pagination 
+            totalPages={totalPages} 
+            currentPage={currentPage} 
+            baseUrl="/dashboard/admin/users" 
+          />
         </div>
       </div>
     </div>

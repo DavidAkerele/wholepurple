@@ -15,7 +15,7 @@ export async function createBuilder(data: {
 }) {
   const session = await getServerSession(authOptions);
   
-  if (!session || (session.user.role !== "SHOP_MANAGER" && session.user.role !== "ADMIN")) {
+  if (!session || (session.user.role !== "SHOP_MANAGER" && session.user.role !== "SYSTEM_ADMIN")) {
     return { success: false, error: "Unauthorized" };
   }
 
@@ -48,7 +48,7 @@ export async function updateBuilder(id: string, data: {
 }) {
   const session = await getServerSession(authOptions);
   
-  if (!session || (session.user.role !== "SHOP_MANAGER" && session.user.role !== "ADMIN")) {
+  if (!session || (session.user.role !== "SHOP_MANAGER" && session.user.role !== "SYSTEM_ADMIN")) {
     return { success: false, error: "Unauthorized" };
   }
 

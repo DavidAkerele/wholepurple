@@ -30,7 +30,7 @@ export default async function InvoicePage({ params }: { params: Promise<{ id: st
   }
 
   // Security check: Only Admin, Shop Manager, or the Customer who placed the order can view it
-  if (session.user.role !== "ADMIN" && session.user.role !== "SHOP_MANAGER" && session.user.id !== order.userId) {
+  if (session.user.role !== "SYSTEM_ADMIN" && session.user.role !== "SHOP_MANAGER" && session.user.id !== order.userId) {
     redirect("/dashboard");
   }
 

@@ -34,7 +34,7 @@ export default function ContactPage() {
                 {
                   icon: <Phone className="w-5 h-5" />,
                   title: "Phone",
-                  value: "+234 123 456 7890",
+                  value: "09163191000",
                   color: "bg-green-50 text-[var(--accent-green)]"
                 },
                 {

@@ -40,9 +40,20 @@ export default async function ClientDashboard() {
       <div className="relative overflow-hidden bg-white p-6 md:p-10 rounded-[30px] md:rounded-[50px] border border-gray-100 shadow-2xl shadow-purple-900/5">
         <div className="relative z-10">
           <span className="text-[var(--primary-purple)] font-black text-[8px] md:text-[10px] uppercase tracking-[0.3em] mb-4 block">My Profile</span>
-          <h1 className="text-3xl md:text-5xl font-black text-gray-900 uppercase tracking-tighter mb-4 leading-none">
-            Welcome back, <br /> <span className="text-[var(--primary-purple)]">{session.user.name}</span>
-          </h1>
+          <div className="flex items-center gap-6 mb-4">
+             {session.user.image ? (
+               <Image src={session.user.image} alt={session.user.name || ""} width={64} height={64} className="rounded-2xl border-2 border-purple-100 shadow-lg object-cover" />
+             ) : (
+               <div className="w-16 h-16 bg-[var(--primary-purple)] text-white rounded-2xl flex items-center justify-center text-2xl font-black">
+                 {session.user.name?.charAt(0)}
+               </div>
+             )}
+             <div>
+               <h1 className="text-3xl md:text-5xl font-black text-gray-900 uppercase tracking-tighter leading-none">
+                 Welcome back, <br /> <span className="text-[var(--primary-purple)]">{session.user.name}</span>
+               </h1>
+             </div>
+          </div>
           <p className="text-sm md:text-lg text-gray-800 font-medium max-w-md leading-relaxed">
             Manage your harvests, track your loyalty rewards, and explore your personal Whole Purple experience.
           </p>

@@ -51,7 +51,7 @@ export default function Footer() {
         <div className="flex flex-col gap-4">
           <h3 className="text-gray-900 font-bold text-lg mb-2">Contact</h3>
           <p className="text-gray-600 text-sm">Email: hello@wholepurple.com</p>
-          <p className="text-gray-600 text-sm">Phone: +234 123 456 7890</p>
+          <p className="text-gray-600 text-sm">Phone: 09163191000</p>
           <p className="text-gray-600 text-sm">Address: No. 32 Norman Williams, Ikoyi, Lagos</p>
         </div>
       </div>

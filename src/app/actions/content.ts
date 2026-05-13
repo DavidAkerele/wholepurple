@@ -8,7 +8,7 @@ import { authOptions } from "@/lib/auth";
 export async function updateContentSetting(key: string, value: string) {
   const session = await getServerSession(authOptions);
   
-  if (!session || (session.user.role !== "EDITOR" && session.user.role !== "ADMIN")) {
+  if (!session || (session.user.role !== "EDITOR" && session.user.role !== "SYSTEM_ADMIN")) {
     return { success: false, error: "Unauthorized" };
   }
 

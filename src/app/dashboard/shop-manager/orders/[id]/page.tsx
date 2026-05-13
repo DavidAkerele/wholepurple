@@ -13,7 +13,7 @@ export default async function OrderDetailsPage({ params }: { params: Promise<{ i
   const session = await getServerSession(authOptions);
   const resolvedParams = await params;
   
-  if (session?.user.role !== "ADMIN" && session?.user.role !== "SHOP_MANAGER") {
+  if (session?.user.role !== "SYSTEM_ADMIN" && session?.user.role !== "SHOP_MANAGER") {
     redirect("/dashboard");
   }
 
@@ -41,7 +41,7 @@ export default async function OrderDetailsPage({ params }: { params: Promise<{ i
         {/* Header */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <Link href={session.user.role === "ADMIN" ? "/dashboard/admin/orders" : "/dashboard/shop-manager/orders"} className="p-2 bg-white rounded-xl border border-gray-100 hover:text-[var(--primary-purple)] transition-all">
+            <Link href={session.user.role === "SYSTEM_ADMIN" ? "/dashboard/admin/orders" : "/dashboard/shop-manager/orders"} className="p-2 bg-white rounded-xl border border-gray-100 hover:text-[var(--primary-purple)] transition-all">
               <ChevronLeft className="w-5 h-5" />
             </Link>
             <div>

@@ -120,7 +120,8 @@ async function main() {
     'admin@wholepurple.com',
     'manager@wholepurple.com',
     'client@wholepurple.com',
-    'editor@wholepurple.com'
+    'editor@wholepurple.com',
+    'customer@wholepurple.com'
   ];
   await prisma.user.deleteMany({
     where: {
@@ -137,7 +138,7 @@ async function main() {
       email: 'management@wholepurple.com',
       name: 'System Admin',
       password: adminPassword,
-      role: 'ADMIN',
+      role: 'SYSTEM_ADMIN',
     },
   });
 
@@ -151,19 +152,6 @@ async function main() {
       name: 'Store Manager',
       password: managerPassword,
       role: 'SHOP_MANAGER',
-    },
-  });
-
-  // Seed Client User
-  const clientPassword = await bcrypt.hash('WhP_Cust#2026!$', 10);
-  await prisma.user.upsert({
-    where: { email: 'customer@wholepurple.com' },
-    update: { password: clientPassword },
-    create: {
-      email: 'customer@wholepurple.com',
-      name: 'Customer',
-      password: clientPassword,
-      role: 'CLIENT',
     },
   });
 

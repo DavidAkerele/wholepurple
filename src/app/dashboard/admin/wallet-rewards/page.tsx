@@ -7,7 +7,7 @@ import WalletRewardsTable from "@/components/WalletRewardsTable";
 export default async function WalletRewardsAdminPage() {
   const session = await getServerSession(authOptions);
   
-  if (session?.user.role !== "ADMIN") {
+  if (session?.user.role !== "SYSTEM_ADMIN") {
     redirect("/dashboard");
   }
 

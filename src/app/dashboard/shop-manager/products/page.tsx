@@ -3,23 +3,36 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import ProductInventoryTable from "@/components/ProductInventoryTable";
+import Pagination from "@/components/Pagination";
 
-export default async function ShopManagerProductsPage() {
+export default async function ShopManagerProductsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}) {
   const session = await getServerSession(authOptions);
+  const resolvedParams = await searchParams;
+  const currentPage = parseInt(resolvedParams.page || "1");
+  const ITEMS_PER_PAGE = 10;
   
-  if (session?.user.role !== "SHOP_MANAGER" && session?.user.role !== "ADMIN") {
+  if (session?.user.role !== "SHOP_MANAGER" && session?.user.role !== "SYSTEM_ADMIN") {
     redirect("/dashboard");
   }
 
-  const [products, categories] = await Promise.all([
+  const [products, categories, totalProducts] = await Promise.all([
     prisma.product.findMany({
+      skip: (currentPage - 1) * ITEMS_PER_PAGE,
+      take: ITEMS_PER_PAGE,
       orderBy: { name: 'asc' },
       include: { category: true }
     }),
     prisma.category.findMany({
       orderBy: { name: 'asc' }
-    })
+    }),
+    prisma.product.count()
   ]);
+
+  const totalPages = Math.ceil(totalProducts / ITEMS_PER_PAGE);
 
   return (
     <div className="flex flex-col gap-10 pb-20">
@@ -31,6 +44,14 @@ export default async function ShopManagerProductsPage() {
       </div>
 
       <ProductInventoryTable products={products} categories={categories} />
+
+      <div className="flex justify-center mt-8">
+        <Pagination 
+          totalPages={totalPages} 
+          currentPage={currentPage} 
+          baseUrl="/dashboard/shop-manager/products" 
+        />
+      </div>
     </div>
   );
 }

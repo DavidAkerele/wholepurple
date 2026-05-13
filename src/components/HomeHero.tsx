@@ -11,8 +11,8 @@ interface HomeHeroProps {
 }
 
 const images = [
-  "/images/scraped/ella-olsson-I-uYa5P-EgM-unsplash.jpg",
   "/images/scraped/nrd-D6Tu_L3chLE-unsplash.jpg",
+  "/images/scraped/home11_img-3.jpg",
   "/images/scraped/Home13_bg12.jpg",
 ];
 
@@ -36,20 +36,22 @@ export default function HomeHero({ title, subtitle }: HomeHeroProps) {
       {/* Background Images for Mobile/Desktop */}
       <div className="absolute inset-0 z-0">
         {images.map((src, idx) => (
-          <div key={src} className={`absolute inset-0 transition-opacity duration-[2000ms] ease-in-out ${idx === current ? 'opacity-100' : 'opacity-0'}`}>
+          <div key={src} className={`absolute inset-0 transition-opacity duration-[2000ms] ease-in-out will-change-[opacity] ${idx === current ? 'opacity-100' : 'opacity-0'}`}>
             <Image 
               src={src} 
               alt="Background" 
               fill 
+              sizes="100vw"
               className="object-cover"
               priority={idx === 0}
             />
-            {/* Overlays - Gradient Tint & Blur */}
+            {/* Overlays - Gradient Tint */}
             <div className="absolute inset-0 bg-[#2D1B4E]/30 lg:bg-[#2D1B4E]/40 z-10"></div>
-            <div className="absolute inset-0 lg:backdrop-blur-[4px] z-10"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-[#2D1B4E]/80 via-transparent to-[#2D1B4E]/20 z-20"></div>
           </div>
         ))}
+        {/* Global Backdrop Blur - Moved out of loop for performance */}
+        <div className="absolute inset-0 lg:backdrop-blur-[4px] z-[15] pointer-events-none"></div>
       </div>
 
       {/* Abstract Background Elements (Desktop Only) */}

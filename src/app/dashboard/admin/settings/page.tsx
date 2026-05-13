@@ -7,7 +7,7 @@ import SettingsForm from "@/components/SettingsForm";
 export default async function AdminSettingsPage() {
   const session = await getServerSession(authOptions);
   
-  if (session?.user.role !== "ADMIN") {
+  if (session?.user.role !== "SYSTEM_ADMIN") {
     redirect("/dashboard");
   }
 

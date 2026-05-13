@@ -61,7 +61,7 @@ export default function CustomerService() {
               <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Quick Connect</label>
               <div className="grid grid-cols-2 gap-3">
                 <a 
-                  href="https://wa.me/2341234567890" 
+                  href="https://wa.me/2349163191000" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 p-3 bg-green-50 text-green-700 rounded-2xl hover:bg-green-100 transition-colors text-sm font-bold border border-green-100"
@@ -70,7 +70,7 @@ export default function CustomerService() {
                   WhatsApp
                 </a>
                 <a 
-                  href="tel:+2341234567890" 
+                  href="tel:+2349163191000" 
                   className="flex items-center gap-2 p-3 bg-blue-50 text-blue-700 rounded-2xl hover:bg-blue-100 transition-colors text-sm font-bold border border-blue-100"
                 >
                   <Phone className="w-4 h-4" />
@@ -143,14 +143,14 @@ export default function CustomerService() {
         onClick={() => setIsOpen(!isOpen)}
         className={`
           pointer-events-auto
-          w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 active:scale-90
+          w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 active:scale-90
           ${isOpen 
             ? 'bg-white text-[var(--primary-purple)] rotate-90 scale-0 opacity-0' 
             : 'bg-[var(--primary-purple)] text-white hover:scale-110'
           }
         `}
       >
-        <MessageCircle className="w-8 h-8" />
+        <MessageCircle className="w-6 h-6 md:w-8 md:h-8" />
       </button>
 
       {/* Close Button replacement when open (if needed, but usually header handles it) */}

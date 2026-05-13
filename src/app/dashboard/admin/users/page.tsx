@@ -6,16 +6,30 @@ import CustomerBulkUpload from "@/components/CustomerBulkUpload";
 import UserManagementTable from "@/components/UserManagementTable";
 import { Users, ShieldCheck, UserPlus, Info } from "lucide-react";
 
-export default async function AdminUsersPage() {
+export default async function AdminUsersPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}) {
   const session = await getServerSession(authOptions);
+  const resolvedParams = await searchParams;
+  const currentPage = parseInt(resolvedParams.page || "1");
+  const ITEMS_PER_PAGE = 10;
   
-  if (session?.user.role !== "ADMIN") {
+  if (session?.user.role !== "SYSTEM_ADMIN") {
     redirect("/dashboard");
   }
 
-  const users = await prisma.user.findMany({
-    orderBy: { createdAt: 'desc' }
-  });
+  const [users, totalUsers] = await Promise.all([
+    prisma.user.findMany({
+      skip: (currentPage - 1) * ITEMS_PER_PAGE,
+      take: ITEMS_PER_PAGE,
+      orderBy: { createdAt: 'desc' }
+    }),
+    prisma.user.count()
+  ]);
+
+  const totalPages = Math.ceil(totalUsers / ITEMS_PER_PAGE);
 
   return (
     <div className="flex flex-col gap-8 md:gap-12 pb-20">
@@ -39,7 +53,7 @@ export default async function AdminUsersPage() {
              </div>
              <div>
                 <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Active Accounts</p>
-                <p className="text-xl font-black text-gray-900">{users.length}</p>
+                <p className="text-xl font-black text-gray-900">{totalUsers}</p>
              </div>
           </div>
         </div>
@@ -48,7 +62,12 @@ export default async function AdminUsersPage() {
       {/* Action Area: Bulk Upload & Information */}
       <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
         <div className="xl:col-span-3">
-           <UserManagementTable users={users} />
+           <UserManagementTable 
+             users={users} 
+             totalUsers={totalUsers} 
+             currentPage={currentPage} 
+             totalPages={totalPages} 
+           />
         </div>
         
         <div className="flex flex-col gap-8">

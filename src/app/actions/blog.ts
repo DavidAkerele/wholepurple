@@ -8,7 +8,7 @@ import { authOptions } from "@/lib/auth";
 export async function createBlog(formData: { title: string; slug?: string; content: string; excerpt?: string; image?: string; published: boolean }) {
   const session = await getServerSession(authOptions);
   
-  if (!session || (session.user.role !== "EDITOR" && session.user.role !== "ADMIN")) {
+  if (!session || (session.user.role !== "EDITOR" && session.user.role !== "SYSTEM_ADMIN")) {
     return { success: false, error: "Unauthorized" };
   }
 
@@ -40,7 +40,7 @@ export async function createBlog(formData: { title: string; slug?: string; conte
 export async function updateBlog(id: string, formData: Partial<{ title: string; slug: string; content: string; excerpt?: string; image?: string; published: boolean }>) {
   const session = await getServerSession(authOptions);
   
-  if (!session || (session.user.role !== "EDITOR" && session.user.role !== "ADMIN")) {
+  if (!session || (session.user.role !== "EDITOR" && session.user.role !== "SYSTEM_ADMIN")) {
     return { success: false, error: "Unauthorized" };
   }
 
@@ -69,7 +69,7 @@ export async function updateBlog(id: string, formData: Partial<{ title: string; 
 export async function deleteBlog(id: string) {
   const session = await getServerSession(authOptions);
   
-  if (!session || (session.user.role !== "EDITOR" && session.user.role !== "ADMIN")) {
+  if (!session || (session.user.role !== "EDITOR" && session.user.role !== "SYSTEM_ADMIN")) {
     return { success: false, error: "Unauthorized" };
   }
 

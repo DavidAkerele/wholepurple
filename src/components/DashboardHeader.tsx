@@ -94,8 +94,8 @@ export default function DashboardHeader({ session }: { session: any }) {
         </div>
 
         {/* Basket */}
-        <Link href="/cart" className="flex items-center gap-3 p-2 bg-gray-50 text-gray-900/50 rounded-2xl hover:bg-purple-50 transition-all group relative">
-          <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-gray-600 group-hover:text-[var(--primary-purple)] transition-colors shadow-sm">
+        <Link href="/cart" className="flex items-center gap-3 p-2 bg-gray-50 text-gray-900/50 rounded-2xl hover:bg-purple-50 transition-all group relative min-w-[140px] justify-start">
+          <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-gray-600 group-hover:text-[var(--primary-purple)] transition-colors shadow-sm shrink-0">
             <ShoppingCart className="w-5 h-5" />
           </div>
           <div className="hidden lg:flex flex-col">
@@ -110,13 +110,17 @@ export default function DashboardHeader({ session }: { session: any }) {
         </Link>
 
         {/* Profile Link */}
-        <Link href="/dashboard/client" className="flex items-center gap-3 p-2 border border-gray-100 rounded-2xl hover:border-[var(--primary-purple)] hover:bg-gray-50 text-gray-900 transition-all group">
-          <div className="w-10 h-10 bg-[var(--primary-purple)] rounded-xl flex items-center justify-center text-white font-black shadow-lg shadow-purple-900/10">
-            {session.user.name?.[0] || "U"}
-          </div>
+        <Link href="/dashboard/client" className="flex items-center gap-3 p-2 border border-gray-100 rounded-2xl hover:border-[var(--primary-purple)] hover:bg-gray-50 text-gray-900 transition-all group min-w-[140px] justify-start">
+          {session.user.image ? (
+            <Image src={session.user.image} alt={session.user.name || ""} width={40} height={40} className="rounded-full object-cover shadow-lg shadow-purple-900/10 shrink-0" />
+          ) : (
+            <div className="w-10 h-10 bg-[var(--primary-purple)] rounded-full flex items-center justify-center text-white font-black shadow-lg shadow-purple-900/10 shrink-0">
+              {session.user.name?.[0] || "U"}
+            </div>
+          )}
           <div className="hidden lg:flex flex-col pr-2">
-            <span className="text-[10px] font-black uppercase tracking-widest text-gray-600">Profile</span>
-            <span className="text-xs font-black text-gray-900 group-hover:text-[var(--primary-purple)]">My Account</span>
+            <span className="text-[10px] font-black uppercase tracking-widest text-gray-900 truncate max-w-[80px]">{session.user.name || "User"}</span>
+            <span className="text-[9px] font-black text-gray-500 uppercase tracking-widest">{session.user.role?.replace('_', ' ') || "Client"}</span>
           </div>
         </Link>
       </div>

@@ -133,7 +133,7 @@ export async function createManualOrder(data: {
 export async function updateOrderStatus(orderId: string, status: string) {
   try {
     const session = await getServerSession(authOptions);
-    if (!session || (session.user.role !== "ADMIN" && session.user.role !== "SHOP_MANAGER")) {
+    if (!session || (session.user.role !== "SYSTEM_ADMIN" && session.user.role !== "SHOP_MANAGER")) {
       return { success: false, error: "Unauthorized" };
     }
 
@@ -157,7 +157,7 @@ export async function updateOrderStatus(orderId: string, status: string) {
 export async function bulkUpdateOrderStatus(orderIds: string[], status: string) {
   try {
     const session = await getServerSession(authOptions);
-    if (!session || (session.user.role !== "ADMIN" && session.user.role !== "SHOP_MANAGER")) {
+    if (!session || (session.user.role !== "SYSTEM_ADMIN" && session.user.role !== "SHOP_MANAGER")) {
       return { success: false, error: "Unauthorized" };
     }
 

@@ -7,7 +7,7 @@ import CreateOrderForm from "@/components/CreateOrderForm";
 export default async function NewOrderPage() {
   const session = await getServerSession(authOptions);
   
-  if (session?.user.role !== "SHOP_MANAGER" && session?.user.role !== "ADMIN") {
+  if (session?.user.role !== "SHOP_MANAGER" && session?.user.role !== "SYSTEM_ADMIN") {
     redirect("/dashboard");
   }
 

@@ -51,7 +51,7 @@ export default function DashboardSidebar({ session, role }: { session: any, role
 
   // Navigation based on role
   let navItems = [];
-  if (role === "ADMIN") {
+  if (role === "SYSTEM_ADMIN") {
     navItems = [
       { name: "Overview", href: "/dashboard/admin", icon: LayoutDashboard },
       { name: "Create Order", href: "/dashboard/shop-manager/orders/new", icon: Menu },
@@ -81,6 +81,7 @@ export default function DashboardSidebar({ session, role }: { session: any, role
   } else {
     navItems = [
       { name: "My Account", href: "/dashboard/client", icon: LayoutDashboard },
+      { name: "My Profile", href: "/dashboard/client/profile", icon: User },
       { name: "Order History", href: "/dashboard/client/orders", icon: ShoppingBag },
       { name: "Wishlist", href: "/dashboard/client/wishlist", icon: Heart },
       { name: "My Wallet", href: "/dashboard/client/wallet", icon: Wallet },
@@ -90,7 +91,7 @@ export default function DashboardSidebar({ session, role }: { session: any, role
   }
 
   const manualContent: Record<string, any> = {
-    ADMIN: {
+    SYSTEM_ADMIN: {
       title: "Master Administrator Protocol",
       description: "As a Master Admin, you hold the highest level of authority. Your dashboard is the command center for the entire Whole Purple ecosystem.",
       steps: [
@@ -126,7 +127,8 @@ export default function DashboardSidebar({ session, role }: { session: any, role
         { title: "Using Your Harvest Wallet", content: "Top up your wallet in the 'My Wallet' section for a faster, one-click checkout experience.", action: { label: "My Wallet", href: "/dashboard/client/wallet" } },
         { title: "Earning & Spending Rewards", content: "For every ₦100 you spend, you earn 1 Reward Point. Convert them to wallet credit for discounts.", action: { label: "My Rewards", href: "/dashboard/client/rewards" } },
         { title: "Order Tracking", content: "View the progress of your current delivery in 'Order History'.", action: { label: "Order History", href: "/dashboard/client/orders" } },
-        { title: "Referral Program", content: "Share your unique referral link to earn wallet credit when your friends make their first purchase.", action: { label: "Get Link", href: "/dashboard/client/referrals" } }
+        { title: "Referral Program", content: "Share your unique referral link to earn wallet credit when your friends make their first purchase.", action: { label: "Get Link", href: "/dashboard/client/referrals" } },
+        { title: "Mastering the Meal Builders", content: "When building a custom bowl, follow the category rules. For example, choose exactly 1 base, at least 2 proteins, and 3-4 toppings. The 'Add to Basket' button activates only when all requirements are met.", action: { label: "Start Building", href: "/shop/builders" } }
       ]
     }
   };
@@ -253,9 +255,13 @@ export default function DashboardSidebar({ session, role }: { session: any, role
         {/* User Profile / Sign Out */}
         <div className="p-4 border-t border-gray-100 bg-gray-50 text-gray-900/30">
           <div className={`flex items-center gap-3 p-2.5 rounded-2xl bg-white/80 backdrop-blur-sm border border-gray-100 mb-3 ${isSidebarCollapsed && !isMobile ? 'justify-center border-none bg-transparent shadow-none' : 'shadow-sm'}`}>
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--primary-purple)] to-purple-400 text-white flex items-center justify-center font-black shrink-0 shadow-md shadow-purple-200">
-              {session.user.name?.[0] || session.user.email?.[0] || "U"}
-            </div>
+            {session.user.image ? (
+              <Image src={session.user.image} alt={session.user.name || ""} width={40} height={40} className="rounded-full object-cover shadow-md shadow-purple-200" />
+            ) : (
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[var(--primary-purple)] to-purple-400 text-white flex items-center justify-center font-black shrink-0 shadow-md shadow-purple-200">
+                {session.user.name?.[0] || session.user.email?.[0] || "U"}
+              </div>
+            )}
             {(!isSidebarCollapsed || isMobile) && (
               <div className="flex flex-col overflow-hidden">
                 <span className="text-[11px] font-black text-gray-900 truncate uppercase tracking-tight">{session.user.name || "User"}</span>

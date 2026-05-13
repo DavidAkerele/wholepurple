@@ -5,7 +5,7 @@ import { CheckCircle2, Loader2, ArrowLeft, ShieldCheck, Truck, CreditCard, Messa
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 import { getProductImageUrl } from "@/lib/image-utils";
 
 import { createOrder } from "@/app/actions/order";
@@ -104,6 +104,44 @@ export default function CheckoutPage() {
             <Link href="/shop" className="flex-1 bg-white border border-gray-100 text-gray-900 px-8 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-gray-50 text-gray-900 transition-all">
               Continue Shopping
             </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!session) {
+    return (
+      <div className="bg-[#FAF7F2] min-h-screen flex items-center justify-center p-4">
+        <div className="max-w-xl w-full bg-white rounded-[50px] p-10 md:p-16 border border-gray-100 shadow-2xl shadow-purple-900/5 text-center">
+          <div className="w-20 h-20 bg-purple-50 rounded-[28px] flex items-center justify-center text-[var(--primary-purple)] mx-auto mb-8">
+            <ShieldCheck className="w-10 h-10" />
+          </div>
+          <h2 className="text-3xl md:text-4xl font-black text-gray-900 uppercase tracking-tighter mb-4 leading-none">Authentication Required</h2>
+          <p className="text-gray-800 font-medium mb-10 leading-relaxed">
+            To ensure a secure transaction and track your harvest, please log in or create an account before checking out.
+          </p>
+          
+          <div className="flex flex-col gap-4">
+            <button 
+              onClick={() => signIn(undefined, { callbackUrl: '/checkout' })}
+              className="w-full bg-[var(--primary-purple)] text-white py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-[1.02] shadow-xl shadow-purple-900/20 transition-all"
+            >
+              Log In / Sign Up
+            </button>
+            <Link 
+              href="/cart"
+              className="w-full bg-gray-50 text-gray-600 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-gray-100 transition-all"
+            >
+              Return to Basket
+            </Link>
+          </div>
+
+          <div className="mt-12 pt-8 border-t border-gray-50 flex items-center justify-center gap-6">
+             <Image src="/images/scraped/Gemini_Generated_Image_2h44b12h44b12h44-removebg-preview.png" alt="Trust" width={40} height={40} className="grayscale opacity-50" />
+             <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest text-left max-w-[150px]">
+                Your items are saved and will be waiting in your basket after login.
+             </p>
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronRight, Heart, ShieldCheck, Truck, Leaf } from "lucide-react";
+import { ChevronRight, ChevronLeft, Heart, ShieldCheck, Truck, Leaf } from "lucide-react";
 import ProductActionForm from "./ProductActionForm";
 import ProductDetailsTabs from "@/components/ProductDetailsTabs";
 import { getProductImageUrl, getAllProductImages } from "@/lib/image-utils";
@@ -19,14 +19,32 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
   }
 
   // Fetch related products
-  const relatedProducts = await prisma.product.findMany({
-    where: { 
-      categoryId: product.categoryId,
-      NOT: { id: product.id }
-    },
-    take: 4,
-    include: { category: true }
-  });
+  const [relatedProducts, prevProduct, nextProduct] = await Promise.all([
+    prisma.product.findMany({
+      where: { 
+        categoryId: product.categoryId,
+        NOT: { id: product.id }
+      },
+      take: 4,
+      include: { category: true }
+    }),
+    prisma.product.findFirst({
+      where: {
+        categoryId: product.categoryId,
+        createdAt: { lt: product.createdAt }
+      },
+      orderBy: { createdAt: 'desc' },
+      select: { slug: true, name: true }
+    }),
+    prisma.product.findFirst({
+      where: {
+        categoryId: product.categoryId,
+        createdAt: { gt: product.createdAt }
+      },
+      orderBy: { createdAt: 'asc' },
+      select: { slug: true, name: true }
+    })
+  ]);
 
   return (
     <div className="min-h-screen bg-[#FDFCFB]">
@@ -35,17 +53,42 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
       <div className="pt-24 lg:pt-32 pb-12 lg:pb-16">
         <div className="container mx-auto px-4 md:px-8">
           
-          {/* Breadcrumbs */}
-          <nav className="flex items-center gap-2 text-[10px] lg:text-sm text-gray-800 font-medium mb-6 lg:mb-8 overflow-x-auto whitespace-nowrap pb-2 scrollbar-hide">
-            <Link href="/" className="hover:text-[var(--primary-purple)] transition-colors uppercase tracking-widest">Home</Link>
-            <ChevronRight className="w-3 h-3 lg:w-4 lg:h-4 text-gray-400" />
-            <Link href="/shop" className="hover:text-[var(--primary-purple)] transition-colors uppercase tracking-widest">Shop</Link>
-            <ChevronRight className="w-3 h-3 lg:w-4 lg:h-4 text-gray-400" />
-            <Link href={`/shop?category=${product.category.slug}`} className="hover:text-[var(--primary-purple)] transition-colors capitalize uppercase tracking-widest">
-              {product.category.name}
-            </Link>
-            <ChevronRight className="w-3 h-3 lg:w-4 lg:h-4 text-gray-400" />
-            <span className="text-gray-900 uppercase tracking-widest">{product.name}</span>
+          {/* Breadcrumbs & Navigation */}
+          <nav className="flex items-center gap-2 text-[10px] lg:text-sm text-gray-800 font-medium mb-6 lg:mb-8 border-b border-gray-100 lg:border-none">
+            <div className="flex-1 flex items-center gap-2 overflow-x-auto whitespace-nowrap pb-2 scrollbar-hide">
+              <Link href="/" className="hover:text-[var(--primary-purple)] transition-colors uppercase tracking-widest">Home</Link>
+              <ChevronRight className="w-3 h-3 lg:w-4 lg:h-4 text-gray-400" />
+              <Link href="/shop" className="hover:text-[var(--primary-purple)] transition-colors uppercase tracking-widest">Shop</Link>
+              <ChevronRight className="w-3 h-3 lg:w-4 lg:h-4 text-gray-400" />
+              <Link href={`/shop?category=${product.category.slug}`} className="hover:text-[var(--primary-purple)] transition-colors capitalize uppercase tracking-widest">
+                {product.category.name}
+              </Link>
+              <ChevronRight className="w-3 h-3 lg:w-4 lg:h-4 text-gray-400" />
+              <span className="text-gray-900 uppercase tracking-widest">{product.name}</span>
+            </div>
+
+            <div className="flex items-center gap-4 border-l border-gray-100 pl-4 mb-2 lg:mb-0">
+              {prevProduct && (
+                <Link 
+                  href={`/shop/${prevProduct.slug}`} 
+                  className="group flex items-center gap-1.5 text-[9px] font-black uppercase tracking-[0.2em] text-gray-400 hover:text-[var(--primary-purple)] transition-colors"
+                  title={`Previous: ${prevProduct.name}`}
+                >
+                  <ChevronLeft className="w-3 h-3 transition-transform group-hover:-translate-x-1" />
+                  <span className="hidden sm:inline">Prev</span>
+                </Link>
+              )}
+              {nextProduct && (
+                <Link 
+                  href={`/shop/${nextProduct.slug}`} 
+                  className="group flex items-center gap-1.5 text-[9px] font-black uppercase tracking-[0.2em] text-gray-400 hover:text-[var(--primary-purple)] transition-colors"
+                  title={`Next: ${nextProduct.name}`}
+                >
+                  <span className="hidden sm:inline">Next</span>
+                  <ChevronRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
+                </Link>
+              )}
+            </div>
           </nav>
 
           {/* Product Split Section */}

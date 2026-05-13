@@ -63,13 +63,17 @@ export default function Navbar() {
           <div className="flex items-center gap-2">
             {session ? (
               <div className="relative group">
-                <Link href="/dashboard" className="flex items-center gap-2 px-2 py-0.5 bg-gray-50 text-gray-900 rounded-full border border-gray-100 hover:bg-white transition-all group/btn">
-                  <div className="w-6 h-6 rounded-full bg-[var(--primary-purple)] flex items-center justify-center text-white text-[10px] font-bold">
-                    {session.user.name?.charAt(0)}
-                  </div>
+                <Link href="/dashboard" className="flex items-center gap-3 px-2 sm:px-4 py-2 bg-gray-50 text-gray-900 rounded-full border border-gray-100 hover:bg-white transition-all group/btn sm:min-w-[140px] justify-center sm:justify-start">
+                  {session.user.image ? (
+                    <Image src={session.user.image} alt={session.user.name || ""} width={28} height={28} className="rounded-full object-cover shrink-0" />
+                  ) : (
+                    <div className="w-7 h-7 rounded-full bg-[var(--primary-purple)] flex items-center justify-center text-white text-[10px] font-bold shrink-0">
+                      {session.user.name?.charAt(0)}
+                    </div>
+                  )}
                   <div className="hidden sm:flex flex-col items-start leading-none">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-gray-900 group-hover/btn:text-[var(--primary-purple)]">{session.user.name}</span>
-                    <span className="text-[8px] font-bold text-gray-600 uppercase tracking-widest mt-0.5">{session.user.role}</span>
+                    <span className="text-[9px] font-black uppercase tracking-widest text-gray-900 group-hover/btn:text-[var(--primary-purple)] truncate max-w-[80px]">{session.user.name}</span>
+                    <span className="text-[7px] font-bold text-gray-500 uppercase tracking-widest mt-0.5">{session.user.role?.replace('_', ' ')}</span>
                   </div>
                 </Link>
 
@@ -93,17 +97,17 @@ export default function Navbar() {
                 </div>
               </div>
             ) : (
-              <Link href="/login" aria-label="Account" className="flex items-center gap-2 text-black hover:text-[var(--primary-purple)] transition-colors">
+            <Link href="/login" aria-label="Account" className="flex items-center gap-3 px-3 sm:px-5 py-2.5 bg-[var(--primary-purple)] text-white rounded-full hover:shadow-lg hover:shadow-purple-100 transition-all sm:min-w-[140px] justify-center">
                 <User className="w-4 h-4" />
                 <span className="text-[10px] font-black uppercase tracking-widest hidden sm:inline">Sign In</span>
               </Link>
             )}
           </div>
 
-          <Link href="/cart" aria-label="Cart" className={`flex items-center gap-2 px-2 py-0.5 rounded-full border ${isDarkNav ? 'border-gray-200 text-black hover:border-[var(--primary-purple)]' : 'border-gray-900/10 text-black hover:bg-black/5'} transition-all group relative`}>
-            <ShoppingCart className="w-4 h-4" />
+          <Link href="/cart" aria-label="Cart" className={`flex items-center gap-3 px-3 sm:px-4 py-2 rounded-full border sm:min-w-[140px] justify-center sm:justify-start transition-all group relative ${isDarkNav ? 'border-gray-200 text-black hover:border-[var(--primary-purple)]' : 'border-gray-900/10 text-black hover:bg-black/5'}`}>
+            <ShoppingCart className="w-4 h-4 shrink-0" />
             <span className="text-[10px] font-black uppercase tracking-widest hidden sm:inline">Basket</span>
-            <span className="absolute -top-1 -right-1 bg-[var(--primary-purple)] text-white text-[8px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+            <span className="absolute top-1 left-7 sm:left-7 bg-[var(--primary-purple)] text-white text-[8px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-lg">
               {mounted ? getTotalItems() : 0}
             </span>
           </Link>
@@ -135,9 +139,13 @@ export default function Navbar() {
             {/* User Profile in Mobile Menu */}
             {session ? (
               <div className="mb-4 p-4 bg-purple-50 rounded-3xl border border-purple-100 flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-[var(--primary-purple)] flex items-center justify-center text-white font-black">
-                  {session.user.name?.charAt(0)}
-                </div>
+                {session.user.image ? (
+                  <Image src={session.user.image} alt={session.user.name || ""} width={48} height={48} className="rounded-full object-cover" />
+                ) : (
+                  <div className="w-12 h-12 rounded-full bg-[var(--primary-purple)] flex items-center justify-center text-white font-black">
+                    {session.user.name?.charAt(0)}
+                  </div>
+                )}
                 <div className="flex flex-col">
                   <span className="text-xs font-black uppercase tracking-widest text-gray-900">{session.user.name}</span>
                   <span className="text-[10px] font-bold text-[var(--primary-purple)] uppercase tracking-widest">{session.user.role}</span>

@@ -45,3 +45,4 @@ dev.db
 *.db
 *.db-journal
 login-credentials.txt
+/scratch

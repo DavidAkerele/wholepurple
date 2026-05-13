@@ -4,18 +4,33 @@ import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { ShoppingBag, ChevronLeft, Package, Clock, CheckCircle2, ChevronRight } from "lucide-react";
+import Pagination from "@/components/Pagination";
 
-export default async function OrderHistoryPage() {
+export default async function OrderHistoryPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}) {
   const session = await getServerSession(authOptions);
+  const resolvedParams = await searchParams;
+  const currentPage = parseInt(resolvedParams.page || "1");
+  const ITEMS_PER_PAGE = 10;
   
-  if (session?.user.role !== "CLIENT") {
+  if (!session || session.user.role !== "CLIENT") {
     redirect("/dashboard");
   }
 
-  const orders = await prisma.order.findMany({
-    where: { userId: session.user.id },
-    orderBy: { createdAt: 'desc' },
-  });
+  const [orders, totalOrders] = await Promise.all([
+    prisma.order.findMany({
+      where: { userId: session.user.id },
+      skip: (currentPage - 1) * ITEMS_PER_PAGE,
+      take: ITEMS_PER_PAGE,
+      orderBy: { createdAt: 'desc' },
+    }),
+    prisma.order.count({ where: { userId: session.user.id } })
+  ]);
+
+  const totalPages = Math.ceil(totalOrders / ITEMS_PER_PAGE);
 
   return (
     <div className="flex flex-col gap-10">
@@ -31,7 +46,7 @@ export default async function OrderHistoryPage() {
         </div>
         <div className="bg-white px-6 py-3 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-3">
            <ShoppingBag className="w-5 h-5 text-[var(--primary-purple)]" />
-           <span className="text-sm font-black uppercase tracking-widest text-gray-900">{orders.length} Orders</span>
+           <span className="text-sm font-black uppercase tracking-widest text-gray-900">{totalOrders} Orders</span>
         </div>
       </div>
 
@@ -50,8 +65,8 @@ export default async function OrderHistoryPage() {
         <div className="grid grid-cols-1 gap-4 md:gap-6">
           {orders.map((order) => (
             <div key={order.id} className="bg-white rounded-[30px] md:rounded-[40px] p-6 md:p-10 border border-gray-100 shadow-xl shadow-purple-900/5 group hover:border-[var(--primary-purple)] transition-all duration-500">
-              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 md:gap-8">
-                {/* Order Meta */}
+               {/* ... order card content ... */}
+               <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 md:gap-8">
                 <div className="flex items-start gap-4 md:gap-6">
                    <div className="w-14 h-14 md:w-20 md:h-20 bg-gray-50 text-gray-900 rounded-2xl md:rounded-[28px] flex items-center justify-center text-[var(--primary-purple)] font-black text-lg md:text-xl shadow-inner shrink-0">
                       #
@@ -66,7 +81,6 @@ export default async function OrderHistoryPage() {
                    </div>
                 </div>
 
-                {/* Status & Total */}
                 <div className="flex flex-row items-center justify-between lg:justify-end gap-6 md:gap-12 border-t lg:border-none pt-4 lg:pt-0">
                    <div className="flex flex-col items-start lg:items-end gap-1 md:gap-2">
                       <span className={`px-3 md:px-4 py-1 rounded-full text-[8px] md:text-[10px] font-black uppercase tracking-widest flex items-center gap-2 ${
@@ -94,6 +108,14 @@ export default async function OrderHistoryPage() {
               </div>
             </div>
           ))}
+          
+          <div className="flex justify-center mt-12">
+            <Pagination 
+              totalPages={totalPages} 
+              currentPage={currentPage} 
+              baseUrl="/dashboard/client/orders" 
+            />
+          </div>
         </div>
       )}
     </div>

@@ -105,7 +105,7 @@ export default function CustomerBulkUpload() {
         <AlertCircle className="w-5 h-5 text-gray-600 shrink-0 mt-0.5" />
         <p className="text-xs text-gray-800 font-medium leading-relaxed">
           Ensure your CSV file uses commas as separators. The first row must be the header. 
-          Valid roles are: <code className="bg-gray-200 px-1 rounded">ADMIN</code>, 
+          Valid roles are: <code className="bg-gray-200 px-1 rounded">SYSTEM_ADMIN</code>, 
           <code className="bg-gray-200 px-1 rounded">SHOP_MANAGER</code>, 
           <code className="bg-gray-200 px-1 rounded">CLIENT</code>.
         </p>

@@ -7,7 +7,7 @@ import BuilderManagement from "@/components/BuilderManagement";
 export default async function AdminBuildersPage() {
   const session = await getServerSession(authOptions);
   
-  if (session?.user.role !== "ADMIN" && session?.user.role !== "SHOP_MANAGER") {
+  if (session?.user.role !== "SYSTEM_ADMIN" && session?.user.role !== "SHOP_MANAGER") {
     redirect("/dashboard");
   }
 

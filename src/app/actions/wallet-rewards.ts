@@ -8,7 +8,7 @@ import { authOptions } from "@/lib/auth";
 export async function adjustUserWalletAndPoints(userId: string, data: { walletBalance?: number; rewardPoints?: number }) {
   const session = await getServerSession(authOptions);
   
-  if (!session || session.user.role !== "ADMIN") {
+  if (!session || session.user.role !== "SYSTEM_ADMIN") {
     return { success: false, error: "Unauthorized" };
   }
 
@@ -35,7 +35,7 @@ export async function adjustUserWalletAndPoints(userId: string, data: { walletBa
 export async function getAllUsersForAdmin() {
   const session = await getServerSession(authOptions);
   
-  if (!session || session.user.role !== "ADMIN") {
+  if (!session || session.user.role !== "SYSTEM_ADMIN") {
     throw new Error("Unauthorized");
   }
 

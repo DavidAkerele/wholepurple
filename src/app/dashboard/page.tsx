@@ -11,7 +11,7 @@ export default async function DashboardPage() {
 
   // Redirect based on role
   switch (session.user.role) {
-    case "ADMIN":
+    case "SYSTEM_ADMIN":
       redirect("/dashboard/admin");
       break;
     case "SHOP_MANAGER":
