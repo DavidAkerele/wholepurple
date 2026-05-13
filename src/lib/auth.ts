@@ -124,17 +124,9 @@ export const authOptions: NextAuthOptions = {
       }
 
       // DEBUG: Log the outcome
-      const logMessage = `[AUTH CHECK] Time: ${new Date().toISOString()}, Provider: ${provider}, Email: "${userEmail}", Name: "${token.name}", Role Assigned: "${token.role}"\n`;
+      const logMessage = `[AUTH CHECK] Time: ${new Date().toISOString()}, Provider: ${provider}, Email: "${userEmail}", Name: "${token.name}", Role Assigned: "${token.role}"`;
       console.log(logMessage);
       
-      try {
-        const fs = require('fs');
-        const logPath = '/Users/davidakerele/Documents/wholepurple/scratch/auth_logs.txt';
-        fs.appendFileSync(logPath, logMessage);
-      } catch (err) {
-        console.error('Failed to write to log file:', err);
-      }
-
       return token;
     },
     async session({ session, token }) {
